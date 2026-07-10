@@ -21,3 +21,7 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+
+docker/mysql/data/
+git rm --cached -r docker/mysql/data/
+git commit -m "Ignore docker MySQL data directory"
