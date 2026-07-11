@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TestController;
+use App\Http\Controllers\LoginController;
 
-Route::get('/', [TestController::class, 'index']);
+Route::get('/', [LoginController::class, 'index']);
+Route::post('/login', [LoginController::class, 'login'])->name('login');
+Route::get('/toppage', [LoginController::class, 'toppage'])->name('toppage');
