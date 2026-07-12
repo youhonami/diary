@@ -38,6 +38,10 @@
 
         <button type="submit">ログイン</button>
     </form>
+
+    <p>
+        <a href="<?= route('register') ?>">新規会員登録はこちら</a>
+    </p>
 </body>
 
 </html>
