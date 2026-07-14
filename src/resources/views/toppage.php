@@ -11,6 +11,11 @@
 <body>
     <h1>トップページ</h1>
     <p>内容は今後作成します。</p>
+
+    <form action="<?= route('logout') ?>" method="post">
+        <?= csrf_field() ?>
+        <button type="submit">ログアウト</button>
+    </form>
 </body>
 
 </html>
