@@ -60,6 +60,26 @@ class LoginController extends Controller
         return view('toppage');
     }
 
+    public function diaryCreate()
+    {
+        return view('diary_create');
+    }
+
+    public function diaryLookback()
+    {
+        return view('diary_lookback');
+    }
+
+    public function diaryRead()
+    {
+        return view('diary_read');
+    }
+
+    public function settings()
+    {
+        return view('settings');
+    }
+
     public function logout(Request $request)
     {
         Auth::logout();
