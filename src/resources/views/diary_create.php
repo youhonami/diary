@@ -43,39 +43,47 @@
 <body>
     <h1>日記を書く</h1>
 
-    <form action="#" method="post">
+    <?php if ($errors->any()): ?>
+        <ul>
+            <?php foreach ($errors->all() as $error): ?>
+                <li><?= e($error) ?></li>
+            <?php endforeach; ?>
+        </ul>
+    <?php endif; ?>
+
+    <form action="<?= route('diary.store') ?>" method="post">
         <?= csrf_field() ?>
 
         <div class="form-group">
             <label for="title">タイトル</label>
-            <input type="text" id="title" name="title" required>
+            <input type="text" id="title" name="title" value="<?= e(old('title')) ?>" required>
         </div>
 
         <div class="form-group">
             <label for="diary_date">日付</label>
-            <input type="date" id="diary_date" name="diary_date" required>
+            <input type="date" id="diary_date" name="diary_date" value="<?= e(old('diary_date')) ?>" required>
         </div>
 
         <div class="form-group">
             <label for="place">場所</label>
-            <input type="text" id="place" name="place">
+            <input type="text" id="place" name="place" value="<?= e(old('place')) ?>">
         </div>
 
         <div class="form-group">
             <label for="event">出来事</label>
-            <textarea id="event" name="event" required></textarea>
+            <textarea id="event" name="event" required><?= e(old('event')) ?></textarea>
         </div>
 
         <div class="form-group">
             <label for="good_thing">良かったこと</label>
-            <textarea id="good_thing" name="good_thing" required></textarea>
+            <textarea id="good_thing" name="good_thing" required><?= e(old('good_thing')) ?></textarea>
         </div>
 
         <div class="form-group">
             <label for="visibility">公開設定</label>
             <select id="visibility" name="visibility" required>
-                <option value="private">非公開</option>
-                <option value="public">公開</option>
+                <option value="private" <?= old('visibility', 'private') === 'private' ? 'selected' : '' ?>>非公開</option>
+                <option value="public" <?= old('visibility') === 'public' ? 'selected' : '' ?>>公開</option>
             </select>
         </div>
 

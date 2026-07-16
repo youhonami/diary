@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Diary;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -65,9 +67,90 @@ class LoginController extends Controller
         return view('diary_create');
     }
 
-    public function diaryLookback()
+    public function diaryStore(Request $request)
     {
-        return view('diary_lookback');
+        if (! Auth::check()) {
+            return redirect()->route('login.index');
+        }
+
+        $diaryData = $request->validate([
+            'title' => ['required', 'string', 'max:255'],
+            'diary_date' => ['required', 'date'],
+            'place' => ['nullable', 'string', 'max:255'],
+            'event' => ['required', 'string'],
+            'good_thing' => ['required', 'string'],
+            'visibility' => ['required', 'in:private,public'],
+        ]);
+
+        Diary::updateOrCreate(
+            [
+                'user_id' => Auth::id(),
+                'diary_date' => $diaryData['diary_date'],
+            ],
+            [
+                'title' => $diaryData['title'],
+                'place' => $diaryData['place'] ?? null,
+                'event' => $diaryData['event'],
+                'good_thing' => $diaryData['good_thing'],
+                'visibility' => $diaryData['visibility'],
+            ],
+        );
+
+        return redirect()->route('diary.lookback')->with('message', '日記を保存しました。');
+    }
+
+    public function diaryLookback(Request $request)
+    {
+        $month = $request->input('month', now()->format('Y-m'));
+
+        if (! preg_match('/^\d{4}-\d{2}$/', $month)) {
+            $month = now()->format('Y-m');
+        }
+
+        $currentMonth = Carbon::createFromFormat('Y-m', $month)->startOfMonth();
+        $calendarStart = $currentMonth->copy()->startOfWeek(Carbon::SUNDAY);
+        $calendarEnd = $currentMonth->copy()->endOfMonth()->endOfWeek(Carbon::SATURDAY);
+
+        $diaries = Diary::where('user_id', Auth::id())
+            ->whereBetween('diary_date', [
+                $currentMonth->copy()->startOfMonth(),
+                $currentMonth->copy()->endOfMonth(),
+            ])
+            ->get()
+            ->keyBy(fn (Diary $diary) => $diary->diary_date->format('Y-m-d'));
+
+        $weeks = [];
+        $date = $calendarStart->copy();
+
+        while ($date <= $calendarEnd) {
+            $week = [];
+
+            for ($i = 0; $i < 7; $i++) {
+                $week[] = $date->copy();
+                $date->addDay();
+            }
+
+            $weeks[] = $week;
+        }
+
+        return view('diary_lookback', [
+            'currentMonth' => $currentMonth,
+            'diaries' => $diaries,
+            'nextMonth' => $currentMonth->copy()->addMonth()->format('Y-m'),
+            'previousMonth' => $currentMonth->copy()->subMonth()->format('Y-m'),
+            'weeks' => $weeks,
+        ]);
+    }
+
+    public function diaryShow(string $date)
+    {
+        $diary = Diary::where('user_id', Auth::id())
+            ->whereDate('diary_date', $date)
+            ->firstOrFail();
+
+        return view('diary_show', [
+            'diary' => $diary,
+        ]);
     }
 
     public function diaryRead()

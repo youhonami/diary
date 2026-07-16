@@ -6,11 +6,111 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>日記を見返す</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 40px;
+        }
+
+        .calendar-nav {
+            align-items: center;
+            display: flex;
+            gap: 20px;
+            margin: 24px 0;
+        }
+
+        table {
+            border-collapse: collapse;
+            max-width: 840px;
+            width: 100%;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            height: 80px;
+            padding: 8px;
+            text-align: left;
+            vertical-align: top;
+            width: 14.28%;
+        }
+
+        th {
+            background-color: #f7f7f7;
+            text-align: center;
+        }
+
+        .outside-month {
+            background-color: #fafafa;
+            color: #bbb;
+        }
+
+        .diary-link {
+            color: #2563eb;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .diary-label {
+            display: block;
+            font-size: 12px;
+            margin-top: 8px;
+        }
+    </style>
 </head>
 
 <body>
     <h1>日記を見返す</h1>
-    <p>内容は後日作成します。</p>
+
+    <?php if (session('message')): ?>
+        <p><?= e(session('message')) ?></p>
+    <?php endif; ?>
+
+    <div class="calendar-nav">
+        <a href="<?= route('diary.lookback', ['month' => $previousMonth]) ?>">前の月</a>
+        <strong><?= e($currentMonth->format('Y年n月')) ?></strong>
+        <a href="<?= route('diary.lookback', ['month' => $nextMonth]) ?>">次の月</a>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>日</th>
+                <th>月</th>
+                <th>火</th>
+                <th>水</th>
+                <th>木</th>
+                <th>金</th>
+                <th>土</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($weeks as $week): ?>
+                <tr>
+                    <?php foreach ($week as $date): ?>
+                        <?php
+                            $dateKey = $date->format('Y-m-d');
+                            $diary = $diaries->get($dateKey);
+                        ?>
+                        <td class="<?= $date->isSameMonth($currentMonth) ? '' : 'outside-month' ?>">
+                            <?php if ($diary): ?>
+                                <a class="diary-link" href="<?= route('diary.show', ['date' => $dateKey]) ?>">
+                                    <?= e($date->day) ?>
+                                    <span class="diary-label"><?= e($diary->title) ?></span>
+                                </a>
+                            <?php else: ?>
+                                <?= e($date->day) ?>
+                            <?php endif; ?>
+                        </td>
+                    <?php endforeach; ?>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
+    <p>
+        <a href="<?= route('diary.create') ?>">日記を書く</a>
+    </p>
 
     <p>
         <a href="<?= route('toppage') ?>">トップページへ戻る</a>
