@@ -6,11 +6,81 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>日記を書く</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 40px;
+        }
+
+        form {
+            max-width: 640px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        input,
+        select,
+        textarea {
+            box-sizing: border-box;
+            padding: 10px;
+            width: 100%;
+        }
+
+        textarea {
+            min-height: 120px;
+        }
+    </style>
 </head>
 
 <body>
     <h1>日記を書く</h1>
-    <p>内容は後日作成します。</p>
+
+    <form action="#" method="post">
+        <?= csrf_field() ?>
+
+        <div class="form-group">
+            <label for="title">タイトル</label>
+            <input type="text" id="title" name="title" required>
+        </div>
+
+        <div class="form-group">
+            <label for="diary_date">日付</label>
+            <input type="date" id="diary_date" name="diary_date" required>
+        </div>
+
+        <div class="form-group">
+            <label for="place">場所</label>
+            <input type="text" id="place" name="place">
+        </div>
+
+        <div class="form-group">
+            <label for="event">出来事</label>
+            <textarea id="event" name="event" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="good_thing">良かったこと</label>
+            <textarea id="good_thing" name="good_thing" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="visibility">公開設定</label>
+            <select id="visibility" name="visibility" required>
+                <option value="private">非公開</option>
+                <option value="public">公開</option>
+            </select>
+        </div>
+
+        <button type="submit">保存する</button>
+    </form>
 
     <p>
         <a href="<?= route('toppage') ?>">トップページへ戻る</a>
