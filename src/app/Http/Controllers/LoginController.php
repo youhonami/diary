@@ -82,19 +82,15 @@ class LoginController extends Controller
             'visibility' => ['required', 'in:private,public'],
         ]);
 
-        Diary::updateOrCreate(
-            [
-                'user_id' => Auth::id(),
-                'diary_date' => $diaryData['diary_date'],
-            ],
-            [
-                'title' => $diaryData['title'],
-                'place' => $diaryData['place'] ?? null,
-                'event' => $diaryData['event'],
-                'good_thing' => $diaryData['good_thing'],
-                'visibility' => $diaryData['visibility'],
-            ],
-        );
+        Diary::create([
+            'user_id' => Auth::id(),
+            'title' => $diaryData['title'],
+            'diary_date' => $diaryData['diary_date'],
+            'place' => $diaryData['place'] ?? null,
+            'event' => $diaryData['event'],
+            'good_thing' => $diaryData['good_thing'],
+            'visibility' => $diaryData['visibility'],
+        ]);
 
         return redirect()->route('diary.lookback')->with('message', '日記を保存しました。');
     }
@@ -116,8 +112,10 @@ class LoginController extends Controller
                 $currentMonth->copy()->startOfMonth(),
                 $currentMonth->copy()->endOfMonth(),
             ])
+            ->orderBy('diary_date')
+            ->orderBy('created_at')
             ->get()
-            ->keyBy(fn (Diary $diary) => $diary->diary_date->format('Y-m-d'));
+            ->groupBy(fn (Diary $diary) => $diary->diary_date->format('Y-m-d'));
 
         $weeks = [];
         $date = $calendarStart->copy();
@@ -144,18 +142,46 @@ class LoginController extends Controller
 
     public function diaryShow(string $date)
     {
-        $diary = Diary::where('user_id', Auth::id())
+        $diaries = Diary::where('user_id', Auth::id())
             ->whereDate('diary_date', $date)
-            ->firstOrFail();
+            ->orderBy('created_at')
+            ->get();
+
+        if ($diaries->isEmpty()) {
+            abort(404);
+        }
 
         return view('diary_show', [
-            'diary' => $diary,
+            'date' => Carbon::parse($date),
+            'diaries' => $diaries,
         ]);
     }
 
     public function diaryRead()
     {
-        return view('diary_read');
+        $diaries = Diary::with('user')
+            ->where('visibility', 'public')
+            ->where('user_id', '!=', Auth::id())
+            ->orderByDesc('diary_date')
+            ->orderByDesc('created_at')
+            ->get();
+
+        return view('diary_read', [
+            'diaries' => $diaries,
+        ]);
+    }
+
+    public function diaryPublicShow(Diary $diary)
+    {
+        if ($diary->visibility !== 'public' || $diary->user_id === Auth::id()) {
+            abort(404);
+        }
+
+        $diary->load('user');
+
+        return view('diary_public_show', [
+            'diary' => $diary,
+        ]);
     }
 
     public function settings()

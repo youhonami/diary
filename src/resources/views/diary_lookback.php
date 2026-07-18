@@ -90,13 +90,14 @@
                     <?php foreach ($week as $date): ?>
                         <?php
                             $dateKey = $date->format('Y-m-d');
-                            $diary = $diaries->get($dateKey);
+                            $dateDiaries = $diaries->get($dateKey);
                         ?>
                         <td class="<?= $date->isSameMonth($currentMonth) ? '' : 'outside-month' ?>">
-                            <?php if ($diary): ?>
+                            <?php if ($dateDiaries): ?>
                                 <a class="diary-link" href="<?= route('diary.show', ['date' => $dateKey]) ?>">
                                     <?= e($date->day) ?>
-                                    <span class="diary-label"><?= e($diary->title) ?></span>
+                                    <span class="diary-label"><?= e($dateDiaries->count()) ?>件の日記</span>
+                                    <span class="diary-label"><?= e($dateDiaries->first()->title) ?></span>
                                 </a>
                             <?php else: ?>
                                 <?= e($date->day) ?>

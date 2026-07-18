@@ -21,7 +21,6 @@ return new class extends Migration
             $table->text('good_thing');
             $table->string('visibility')->default('private');
             $table->timestamps();
-            $table->unique(['user_id', 'diary_date']);
         });
     }
 
