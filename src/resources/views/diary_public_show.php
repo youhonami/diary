@@ -6,26 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= e($diary->title) ?></title>
-    <style>
-        body {
-            font-family: sans-serif;
-            margin: 40px;
-        }
-
-        .diary-detail {
-            max-width: 720px;
-        }
-
-        .diary-section {
-            border-bottom: 1px solid #ddd;
-            padding: 16px 0;
-        }
-
-        .diary-label {
-            font-weight: bold;
-            margin-bottom: 8px;
-        }
-    </style>
+    <link rel="stylesheet" href="<?= asset('css/diary_public_show.css') ?>">
 </head>
 
 <body>

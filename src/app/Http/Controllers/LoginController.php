@@ -6,6 +6,7 @@ use App\Models\Diary;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -187,6 +188,43 @@ class LoginController extends Controller
     public function settings()
     {
         return view('settings');
+    }
+
+    public function userEdit()
+    {
+        if (! Auth::check()) {
+            return redirect()->route('login.index');
+        }
+
+        return view('user_edit', [
+            'user' => Auth::user(),
+        ]);
+    }
+
+    public function userUpdate(Request $request)
+    {
+        if (! Auth::check()) {
+            return redirect()->route('login.index');
+        }
+
+        $user = Auth::user();
+
+        $userData = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', Rule::unique('users', 'email')->ignore($user->id)],
+            'password' => ['nullable', 'min:6', 'confirmed'],
+        ]);
+
+        $user->name = $userData['name'];
+        $user->email = $userData['email'];
+
+        if (! empty($userData['password'])) {
+            $user->password = Hash::make($userData['password']);
+        }
+
+        $user->save();
+
+        return redirect()->route('user.edit')->with('message', 'ユーザー情報を更新しました。');
     }
 
     public function logout(Request $request)

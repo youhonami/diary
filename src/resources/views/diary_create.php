@@ -6,38 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>日記を書く</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            margin: 40px;
-        }
-
-        form {
-            max-width: 640px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 8px;
-        }
-
-        input,
-        select,
-        textarea {
-            box-sizing: border-box;
-            padding: 10px;
-            width: 100%;
-        }
-
-        textarea {
-            min-height: 120px;
-        }
-    </style>
+    <link rel="stylesheet" href="<?= asset('css/diary_create.css') ?>">
 </head>
 
 <body>

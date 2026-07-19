@@ -6,34 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>日記を読む</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            margin: 40px;
-        }
-
-        .diary-list {
-            display: grid;
-            gap: 16px;
-            max-width: 800px;
-        }
-
-        .diary-card {
-            border: 1px solid #ddd;
-            border-radius: 12px;
-            padding: 20px;
-        }
-
-        .diary-title {
-            margin: 0 0 8px;
-        }
-
-        .diary-meta {
-            color: #666;
-            font-size: 14px;
-            margin-bottom: 12px;
-        }
-    </style>
+    <link rel="stylesheet" href="<?= asset('css/diary_read.css') ?>">
 </head>
 
 <body>

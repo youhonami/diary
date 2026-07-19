@@ -6,57 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>日記を見返す</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            margin: 40px;
-        }
-
-        .calendar-nav {
-            align-items: center;
-            display: flex;
-            gap: 20px;
-            margin: 24px 0;
-        }
-
-        table {
-            border-collapse: collapse;
-            max-width: 840px;
-            width: 100%;
-        }
-
-        th,
-        td {
-            border: 1px solid #ddd;
-            height: 80px;
-            padding: 8px;
-            text-align: left;
-            vertical-align: top;
-            width: 14.28%;
-        }
-
-        th {
-            background-color: #f7f7f7;
-            text-align: center;
-        }
-
-        .outside-month {
-            background-color: #fafafa;
-            color: #bbb;
-        }
-
-        .diary-link {
-            color: #2563eb;
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-        .diary-label {
-            display: block;
-            font-size: 12px;
-            margin-top: 8px;
-        }
-    </style>
+    <link rel="stylesheet" href="<?= asset('css/diary_lookback.css') ?>">
 </head>
 
 <body>
@@ -96,8 +46,8 @@
                             <?php if ($dateDiaries): ?>
                                 <a class="diary-link" href="<?= route('diary.show', ['date' => $dateKey]) ?>">
                                     <?= e($date->day) ?>
-                                    <span class="diary-label"><?= e($dateDiaries->count()) ?>件の日記</span>
-                                    <span class="diary-label"><?= e($dateDiaries->first()->title) ?></span>
+                                    <span class="calendar-label"><?= e($dateDiaries->count()) ?>件の日記</span>
+                                    <span class="calendar-label"><?= e($dateDiaries->first()->title) ?></span>
                                 </a>
                             <?php else: ?>
                                 <?= e($date->day) ?>
