@@ -17,6 +17,11 @@
             <span class="menu-icon">ロ</span>
             <span>ログイン情報</span>
         </a>
+
+        <a class="menu-item" href="<?= route('profile.edit') ?>">
+            <span class="menu-icon">プ</span>
+            <span>プロフィール</span>
+        </a>
     </div>
 
     <p>

@@ -227,6 +227,60 @@ class LoginController extends Controller
         return redirect()->route('user.edit')->with('message', 'ユーザー情報を更新しました。');
     }
 
+    public function profileEdit()
+    {
+        if (! Auth::check()) {
+            return redirect()->route('login.index');
+        }
+
+        return view('profile_edit', [
+            'user' => Auth::user(),
+        ]);
+    }
+
+    public function profileUpdate(Request $request)
+    {
+        if (! Auth::check()) {
+            return redirect()->route('login.index');
+        }
+
+        $user = Auth::user();
+
+        $profileData = $request->validate([
+            'username' => ['required', 'string', 'max:255'],
+            'birthday' => ['nullable', 'date'],
+            'icon' => ['nullable', 'image', 'max:2048'],
+            'bio' => ['nullable', 'string', 'max:1000'],
+            'birthplace' => ['nullable', 'string', 'max:255'],
+            'email' => ['required', 'email', Rule::unique('users', 'email')->ignore($user->id)],
+            'phone_number' => ['nullable', 'string', 'max:20'],
+        ]);
+
+        $user->username = $profileData['username'];
+        $user->birthday = $profileData['birthday'] ?? null;
+        $user->bio = $profileData['bio'] ?? null;
+        $user->birthplace = $profileData['birthplace'] ?? null;
+        $user->email = $profileData['email'];
+        $user->phone_number = $profileData['phone_number'] ?? null;
+
+        if ($request->hasFile('icon')) {
+            $icon = $request->file('icon');
+            $directory = public_path('profile_icons');
+            $filename = 'user_' . $user->id . '_' . time() . '.' . $icon->extension();
+
+            if (! is_dir($directory)) {
+                mkdir($directory, 0755, true);
+            }
+
+            $icon->move($directory, $filename);
+            $user->icon_path = 'profile_icons/' . $filename;
+        }
+
+        $user->save();
+
+        return redirect()->route('profile.edit')->with('message', 'プロフィールを更新しました。');
+    }
+
     public function logout(Request $request)
     {
         Auth::logout();

@@ -17,4 +17,6 @@ Route::get('/diary/read/{diary}', [LoginController::class, 'diaryPublicShow'])->
 Route::get('/settings', [LoginController::class, 'settings'])->name('settings');
 Route::get('/settings/user', [LoginController::class, 'userEdit'])->name('user.edit');
 Route::post('/settings/user', [LoginController::class, 'userUpdate'])->name('user.update');
+Route::get('/settings/profile', [LoginController::class, 'profileEdit'])->name('profile.edit');
+Route::post('/settings/profile', [LoginController::class, 'profileUpdate'])->name('profile.update');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
