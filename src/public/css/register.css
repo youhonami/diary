@@ -1,0 +1,148 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    color: #3f2b24;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+}
+
+.register-page {
+    align-items: center;
+    background:
+        radial-gradient(circle at 18% 18%, rgba(255, 238, 196, 0.95) 0 7%, transparent 8%),
+        radial-gradient(circle at 82% 22%, rgba(255, 209, 169, 0.7) 0 6%, transparent 7%),
+        linear-gradient(180deg, #ff9a76 0%, #ffc785 45%, #ffe6b8 72%, #fff8ed 100%);
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 32px 16px;
+}
+
+.register-card {
+    background-color: rgba(255, 255, 255, 0.94);
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    border-radius: 24px;
+    box-shadow: 0 24px 60px rgba(146, 72, 42, 0.24);
+    max-width: 480px;
+    padding: 40px;
+    width: 100%;
+}
+
+.register-heading {
+    margin-bottom: 28px;
+    text-align: center;
+}
+
+.register-subtitle {
+    color: #d25a35;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    margin: 0 0 8px;
+    text-transform: uppercase;
+}
+
+h1 {
+    color: #5f2f21;
+    font-size: 32px;
+    margin: 0 0 12px;
+}
+
+.register-heading p:last-child {
+    color: #735447;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.message {
+    border-radius: 12px;
+    line-height: 1.6;
+    margin: 0 0 20px;
+    padding: 12px 16px;
+}
+
+.message-error {
+    background-color: #fff1f0;
+    color: #b83b2e;
+}
+
+.register-form {
+    display: grid;
+    gap: 18px;
+}
+
+.form-group {
+    display: grid;
+    gap: 8px;
+}
+
+label {
+    color: #5f382c;
+    font-weight: 700;
+}
+
+input {
+    background-color: #fffaf5;
+    border: 1px solid #efb28a;
+    border-radius: 12px;
+    color: #3f2b24;
+    font-size: 16px;
+    outline: none;
+    padding: 14px 16px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    width: 100%;
+}
+
+input:focus {
+    border-color: #e76f42;
+    box-shadow: 0 0 0 4px rgba(231, 111, 66, 0.18);
+}
+
+.register-button {
+    background: linear-gradient(135deg, #e85d3c 0%, #f6a04d 100%);
+    border: none;
+    border-radius: 999px;
+    box-shadow: 0 12px 24px rgba(232, 93, 60, 0.28);
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 8px;
+    padding: 14px 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.register-button:hover {
+    box-shadow: 0 16px 28px rgba(232, 93, 60, 0.34);
+    transform: translateY(-1px);
+}
+
+.login-link {
+    color: #735447;
+    line-height: 1.7;
+    margin: 24px 0 0;
+    text-align: center;
+}
+
+.login-link a {
+    color: #c94f31;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+    .register-card {
+        padding: 28px 20px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+}

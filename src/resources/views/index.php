@@ -13,7 +13,7 @@
     <main class="login-page">
         <section class="login-card">
             <div class="login-heading">
-                <p class="login-subtitle">Sky Diary</p>
+                <p class="login-subtitle">Diary</p>
                 <h1>ログイン</h1>
                 <p>今日の空のように、あなたの一日を記録しましょう。</p>
             </div>
