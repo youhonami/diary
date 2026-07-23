@@ -15,7 +15,7 @@
             <div class="register-heading">
                 <p class="register-subtitle">Diary</p>
                 <h1>新規会員登録</h1>
-                <p>夕焼け空に一日をしまうように、あなたの日記を始めましょう。</p>
+                <p>あなたの日記を始めましょう。</p>
             </div>
 
             <?php if ($errors->any()): ?>

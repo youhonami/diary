@@ -15,7 +15,7 @@
             <div class="login-heading">
                 <p class="login-subtitle">Diary</p>
                 <h1>ログイン</h1>
-                <p>今日の空のように、あなたの一日を記録しましょう。</p>
+                <p>あなたの一日を記録しましょう。</p>
             </div>
 
             <?php if ($errors->any()): ?>
@@ -28,6 +28,10 @@
 
             <?php if (session('login_error')): ?>
                 <p class="message message-error"><?= e(session('login_error')) ?></p>
+            <?php endif; ?>
+
+            <?php if (session('withdrawal_message')): ?>
+                <p class="message message-success"><?= e(session('withdrawal_message')) ?></p>
             <?php endif; ?>
 
             <form action="<?= route('login') ?>" method="post" class="login-form">
@@ -49,6 +53,10 @@
             <p class="register-link">
                 アカウントをお持ちでない方は
                 <a href="<?= route('register') ?>">新規会員登録</a>
+            </p>
+
+            <p class="withdrawal-link">
+                <a href="<?= route('withdrawal') ?>">退会をご希望の方はこちら</a>
             </p>
         </section>
     </main>

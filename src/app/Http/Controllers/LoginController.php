@@ -38,6 +38,41 @@ class LoginController extends Controller
         return view('register');
     }
 
+    public function withdrawal()
+    {
+        return view('withdrawal');
+    }
+
+    public function withdraw(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required', 'min:6'],
+        ]);
+
+        $user = User::where('email', $credentials['email'])->first();
+
+        if (! $user || ! Hash::check($credentials['password'], $user->password)) {
+            return back()
+                ->withInput($request->only('email'))
+                ->with('withdrawal_error', 'メールアドレスまたはパスワードが正しくありません。');
+        }
+
+        if (Auth::id() === $user->id) {
+            Auth::logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+        }
+
+        if ($user->icon_path && file_exists(public_path($user->icon_path))) {
+            unlink(public_path($user->icon_path));
+        }
+
+        $user->delete();
+
+        return redirect()->route('login.index')->with('withdrawal_message', '退会が完了しました。');
+    }
+
     public function store(Request $request)
     {
         $userData = $request->validate([
