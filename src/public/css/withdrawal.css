@@ -3,41 +3,43 @@
 }
 
 body {
-    color: #1f3b57;
+    color: #eef4ff;
     font-family: "Helvetica Neue", Arial, sans-serif;
     margin: 0;
     min-height: 100vh;
 }
 
-.login-page {
+.withdrawal-page {
     align-items: center;
     background:
-        radial-gradient(circle at 18% 20%, rgba(255, 255, 255, 0.95) 0 8%, transparent 9%),
-        radial-gradient(circle at 78% 16%, rgba(255, 255, 255, 0.85) 0 7%, transparent 8%),
-        linear-gradient(180deg, #8ed3ff 0%, #dff4ff 52%, #fff8e6 100%);
+        radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.95) 0 1px, transparent 2px),
+        radial-gradient(circle at 74% 24%, rgba(255, 255, 255, 0.85) 0 1px, transparent 2px),
+        radial-gradient(circle at 82% 68%, rgba(255, 255, 255, 0.75) 0 1px, transparent 2px),
+        radial-gradient(circle at 26% 74%, rgba(255, 255, 255, 0.65) 0 1px, transparent 2px),
+        linear-gradient(180deg, #08142f 0%, #152a55 52%, #2b416f 100%);
     display: flex;
     justify-content: center;
     min-height: 100vh;
     padding: 32px 16px;
 }
 
-.login-card {
-    background-color: rgba(255, 255, 255, 0.92);
-    border: 1px solid rgba(255, 255, 255, 0.7);
+.withdrawal-card {
+    background-color: rgba(9, 21, 48, 0.88);
+    border: 1px solid rgba(185, 211, 255, 0.28);
     border-radius: 24px;
-    box-shadow: 0 24px 60px rgba(54, 112, 157, 0.24);
-    max-width: 440px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.36);
+    max-width: 460px;
     padding: 40px;
     width: 100%;
 }
 
-.login-heading {
+.withdrawal-heading {
     margin-bottom: 28px;
     text-align: center;
 }
 
-.login-subtitle {
-    color: #2f80bd;
+.withdrawal-subtitle {
+    color: #a9c8ff;
     font-size: 14px;
     font-weight: 700;
     letter-spacing: 0.16em;
@@ -46,13 +48,13 @@ body {
 }
 
 h1 {
-    color: #143b5d;
+    color: #ffffff;
     font-size: 32px;
     margin: 0 0 12px;
 }
 
-.login-heading p:last-child {
-    color: #557087;
+.withdrawal-heading p:last-child {
+    color: #d9e7ff;
     line-height: 1.7;
     margin: 0;
 }
@@ -65,16 +67,11 @@ h1 {
 }
 
 .message-error {
-    background-color: #fff1f2;
-    color: #b4233a;
+    background-color: rgba(255, 214, 221, 0.96);
+    color: #9f1239;
 }
 
-.message-success {
-    background-color: #e9f8ef;
-    color: #166534;
-}
-
-.login-form {
+.withdrawal-form {
     display: grid;
     gap: 20px;
 }
@@ -85,15 +82,15 @@ h1 {
 }
 
 label {
-    color: #244762;
+    color: #eef4ff;
     font-weight: 700;
 }
 
 input {
-    background-color: #f7fbff;
-    border: 1px solid #b9d9ee;
+    background-color: rgba(255, 255, 255, 0.95);
+    border: 1px solid #9db8e8;
     border-radius: 12px;
-    color: #1f3b57;
+    color: #10213f;
     font-size: 16px;
     outline: none;
     padding: 14px 16px;
@@ -102,15 +99,15 @@ input {
 }
 
 input:focus {
-    border-color: #3a9bdc;
-    box-shadow: 0 0 0 4px rgba(58, 155, 220, 0.18);
+    border-color: #d4e4ff;
+    box-shadow: 0 0 0 4px rgba(169, 200, 255, 0.22);
 }
 
-.login-button {
-    background: linear-gradient(135deg, #2f9be6 0%, #70c5ff 100%);
+.withdrawal-button {
+    background: linear-gradient(135deg, #d83f68 0%, #8b5cf6 100%);
     border: none;
     border-radius: 999px;
-    box-shadow: 0 12px 24px rgba(47, 155, 230, 0.28);
+    box-shadow: 0 12px 24px rgba(216, 63, 104, 0.28);
     color: #fff;
     cursor: pointer;
     font-size: 16px;
@@ -120,33 +117,28 @@ input:focus {
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.login-button:hover {
-    box-shadow: 0 16px 28px rgba(47, 155, 230, 0.34);
+.withdrawal-button:hover {
+    box-shadow: 0 16px 28px rgba(216, 63, 104, 0.36);
     transform: translateY(-1px);
 }
 
-.register-link,
-.withdrawal-link {
-    color: #557087;
-    line-height: 1.7;
+.back-link {
     margin: 24px 0 0;
     text-align: center;
 }
 
-.register-link a,
-.withdrawal-link a {
-    color: #1677b9;
+.back-link a {
+    color: #cfe0ff;
     font-weight: 700;
     text-decoration: none;
 }
 
-.register-link a:hover,
-.withdrawal-link a:hover {
+.back-link a:hover {
     text-decoration: underline;
 }
 
 @media (max-width: 480px) {
-    .login-card {
+    .withdrawal-card {
         padding: 28px 20px;
     }
 
