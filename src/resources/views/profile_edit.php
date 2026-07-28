@@ -10,70 +10,78 @@
 </head>
 
 <body>
-    <h1>プロフィール変更</h1>
+    <main class="profile-edit-page">
+        <section class="profile-edit-card">
+            <div class="profile-edit-heading">
+                <p class="profile-edit-subtitle">Profile Setting</p>
+                <h1>プロフィール変更</h1>
+                <p>ユーザーネームや自己紹介など、プロフィール情報を変更できます。</p>
+            </div>
 
-    <?php if (session('message')): ?>
-        <p><?= e(session('message')) ?></p>
-    <?php endif; ?>
+            <?php if (session('message')): ?>
+                <p class="message message-success"><?= e(session('message')) ?></p>
+            <?php endif; ?>
 
-    <?php if ($errors->any()): ?>
-        <ul>
-            <?php foreach ($errors->all() as $error): ?>
-                <li><?= e($error) ?></li>
-            <?php endforeach; ?>
-        </ul>
-    <?php endif; ?>
+            <?php if ($errors->any()): ?>
+                <ul class="message message-error">
+                    <?php foreach ($errors->all() as $error): ?>
+                        <li><?= e($error) ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php endif; ?>
 
-    <?php if ($user->icon_path): ?>
-        <div class="profile-icon-preview">
-            <img src="<?= asset($user->icon_path) ?>" alt="プロフィールアイコン">
-        </div>
-    <?php endif; ?>
+            <?php if ($user->icon_path): ?>
+                <div class="profile-icon-preview">
+                    <img src="<?= asset($user->icon_path) ?>" alt="プロフィールアイコン">
+                </div>
+            <?php endif; ?>
 
-    <form action="<?= route('profile.update') ?>" method="post" enctype="multipart/form-data">
-        <?= csrf_field() ?>
+            <form action="<?= route('profile.update') ?>" method="post" enctype="multipart/form-data" class="profile-edit-form">
+                <?= csrf_field() ?>
 
-        <div class="form-group">
-            <label for="username">ユーザーネーム</label>
-            <input type="text" id="username" name="username" value="<?= e(old('username', $user->username ?? $user->name)) ?>" required>
-        </div>
+                <div class="form-group">
+                    <label for="username">ユーザーネーム</label>
+                    <input type="text" id="username" name="username" value="<?= e(old('username', $user->username ?? $user->name)) ?>" required>
+                </div>
 
-        <div class="form-group">
-            <label for="birthday">生年月日</label>
-            <input type="date" id="birthday" name="birthday" value="<?= e(old('birthday', optional($user->birthday)->format('Y-m-d'))) ?>">
-        </div>
+                <div class="form-group">
+                    <label for="birthday">生年月日</label>
+                    <input type="date" id="birthday" name="birthday" value="<?= e(old('birthday', optional($user->birthday)->format('Y-m-d'))) ?>">
+                </div>
 
-        <div class="form-group">
-            <label for="icon">アイコン</label>
-            <input type="file" id="icon" name="icon" accept="image/*">
-        </div>
+                <div class="form-group">
+                    <label for="icon">アイコン</label>
+                    <input type="file" id="icon" name="icon" accept="image/*">
+                </div>
 
-        <div class="form-group">
-            <label for="bio">自己紹介</label>
-            <textarea id="bio" name="bio"><?= e(old('bio', $user->bio)) ?></textarea>
-        </div>
+                <div class="form-group">
+                    <label for="bio">自己紹介</label>
+                    <textarea id="bio" name="bio"><?= e(old('bio', $user->bio)) ?></textarea>
+                </div>
 
-        <div class="form-group">
-            <label for="birthplace">出身地</label>
-            <input type="text" id="birthplace" name="birthplace" value="<?= e(old('birthplace', $user->birthplace)) ?>">
-        </div>
+                <div class="form-group">
+                    <label for="birthplace">出身地</label>
+                    <input type="text" id="birthplace" name="birthplace" value="<?= e(old('birthplace', $user->birthplace)) ?>">
+                </div>
 
-        <div class="form-group">
-            <label for="email">メールアドレス</label>
-            <input type="email" id="email" name="email" value="<?= e(old('email', $user->email)) ?>" required>
-        </div>
+                <div class="form-group">
+                    <label for="email">メールアドレス</label>
+                    <input type="email" id="email" name="email" value="<?= e(old('email', $user->email)) ?>" required>
+                </div>
 
-        <div class="form-group">
-            <label for="phone_number">電話番号</label>
-            <input type="tel" id="phone_number" name="phone_number" value="<?= e(old('phone_number', $user->phone_number)) ?>">
-        </div>
+                <div class="form-group">
+                    <label for="phone_number">電話番号</label>
+                    <input type="tel" id="phone_number" name="phone_number" value="<?= e(old('phone_number', $user->phone_number)) ?>">
+                </div>
 
-        <button type="submit">更新する</button>
-    </form>
+                <button type="submit" class="update-button">更新する</button>
+            </form>
 
-    <p>
-        <a href="<?= route('settings') ?>">設定へ戻る</a>
-    </p>
+            <p class="back-link">
+                <a href="<?= route('settings') ?>">設定へ戻る</a>
+            </p>
+        </section>
+    </main>
 </body>
 
 </html>

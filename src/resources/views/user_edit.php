@@ -14,7 +14,7 @@
         <section class="user-edit-card">
             <div class="user-edit-heading">
                 <p class="user-edit-subtitle">Account Setting</p>
-                <h1>ユーザー情報変更</h1>
+                <h1>ログイン情報</h1>
                 <p>ログインに使う名前・メールアドレス・パスワードを変更できます。</p>
             </div>
 
