@@ -18,6 +18,10 @@
                 <p><?= e($diaries->count()) ?>件の日記があります。</p>
             </div>
 
+            <?php if (session('message')): ?>
+                <p class="message message-success"><?= e(session('message')) ?></p>
+            <?php endif; ?>
+
             <div class="diary-list">
                 <?php foreach ($diaries as $diary): ?>
                     <article class="diary-detail">
@@ -42,6 +46,16 @@
                             <div class="diary-label">良かったこと</div>
                             <div class="diary-value"><?= nl2br(e($diary->good_thing)) ?></div>
                         </div>
+
+                        <form
+                            action="<?= route('diary.destroy', ['diary' => $diary]) ?>"
+                            method="post"
+                            class="delete-form"
+                            onsubmit="return confirm('この日記を削除しますか？');"
+                        >
+                            <?= csrf_field() ?>
+                            <button type="submit" class="delete-button">削除する</button>
+                        </form>
                     </article>
                 <?php endforeach; ?>
             </div>

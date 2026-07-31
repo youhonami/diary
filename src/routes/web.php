@@ -14,6 +14,7 @@ Route::get('/diary/create', [LoginController::class, 'diaryCreate'])->name('diar
 Route::post('/diary/create', [LoginController::class, 'diaryStore'])->name('diary.store');
 Route::get('/diary/lookback', [LoginController::class, 'diaryLookback'])->name('diary.lookback');
 Route::get('/diary/lookback/{date}', [LoginController::class, 'diaryShow'])->name('diary.show');
+Route::post('/diary/{diary}/delete', [LoginController::class, 'diaryDestroy'])->name('diary.destroy');
 Route::get('/diary/read', [LoginController::class, 'diaryRead'])->name('diary.read');
 Route::get('/diary/read/{diary}', [LoginController::class, 'diaryPublicShow'])->name('diary.public.show');
 Route::get('/settings', [LoginController::class, 'settings'])->name('settings');

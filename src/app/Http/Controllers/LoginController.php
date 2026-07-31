@@ -193,6 +193,36 @@ class LoginController extends Controller
         ]);
     }
 
+    public function diaryDestroy(Diary $diary)
+    {
+        if (! Auth::check()) {
+            return redirect()->route('login.index');
+        }
+
+        if ($diary->user_id !== Auth::id()) {
+            abort(403);
+        }
+
+        $date = $diary->diary_date->format('Y-m-d');
+        $month = $diary->diary_date->format('Y-m');
+
+        $diary->delete();
+
+        $remainingCount = Diary::where('user_id', Auth::id())
+            ->whereDate('diary_date', $date)
+            ->count();
+
+        if ($remainingCount === 0) {
+            return redirect()
+                ->route('diary.lookback', ['month' => $month])
+                ->with('message', '日記を削除しました。');
+        }
+
+        return redirect()
+            ->route('diary.show', ['date' => $date])
+            ->with('message', '日記を削除しました。');
+    }
+
     public function diaryRead()
     {
         $diaries = Diary::with('user')
