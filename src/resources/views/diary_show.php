@@ -10,38 +10,47 @@
 </head>
 
 <body>
-    <h1><?= e($date->format('Y年n月j日')) ?>の日記</h1>
-    <p><?= e($diaries->count()) ?>件の日記があります。</p>
-
-    <?php foreach ($diaries as $diary): ?>
-        <article class="diary-detail diary-detail-card">
-            <h2><?= e($diary->title) ?></h2>
-
-            <div class="diary-section">
-                <div class="diary-label">場所</div>
-                <div><?= e($diary->place ?? '未入力') ?></div>
+    <main class="diary-show-page">
+        <section class="diary-show-card">
+            <div class="diary-show-heading">
+                <p class="diary-show-subtitle">Diary Detail</p>
+                <h1><?= e($date->format('Y年n月j日')) ?>の日記</h1>
+                <p><?= e($diaries->count()) ?>件の日記があります。</p>
             </div>
 
-            <div class="diary-section">
-                <div class="diary-label">出来事</div>
-                <div><?= nl2br(e($diary->event)) ?></div>
+            <div class="diary-list">
+                <?php foreach ($diaries as $diary): ?>
+                    <article class="diary-detail">
+                        <div class="diary-detail-header">
+                            <h2><?= e($diary->title) ?></h2>
+                            <span class="visibility-badge <?= $diary->visibility === 'public' ? 'is-public' : 'is-private' ?>">
+                                <?= $diary->visibility === 'public' ? '公開' : '非公開' ?>
+                            </span>
+                        </div>
+
+                        <div class="diary-section">
+                            <div class="diary-label">場所</div>
+                            <div class="diary-value"><?= e($diary->place ?? '未入力') ?></div>
+                        </div>
+
+                        <div class="diary-section">
+                            <div class="diary-label">出来事</div>
+                            <div class="diary-value"><?= nl2br(e($diary->event)) ?></div>
+                        </div>
+
+                        <div class="diary-section">
+                            <div class="diary-label">良かったこと</div>
+                            <div class="diary-value"><?= nl2br(e($diary->good_thing)) ?></div>
+                        </div>
+                    </article>
+                <?php endforeach; ?>
             </div>
 
-            <div class="diary-section">
-                <div class="diary-label">良かったこと</div>
-                <div><?= nl2br(e($diary->good_thing)) ?></div>
-            </div>
-
-            <div class="diary-section">
-                <div class="diary-label">公開設定</div>
-                <div><?= $diary->visibility === 'public' ? '公開' : '非公開' ?></div>
-            </div>
-        </article>
-    <?php endforeach; ?>
-
-    <p>
-        <a href="<?= route('diary.lookback', ['month' => $date->format('Y-m')]) ?>">カレンダーへ戻る</a>
-    </p>
+            <p class="page-actions">
+                <a class="back-link" href="<?= route('diary.lookback', ['month' => $date->format('Y-m')]) ?>">カレンダーへ戻る</a>
+            </p>
+        </section>
+    </main>
 </body>
 
 </html>
