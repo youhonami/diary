@@ -47,15 +47,19 @@
                             <div class="diary-value"><?= nl2br(e($diary->good_thing)) ?></div>
                         </div>
 
-                        <form
-                            action="<?= route('diary.destroy', ['diary' => $diary]) ?>"
-                            method="post"
-                            class="delete-form"
-                            onsubmit="return confirm('この日記を削除しますか？');"
-                        >
-                            <?= csrf_field() ?>
-                            <button type="submit" class="delete-button">削除する</button>
-                        </form>
+                        <div class="diary-actions">
+                            <a class="edit-button" href="<?= route('diary.edit', ['diary' => $diary]) ?>">編集する</a>
+
+                            <form
+                                action="<?= route('diary.destroy', ['diary' => $diary]) ?>"
+                                method="post"
+                                class="delete-form"
+                                onsubmit="return confirm('この日記を削除しますか？');"
+                            >
+                                <?= csrf_field() ?>
+                                <button type="submit" class="delete-button">削除する</button>
+                            </form>
+                        </div>
                     </article>
                 <?php endforeach; ?>
             </div>

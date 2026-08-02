@@ -193,6 +193,54 @@ class LoginController extends Controller
         ]);
     }
 
+    public function diaryEdit(Diary $diary)
+    {
+        if (! Auth::check()) {
+            return redirect()->route('login.index');
+        }
+
+        if ($diary->user_id !== Auth::id()) {
+            abort(403);
+        }
+
+        return view('diary_edit', [
+            'diary' => $diary,
+        ]);
+    }
+
+    public function diaryUpdate(Request $request, Diary $diary)
+    {
+        if (! Auth::check()) {
+            return redirect()->route('login.index');
+        }
+
+        if ($diary->user_id !== Auth::id()) {
+            abort(403);
+        }
+
+        $diaryData = $request->validate([
+            'title' => ['required', 'string', 'max:255'],
+            'diary_date' => ['required', 'date'],
+            'place' => ['nullable', 'string', 'max:255'],
+            'event' => ['required', 'string'],
+            'good_thing' => ['required', 'string'],
+            'visibility' => ['required', 'in:private,public'],
+        ]);
+
+        $diary->update([
+            'title' => $diaryData['title'],
+            'diary_date' => $diaryData['diary_date'],
+            'place' => $diaryData['place'] ?? null,
+            'event' => $diaryData['event'],
+            'good_thing' => $diaryData['good_thing'],
+            'visibility' => $diaryData['visibility'],
+        ]);
+
+        return redirect()
+            ->route('diary.show', ['date' => $diary->diary_date->format('Y-m-d')])
+            ->with('message', '日記を更新しました。');
+    }
+
     public function diaryDestroy(Diary $diary)
     {
         if (! Auth::check()) {

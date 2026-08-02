@@ -131,21 +131,46 @@ h1 {
     white-space: pre-wrap;
 }
 
-.delete-form {
+.diary-actions {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: flex-end;
     margin-top: 20px;
-    text-align: right;
+}
+
+.delete-form {
+    margin: 0;
+}
+
+.edit-button,
+.delete-button {
+    border-radius: 999px;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 10px 18px;
+    text-decoration: none;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.edit-button {
+    background-color: #eef7ff;
+    border: 1px solid #c8d9ea;
+    color: #3c78ad;
+}
+
+.edit-button:hover {
+    background-color: #dff0ff;
+    transform: translateY(-1px);
 }
 
 .delete-button {
     background-color: #fff1f2;
     border: 1px solid #f5c2c7;
-    border-radius: 999px;
     color: #b4233a;
     cursor: pointer;
-    font-size: 14px;
-    font-weight: 700;
-    padding: 10px 18px;
-    transition: background-color 0.2s, transform 0.2s;
 }
 
 .delete-button:hover {
