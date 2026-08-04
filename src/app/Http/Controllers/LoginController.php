@@ -228,8 +228,13 @@ class LoginController extends Controller
             'diary_date' => ['required', 'date'],
             'place' => ['nullable', 'string', 'max:255'],
             'event' => ['required', 'string'],
-            'good_thing' => ['required', 'string'],
+            'good_thing' => ['nullable', 'string'],
             'visibility' => ['required', 'in:private,public'],
+        ], [
+            'title.required' => 'タイトルを入力してください。',
+            'diary_date.required' => '日付を入力してください。',
+            'diary_date.date' => '日付を正しく入力してください。',
+            'event.required' => '出来事を入力してください。',
         ]);
 
         $diary->update([
@@ -237,7 +242,7 @@ class LoginController extends Controller
             'diary_date' => $diaryData['diary_date'],
             'place' => $diaryData['place'] ?? null,
             'event' => $diaryData['event'],
-            'good_thing' => $diaryData['good_thing'],
+            'good_thing' => $diaryData['good_thing'] ?? '',
             'visibility' => $diaryData['visibility'],
         ]);
 
