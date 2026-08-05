@@ -336,6 +336,13 @@ class LoginController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', Rule::unique('users', 'email')->ignore($user->id)],
             'password' => ['nullable', 'min:6', 'confirmed'],
+        ], [
+            'name.required' => '名前を入力してください。',
+            'email.required' => 'メールアドレスを入力してください。',
+            'email.email' => 'メールアドレスを正しく入力してください。',
+            'email.unique' => 'このメールアドレスは既に使用されています。',
+            'password.min' => 'パスワードは6文字以上で入力してください。',
+            'password.confirmed' => 'パスワードが一致しません。',
         ]);
 
         $user->name = $userData['name'];
