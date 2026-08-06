@@ -18,29 +18,40 @@
                 <p>退会すると、これまでに記入した日記もすべて削除されます。</p>
             </div>
 
-            <?php if ($errors->any()): ?>
-                <ul class="message message-error">
-                    <?php foreach ($errors->all() as $error): ?>
-                        <li><?= e($error) ?></li>
-                    <?php endforeach; ?>
-                </ul>
-            <?php endif; ?>
-
             <?php if (session('withdrawal_error')): ?>
                 <p class="message message-error"><?= e(session('withdrawal_error')) ?></p>
             <?php endif; ?>
 
-            <form action="<?= route('withdrawal.destroy') ?>" method="post" class="withdrawal-form">
+            <form action="<?= route('withdrawal.destroy') ?>" method="post" class="withdrawal-form" novalidate>
                 <?= csrf_field() ?>
 
                 <div class="form-group">
-                    <label for="email">メールアドレス</label>
-                    <input type="email" id="email" name="email" value="<?= e(old('email')) ?>" placeholder="example@example.com" required>
+                    <label for="email">メールアドレス <span class="required-mark">必須</span></label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value="<?= e(old('email')) ?>"
+                        placeholder="example@example.com"
+                        class="<?= $errors->has('email') ? 'is-invalid' : '' ?>"
+                    >
+                    <?php if ($errors->has('email')): ?>
+                        <p class="field-error"><?= e($errors->first('email')) ?></p>
+                    <?php endif; ?>
                 </div>
 
                 <div class="form-group">
-                    <label for="password">パスワード</label>
-                    <input type="password" id="password" name="password" minlength="6" placeholder="6文字以上" required>
+                    <label for="password">パスワード <span class="required-mark">必須</span></label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="6文字以上"
+                        class="<?= $errors->has('password') ? 'is-invalid' : '' ?>"
+                    >
+                    <?php if ($errors->has('password')): ?>
+                        <p class="field-error"><?= e($errors->first('password')) ?></p>
+                    <?php endif; ?>
                 </div>
 
                 <button type="submit" class="withdrawal-button">退会する</button>

@@ -48,6 +48,11 @@ class LoginController extends Controller
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required', 'min:6'],
+        ], [
+            'email.required' => 'メールアドレスを入力してください。',
+            'email.email' => 'メールアドレスを正しく入力してください。',
+            'password.required' => 'パスワードを入力してください。',
+            'password.min' => 'パスワードは6文字以上で入力してください。',
         ]);
 
         $user = User::where('email', $credentials['email'])->first();
