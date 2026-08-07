@@ -22,6 +22,11 @@ class LoginController extends Controller
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required', 'min:6'],
+        ], [
+            'email.required' => 'メールアドレスを入力してください。',
+            'email.email' => 'メールアドレスを正しく入力してください。',
+            'password.required' => 'パスワードを入力してください。',
+            'password.min' => 'パスワードは6文字以上で入力してください。',
         ]);
 
         if (Auth::attempt($credentials)) {
@@ -30,7 +35,9 @@ class LoginController extends Controller
             return redirect()->route('toppage');
         }
 
-        return back()->with('login_error', 'メールアドレスまたはパスワードが正しくありません。');
+        return back()
+            ->withInput($request->only('email'))
+            ->with('login_error', 'メールアドレスまたはパスワードが正しくありません。');
     }
 
     public function register()

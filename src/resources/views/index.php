@@ -18,14 +18,6 @@
                 <p>あなたの一日を記録しましょう。</p>
             </div>
 
-            <?php if ($errors->any()): ?>
-                <ul class="message message-error">
-                    <?php foreach ($errors->all() as $error): ?>
-                        <li><?= e($error) ?></li>
-                    <?php endforeach; ?>
-                </ul>
-            <?php endif; ?>
-
             <?php if (session('login_error')): ?>
                 <p class="message message-error"><?= e(session('login_error')) ?></p>
             <?php endif; ?>
@@ -34,17 +26,36 @@
                 <p class="message message-success"><?= e(session('withdrawal_message')) ?></p>
             <?php endif; ?>
 
-            <form action="<?= route('login') ?>" method="post" class="login-form">
+            <form action="<?= route('login') ?>" method="post" class="login-form" novalidate>
                 <?= csrf_field() ?>
 
                 <div class="form-group">
-                    <label for="email">メールアドレス</label>
-                    <input type="email" id="email" name="email" value="<?= e(old('email')) ?>" placeholder="example@example.com" required>
+                    <label for="email">メールアドレス <span class="required-mark">必須</span></label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value="<?= e(old('email')) ?>"
+                        placeholder="example@example.com"
+                        class="<?= $errors->has('email') ? 'is-invalid' : '' ?>"
+                    >
+                    <?php if ($errors->has('email')): ?>
+                        <p class="field-error"><?= e($errors->first('email')) ?></p>
+                    <?php endif; ?>
                 </div>
 
                 <div class="form-group">
-                    <label for="password">パスワード</label>
-                    <input type="password" id="password" name="password" minlength="6" placeholder="6文字以上" required>
+                    <label for="password">パスワード <span class="required-mark">必須</span></label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="6文字以上"
+                        class="<?= $errors->has('password') ? 'is-invalid' : '' ?>"
+                    >
+                    <?php if ($errors->has('password')): ?>
+                        <p class="field-error"><?= e($errors->first('password')) ?></p>
+                    <?php endif; ?>
                 </div>
 
                 <button type="submit" class="login-button">ログイン</button>
