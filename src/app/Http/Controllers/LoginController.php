@@ -91,6 +91,14 @@ class LoginController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'min:6', 'confirmed'],
+        ], [
+            'name.required' => '名前を入力してください。',
+            'email.required' => 'メールアドレスを入力してください。',
+            'email.email' => 'メールアドレスを正しく入力してください。',
+            'email.unique' => 'このメールアドレスは既に使用されています。',
+            'password.required' => 'パスワードを入力してください。',
+            'password.min' => 'パスワードは6文字以上で入力してください。',
+            'password.confirmed' => 'パスワードが一致しません。',
         ]);
 
         $user = User::create([

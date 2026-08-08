@@ -18,35 +18,61 @@
                 <p>あなたの日記を始めましょう。</p>
             </div>
 
-            <?php if ($errors->any()): ?>
-                <ul class="message message-error">
-                    <?php foreach ($errors->all() as $error): ?>
-                        <li><?= e($error) ?></li>
-                    <?php endforeach; ?>
-                </ul>
-            <?php endif; ?>
-
-            <form action="<?= route('register.store') ?>" method="post" class="register-form">
+            <form action="<?= route('register.store') ?>" method="post" class="register-form" novalidate>
                 <?= csrf_field() ?>
 
                 <div class="form-group">
-                    <label for="name">名前</label>
-                    <input type="text" id="name" name="name" value="<?= e(old('name')) ?>" placeholder="山田 太郎" required>
+                    <label for="name">名前 <span class="required-mark">必須</span></label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value="<?= e(old('name')) ?>"
+                        placeholder="山田 太郎"
+                        class="<?= $errors->has('name') ? 'is-invalid' : '' ?>"
+                    >
+                    <?php if ($errors->has('name')): ?>
+                        <p class="field-error"><?= e($errors->first('name')) ?></p>
+                    <?php endif; ?>
                 </div>
 
                 <div class="form-group">
-                    <label for="email">メールアドレス</label>
-                    <input type="email" id="email" name="email" value="<?= e(old('email')) ?>" placeholder="example@example.com" required>
+                    <label for="email">メールアドレス <span class="required-mark">必須</span></label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value="<?= e(old('email')) ?>"
+                        placeholder="example@example.com"
+                        class="<?= $errors->has('email') ? 'is-invalid' : '' ?>"
+                    >
+                    <?php if ($errors->has('email')): ?>
+                        <p class="field-error"><?= e($errors->first('email')) ?></p>
+                    <?php endif; ?>
                 </div>
 
                 <div class="form-group">
-                    <label for="password">パスワード</label>
-                    <input type="password" id="password" name="password" minlength="6" placeholder="6文字以上" required>
+                    <label for="password">パスワード <span class="required-mark">必須</span></label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="6文字以上"
+                        class="<?= $errors->has('password') ? 'is-invalid' : '' ?>"
+                    >
+                    <?php if ($errors->has('password')): ?>
+                        <p class="field-error"><?= e($errors->first('password')) ?></p>
+                    <?php endif; ?>
                 </div>
 
                 <div class="form-group">
-                    <label for="password_confirmation">確認用パスワード</label>
-                    <input type="password" id="password_confirmation" name="password_confirmation" minlength="6" placeholder="もう一度入力してください" required>
+                    <label for="password_confirmation">確認用パスワード <span class="required-mark">必須</span></label>
+                    <input
+                        type="password"
+                        id="password_confirmation"
+                        name="password_confirmation"
+                        placeholder="もう一度入力してください"
+                    >
                 </div>
 
                 <button type="submit" class="register-button">登録する</button>
