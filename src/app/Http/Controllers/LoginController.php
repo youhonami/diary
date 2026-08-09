@@ -397,20 +397,33 @@ class LoginController extends Controller
         $user = Auth::user();
 
         $profileData = $request->validate([
-            'username' => ['required', 'string', 'max:255'],
+            'username' => ['nullable', 'string', 'max:255'],
             'birthday' => ['nullable', 'date'],
             'icon' => ['nullable', 'image', 'max:2048'],
             'bio' => ['nullable', 'string', 'max:1000'],
             'birthplace' => ['nullable', 'string', 'max:255'],
-            'email' => ['required', 'email', Rule::unique('users', 'email')->ignore($user->id)],
-            'phone_number' => ['nullable', 'string', 'max:20'],
+            'email' => ['nullable', 'email', Rule::unique('users', 'email')->ignore($user->id)],
+            'phone_number' => ['nullable', 'string', 'max:20', 'regex:/^0\d{9,10}$|^0\d{1,4}-\d{1,4}-\d{3,4}$/'],
+        ], [
+            'username.max' => 'ユーザーネームは255文字以内で入力してください。',
+            'birthday.date' => '生年月日を正しく入力してください。',
+            'icon.image' => 'アイコンは画像ファイルを選択してください。',
+            'icon.max' => 'アイコンは2MB以下の画像を選択してください。',
+            'bio.max' => '自己紹介は1000文字以内で入力してください。',
+            'birthplace.max' => '出身地は255文字以内で入力してください。',
+            'email.email' => 'メールアドレスを正しく入力してください。',
+            'email.unique' => 'このメールアドレスは既に使用されています。',
+            'phone_number.max' => '電話番号は20文字以内で入力してください。',
+            'phone_number.regex' => '電話番号を正しく入力してください。',
         ]);
 
-        $user->username = $profileData['username'];
+        $user->username = $profileData['username'] ?? null;
         $user->birthday = $profileData['birthday'] ?? null;
         $user->bio = $profileData['bio'] ?? null;
         $user->birthplace = $profileData['birthplace'] ?? null;
-        $user->email = $profileData['email'];
+        if (! empty($profileData['email'])) {
+            $user->email = $profileData['email'];
+        }
         $user->phone_number = $profileData['phone_number'] ?? null;
 
         if ($request->hasFile('icon')) {
