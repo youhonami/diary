@@ -18,6 +18,20 @@
                 <p>利用したいメニューを選択してください。</p>
             </div>
 
+            <div class="profile-summary">
+                <?php if ($user->icon_path): ?>
+                    <img class="profile-summary-icon" src="<?= asset($user->icon_path) ?>" alt="プロフィールアイコン">
+                <?php else: ?>
+                    <div class="profile-summary-icon profile-summary-icon-placeholder" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+                            <path d="M5 19.5c1.5-3.2 3.8-4.8 7-4.8s5.5 1.6 7 4.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                <?php endif; ?>
+                <p class="profile-summary-name"><?= e($user->username ?: $user->name) ?></p>
+            </div>
+
             <div class="menu">
                 <a class="menu-item" href="<?= route('diary.create') ?>">
                     <span class="menu-icon" aria-hidden="true">

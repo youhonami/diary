@@ -56,6 +56,43 @@ h1 {
     margin: 0;
 }
 
+.profile-summary {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 32px;
+}
+
+.profile-summary-icon {
+    border: 3px solid #dbe8f4;
+    border-radius: 50%;
+    box-shadow: 0 10px 24px rgba(77, 111, 145, 0.12);
+    height: 96px;
+    object-fit: cover;
+    width: 96px;
+}
+
+.profile-summary-icon-placeholder {
+    align-items: center;
+    background: linear-gradient(135deg, #4d91d9 0%, #76c7b7 100%);
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+}
+
+.profile-summary-icon-placeholder svg {
+    height: 48px;
+    width: 48px;
+}
+
+.profile-summary-name {
+    color: #23415f;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0;
+}
+
 .menu {
     display: grid;
     gap: 20px;

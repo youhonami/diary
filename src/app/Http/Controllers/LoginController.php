@@ -115,7 +115,13 @@ class LoginController extends Controller
 
     public function toppage()
     {
-        return view('toppage');
+        if (! Auth::check()) {
+            return redirect()->route('login.index');
+        }
+
+        return view('toppage', [
+            'user' => Auth::user(),
+        ]);
     }
 
     public function diaryCreate()
