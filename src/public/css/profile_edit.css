@@ -90,12 +90,30 @@ h1 {
     text-align: center;
 }
 
-.profile-icon-preview img {
+.profile-icon-preview img,
+.profile-icon-placeholder {
     border: 3px solid #efc2a5;
     border-radius: 50%;
     height: 120px;
     object-fit: cover;
     width: 120px;
+}
+
+.profile-icon-placeholder {
+    align-items: center;
+    background: linear-gradient(135deg, #df7a52 0%, #f2b064 100%);
+    color: #ffffff;
+    display: inline-flex;
+    justify-content: center;
+}
+
+.profile-icon-placeholder svg {
+    height: 56px;
+    width: 56px;
+}
+
+.is-hidden {
+    display: none !important;
 }
 
 .profile-edit-form {

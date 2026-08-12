@@ -22,11 +22,19 @@
                 <p class="message message-success"><?= e(session('message')) ?></p>
             <?php endif; ?>
 
-            <?php if ($user->icon_path): ?>
-                <div class="profile-icon-preview">
-                    <img src="<?= asset($user->icon_path) ?>" alt="プロフィールアイコン">
-                </div>
-            <?php endif; ?>
+            <div class="profile-icon-preview">
+                <?php if ($user->icon_path): ?>
+                    <img id="icon-preview" src="<?= asset($user->icon_path) ?>" alt="プロフィールアイコン">
+                <?php else: ?>
+                    <img id="icon-preview" class="is-hidden" src="" alt="プロフィールアイコン">
+                    <div id="icon-placeholder" class="profile-icon-placeholder" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+                            <path d="M5 19.5c1.5-3.2 3.8-4.8 7-4.8s5.5 1.6 7 4.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                <?php endif; ?>
+            </div>
 
             <form action="<?= route('profile.update') ?>" method="post" enctype="multipart/form-data" class="profile-edit-form" novalidate>
                 <?= csrf_field() ?>
@@ -136,6 +144,28 @@
             </p>
         </section>
     </main>
+
+    <script>
+        document.getElementById('icon').addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            const preview = document.getElementById('icon-preview');
+            const placeholder = document.getElementById('icon-placeholder');
+
+            if (!file || !file.type.startsWith('image/')) {
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                preview.src = e.target.result;
+                preview.classList.remove('is-hidden');
+                if (placeholder) {
+                    placeholder.classList.add('is-hidden');
+                }
+            };
+            reader.readAsDataURL(file);
+        });
+    </script>
 </body>
 
 </html>
