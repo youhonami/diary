@@ -15,7 +15,6 @@
             <div class="toppage-heading">
                 <p class="toppage-subtitle">Diary</p>
                 <h1>トップページ</h1>
-                <p>利用したいメニューを選択してください。</p>
             </div>
 
             <div class="profile-summary">
