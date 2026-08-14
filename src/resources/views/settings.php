@@ -41,6 +41,18 @@
                     <span class="menu-label">プロフィール</span>
                     <span class="menu-description">アイコン・自己紹介など</span>
                 </a>
+
+                <a class="menu-item" href="<?= route('background.edit') ?>">
+                    <span class="menu-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3.5" y="5" width="17" height="14" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+                            <circle cx="8.5" cy="10" r="1.8" fill="currentColor"/>
+                            <path d="M3.5 15.5 8 12l3.5 3 3-2.5 5.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                    <span class="menu-label">トップページの背景選択</span>
+                    <span class="menu-description">背景テーマを変更する</span>
+                </a>
             </div>
 
             <p class="back-link">

@@ -450,6 +450,43 @@ class LoginController extends Controller
         return redirect()->route('profile.edit')->with('message', 'プロフィールを更新しました。');
     }
 
+    public function backgroundEdit()
+    {
+        if (! Auth::check()) {
+            return redirect()->route('login.index');
+        }
+
+        return view('background_edit', [
+            'user' => Auth::user(),
+            'backgrounds' => [
+                'sky' => '青空',
+                'sunset' => '夕焼け',
+                'night' => '夜空',
+                'mint' => 'ミント',
+            ],
+        ]);
+    }
+
+    public function backgroundUpdate(Request $request)
+    {
+        if (! Auth::check()) {
+            return redirect()->route('login.index');
+        }
+
+        $backgroundData = $request->validate([
+            'toppage_background' => ['required', 'in:sky,sunset,night,mint'],
+        ], [
+            'toppage_background.required' => '背景を選択してください。',
+            'toppage_background.in' => '背景を正しく選択してください。',
+        ]);
+
+        $user = Auth::user();
+        $user->toppage_background = $backgroundData['toppage_background'];
+        $user->save();
+
+        return redirect()->route('background.edit')->with('message', 'トップページの背景を更新しました。');
+    }
+
     public function logout(Request $request)
     {
         Auth::logout();

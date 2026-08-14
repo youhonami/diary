@@ -24,4 +24,6 @@ Route::get('/settings/user', [LoginController::class, 'userEdit'])->name('user.e
 Route::post('/settings/user', [LoginController::class, 'userUpdate'])->name('user.update');
 Route::get('/settings/profile', [LoginController::class, 'profileEdit'])->name('profile.edit');
 Route::post('/settings/profile', [LoginController::class, 'profileUpdate'])->name('profile.update');
+Route::get('/settings/background', [LoginController::class, 'backgroundEdit'])->name('background.edit');
+Route::post('/settings/background', [LoginController::class, 'backgroundUpdate'])->name('background.update');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

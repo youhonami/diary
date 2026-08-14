@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <main class="toppage">
+    <main class="toppage toppage-bg-<?= e($user->toppage_background ?: 'sky') ?>">
         <section class="toppage-card">
             <div class="toppage-heading">
                 <p class="toppage-subtitle">Diary</p>
