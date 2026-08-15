@@ -10,49 +10,56 @@ body {
 }
 
 .toppage {
+    background: linear-gradient(180deg, #f3f6fa 0%, #e8eef5 100%);
     display: flex;
     justify-content: center;
     min-height: 100vh;
     padding: 40px 16px;
 }
 
-.toppage-bg-sky {
-    background:
-        radial-gradient(circle at 12% 18%, rgba(255, 255, 255, 0.85) 0 8%, transparent 9%),
-        radial-gradient(circle at 86% 22%, rgba(255, 255, 255, 0.7) 0 6%, transparent 7%),
-        linear-gradient(180deg, #eef7ff 0%, #f7fbff 48%, #fffaf2 100%);
-}
-
-.toppage-bg-sunset {
-    background:
-        radial-gradient(circle at 16% 20%, rgba(255, 244, 214, 0.9) 0 8%, transparent 9%),
-        radial-gradient(circle at 82% 24%, rgba(255, 219, 190, 0.7) 0 7%, transparent 8%),
-        linear-gradient(180deg, #ffd2b3 0%, #ffe1bf 46%, #fff3df 100%);
-}
-
-.toppage-bg-night {
-    background:
-        radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.95) 0 1px, transparent 2px),
-        radial-gradient(circle at 74% 24%, rgba(255, 255, 255, 0.85) 0 1px, transparent 2px),
-        radial-gradient(circle at 82% 68%, rgba(255, 255, 255, 0.75) 0 1px, transparent 2px),
-        linear-gradient(180deg, #08142f 0%, #152a55 52%, #2b416f 100%);
-}
-
-.toppage-bg-mint {
-    background:
-        radial-gradient(circle at 14% 18%, rgba(255, 255, 255, 0.9) 0 8%, transparent 9%),
-        radial-gradient(circle at 84% 22%, rgba(255, 255, 255, 0.75) 0 7%, transparent 8%),
-        linear-gradient(180deg, #b8ebe0 0%, #dff7f1 48%, #f4fff9 100%);
-}
-
 .toppage-card {
-    background-color: rgba(255, 255, 255, 0.95);
-    border: 1px solid #e4edf7;
     border-radius: 24px;
     box-shadow: 0 20px 48px rgba(77, 111, 145, 0.16);
     max-width: 960px;
     padding: 40px;
     width: 100%;
+}
+
+.toppage-card-sky {
+    background:
+        radial-gradient(circle at 12% 18%, rgba(255, 255, 255, 0.85) 0 8%, transparent 9%),
+        radial-gradient(circle at 86% 22%, rgba(255, 255, 255, 0.7) 0 6%, transparent 7%),
+        linear-gradient(180deg, #eef7ff 0%, #f7fbff 48%, #fffaf2 100%);
+    border: 1px solid #e4edf7;
+    color: #2f3a4a;
+}
+
+.toppage-card-sunset {
+    background:
+        radial-gradient(circle at 16% 20%, rgba(255, 244, 214, 0.9) 0 8%, transparent 9%),
+        radial-gradient(circle at 82% 24%, rgba(255, 219, 190, 0.7) 0 7%, transparent 8%),
+        linear-gradient(180deg, #ffd2b3 0%, #ffe1bf 46%, #fff3df 100%);
+    border: 1px solid #efc2a5;
+    color: #4a352d;
+}
+
+.toppage-card-night {
+    background:
+        radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.95) 0 1px, transparent 2px),
+        radial-gradient(circle at 74% 24%, rgba(255, 255, 255, 0.85) 0 1px, transparent 2px),
+        radial-gradient(circle at 82% 68%, rgba(255, 255, 255, 0.75) 0 1px, transparent 2px),
+        linear-gradient(180deg, #08142f 0%, #152a55 52%, #2b416f 100%);
+    border: 1px solid rgba(185, 211, 255, 0.28);
+    color: #eef4ff;
+}
+
+.toppage-card-mint {
+    background:
+        radial-gradient(circle at 14% 18%, rgba(255, 255, 255, 0.9) 0 8%, transparent 9%),
+        radial-gradient(circle at 84% 22%, rgba(255, 255, 255, 0.75) 0 7%, transparent 8%),
+        linear-gradient(180deg, #b8ebe0 0%, #dff7f1 48%, #f4fff9 100%);
+    border: 1px solid #b7e5d8;
+    color: #24564a;
 }
 
 .toppage-heading {
@@ -61,7 +68,6 @@ body {
 }
 
 .toppage-subtitle {
-    color: #5b8fc6;
     font-size: 14px;
     font-weight: 700;
     letter-spacing: 0.14em;
@@ -69,16 +75,45 @@ body {
     text-transform: uppercase;
 }
 
+.toppage-card-sky .toppage-subtitle {
+    color: #5b8fc6;
+}
+
+.toppage-card-sunset .toppage-subtitle {
+    color: #d47a4f;
+}
+
+.toppage-card-night .toppage-subtitle {
+    color: #a9c8ff;
+}
+
+.toppage-card-mint .toppage-subtitle {
+    color: #3d9b84;
+}
+
 h1 {
-    color: #23415f;
     font-size: 32px;
     margin: 0 0 12px;
 }
 
-.toppage-heading p:last-child {
-    color: #68798b;
-    line-height: 1.7;
-    margin: 0;
+.toppage-card-sky h1,
+.toppage-card-sky .profile-summary-name {
+    color: #23415f;
+}
+
+.toppage-card-sunset h1,
+.toppage-card-sunset .profile-summary-name {
+    color: #70402f;
+}
+
+.toppage-card-night h1,
+.toppage-card-night .profile-summary-name {
+    color: #ffffff;
+}
+
+.toppage-card-mint h1,
+.toppage-card-mint .profile-summary-name {
+    color: #1f5c4c;
 }
 
 .profile-summary {
@@ -90,20 +125,61 @@ h1 {
 }
 
 .profile-summary-icon {
-    border: 3px solid #dbe8f4;
     border-radius: 50%;
-    box-shadow: 0 10px 24px rgba(77, 111, 145, 0.12);
     height: 96px;
     object-fit: cover;
     width: 96px;
 }
 
+.toppage-card-sky .profile-summary-icon {
+    border: 3px solid #dbe8f4;
+    box-shadow: 0 10px 24px rgba(77, 111, 145, 0.12);
+}
+
+.toppage-card-sunset .profile-summary-icon {
+    border: 3px solid #efc2a5;
+    box-shadow: 0 10px 24px rgba(161, 95, 60, 0.14);
+}
+
+.toppage-card-night .profile-summary-icon {
+    border: 3px solid rgba(185, 211, 255, 0.4);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+}
+
+.toppage-card-mint .profile-summary-icon {
+    border: 3px solid #b7e5d8;
+    box-shadow: 0 10px 24px rgba(61, 155, 132, 0.14);
+}
+
 .profile-summary-icon-placeholder {
     align-items: center;
-    background: linear-gradient(135deg, #4d91d9 0%, #76c7b7 100%);
     color: #ffffff;
     display: flex;
     justify-content: center;
+}
+
+.toppage-card-sky .profile-summary-icon-placeholder,
+.toppage-card-sky .menu-icon {
+    background: linear-gradient(135deg, #4d91d9 0%, #76c7b7 100%);
+    box-shadow: 0 10px 24px rgba(77, 145, 217, 0.24);
+}
+
+.toppage-card-sunset .profile-summary-icon-placeholder,
+.toppage-card-sunset .menu-icon {
+    background: linear-gradient(135deg, #df7a52 0%, #f2b064 100%);
+    box-shadow: 0 10px 24px rgba(223, 122, 82, 0.24);
+}
+
+.toppage-card-night .profile-summary-icon-placeholder,
+.toppage-card-night .menu-icon {
+    background: linear-gradient(135deg, #6ea8ff 0%, #9b7bff 100%);
+    box-shadow: 0 10px 24px rgba(110, 168, 255, 0.28);
+}
+
+.toppage-card-mint .profile-summary-icon-placeholder,
+.toppage-card-mint .menu-icon {
+    background: linear-gradient(135deg, #3d9b84 0%, #6fcfaf 100%);
+    box-shadow: 0 10px 24px rgba(61, 155, 132, 0.24);
 }
 
 .profile-summary-icon-placeholder svg {
@@ -112,7 +188,6 @@ h1 {
 }
 
 .profile-summary-name {
-    color: #23415f;
     font-size: 20px;
     font-weight: 700;
     margin: 0;
@@ -126,11 +201,7 @@ h1 {
 
 .menu-item {
     align-items: center;
-    background-color: #fff;
-    border: 1px solid #dbe8f4;
     border-radius: 20px;
-    box-shadow: 0 10px 24px rgba(77, 111, 145, 0.08);
-    color: #2f3a4a;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -140,16 +211,40 @@ h1 {
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
+.toppage-card-sky .menu-item {
+    background-color: rgba(255, 255, 255, 0.92);
+    border: 1px solid #dbe8f4;
+    box-shadow: 0 10px 24px rgba(77, 111, 145, 0.08);
+    color: #2f3a4a;
+}
+
+.toppage-card-sunset .menu-item {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid #efc2a5;
+    box-shadow: 0 10px 24px rgba(161, 95, 60, 0.1);
+    color: #4a352d;
+}
+
+.toppage-card-night .menu-item {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.06) 100%);
+    border: 1px solid rgba(185, 211, 255, 0.28);
+    color: #eef4ff;
+}
+
+.toppage-card-mint .menu-item {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid #b7e5d8;
+    box-shadow: 0 10px 24px rgba(61, 155, 132, 0.1);
+    color: #24564a;
+}
+
 .menu-item:hover {
-    box-shadow: 0 16px 30px rgba(77, 111, 145, 0.14);
     transform: translateY(-2px);
 }
 
 .menu-icon {
     align-items: center;
-    background: linear-gradient(135deg, #4d91d9 0%, #76c7b7 100%);
     border-radius: 50%;
-    box-shadow: 0 10px 24px rgba(77, 145, 217, 0.24);
     color: #ffffff;
     display: flex;
     height: 72px;
@@ -163,15 +258,45 @@ h1 {
 }
 
 .menu-label {
-    color: #23415f;
     font-size: 18px;
     font-weight: 700;
 }
 
+.toppage-card-sky .menu-label {
+    color: #23415f;
+}
+
+.toppage-card-sunset .menu-label {
+    color: #70402f;
+}
+
+.toppage-card-night .menu-label {
+    color: #ffffff;
+}
+
+.toppage-card-mint .menu-label {
+    color: #1f5c4c;
+}
+
 .menu-description {
-    color: #6c8194;
     font-size: 14px;
     line-height: 1.5;
+}
+
+.toppage-card-sky .menu-description {
+    color: #6c8194;
+}
+
+.toppage-card-sunset .menu-description {
+    color: #856a5f;
+}
+
+.toppage-card-night .menu-description {
+    color: #c7d8f5;
+}
+
+.toppage-card-mint .menu-description {
+    color: #4f7d70;
 }
 
 .logout-form {
@@ -180,10 +305,7 @@ h1 {
 }
 
 .logout-button {
-    background-color: #f8fbff;
-    border: 1px solid #c8d9ea;
     border-radius: 999px;
-    color: #3c78ad;
     cursor: pointer;
     font-size: 16px;
     font-weight: 700;
@@ -191,8 +313,31 @@ h1 {
     transition: background-color 0.2s, transform 0.2s;
 }
 
+.toppage-card-sky .logout-button {
+    background-color: #f8fbff;
+    border: 1px solid #c8d9ea;
+    color: #3c78ad;
+}
+
+.toppage-card-sunset .logout-button {
+    background-color: #fff7f0;
+    border: 1px solid #efc2a5;
+    color: #c06642;
+}
+
+.toppage-card-night .logout-button {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(185, 211, 255, 0.35);
+    color: #cfe0ff;
+}
+
+.toppage-card-mint .logout-button {
+    background-color: #f4fff9;
+    border: 1px solid #b7e5d8;
+    color: #2f7d68;
+}
+
 .logout-button:hover {
-    background-color: #eef7ff;
     transform: translateY(-1px);
 }
 
