@@ -11,7 +11,7 @@
 
 <body>
     <main class="diary-create-page">
-        <section class="diary-create-card">
+        <section class="diary-create-card diary-create-card-<?= e($user->toppage_background ?: 'sky') ?>">
             <div class="diary-create-heading">
                 <p class="diary-create-subtitle">Write Diary</p>
                 <h1>日記を書く</h1>

@@ -126,7 +126,13 @@ class LoginController extends Controller
 
     public function diaryCreate()
     {
-        return view('diary_create');
+        if (! Auth::check()) {
+            return redirect()->route('login.index');
+        }
+
+        return view('diary_create', [
+            'user' => Auth::user(),
+        ]);
     }
 
     public function diaryStore(Request $request)
@@ -484,7 +490,7 @@ class LoginController extends Controller
         $user->toppage_background = $backgroundData['toppage_background'];
         $user->save();
 
-        return redirect()->route('background.edit')->with('message', 'トップページの背景を更新しました。');
+        return redirect()->route('background.edit')->with('message', '背景テーマを更新しました。');
     }
 
     public function logout(Request $request)
