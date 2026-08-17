@@ -51,7 +51,7 @@
                         </svg>
                     </span>
                     <span class="menu-label">トップページの背景選択</span>
-                    <span class="menu-description">トップ・日記作成の枠内テーマ</span>
+                    <span class="menu-description">トップ・日記作成・見返すの枠内テーマ</span>
                 </a>
             </div>
 

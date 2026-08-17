@@ -205,6 +205,7 @@ class LoginController extends Controller
         }
 
         return view('diary_lookback', [
+            'user' => Auth::user(),
             'currentMonth' => $currentMonth,
             'diaries' => $diaries,
             'nextMonth' => $currentMonth->copy()->addMonth()->format('Y-m'),

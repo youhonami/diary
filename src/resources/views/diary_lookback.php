@@ -11,7 +11,7 @@
 
 <body>
     <main class="diary-lookback-page">
-        <section class="diary-lookback-card">
+        <section class="diary-lookback-card diary-lookback-card-<?= e(($user->toppage_background ?? 'sky') ?: 'sky') ?>">
             <div class="diary-lookback-heading">
                 <p class="diary-lookback-subtitle">Look Back</p>
                 <h1>日記を見返す</h1>

@@ -10,21 +10,54 @@ body {
 }
 
 .diary-lookback-page {
-    background:
-        radial-gradient(circle at 12% 18%, rgba(255, 255, 255, 0.85) 0 8%, transparent 9%),
-        linear-gradient(180deg, #eef7ff 0%, #f7fbff 48%, #fffaf2 100%);
+    background: linear-gradient(180deg, #f3f6fa 0%, #e8eef5 100%);
     min-height: 100vh;
     padding: 40px 16px;
 }
 
 .diary-lookback-card {
-    background-color: rgba(255, 255, 255, 0.95);
-    border: 1px solid #e4edf7;
     border-radius: 24px;
     box-shadow: 0 20px 48px rgba(77, 111, 145, 0.16);
     margin: 0 auto;
     max-width: 960px;
     padding: 40px;
+}
+
+.diary-lookback-card-sky {
+    background:
+        radial-gradient(circle at 12% 18%, rgba(255, 255, 255, 0.85) 0 8%, transparent 9%),
+        radial-gradient(circle at 86% 22%, rgba(255, 255, 255, 0.7) 0 6%, transparent 7%),
+        linear-gradient(180deg, #eef7ff 0%, #f7fbff 48%, #fffaf2 100%);
+    border: 1px solid #e4edf7;
+    color: #2f3a4a;
+}
+
+.diary-lookback-card-sunset {
+    background:
+        radial-gradient(circle at 16% 20%, rgba(255, 244, 214, 0.9) 0 8%, transparent 9%),
+        radial-gradient(circle at 82% 24%, rgba(255, 219, 190, 0.7) 0 7%, transparent 8%),
+        linear-gradient(180deg, #ffd2b3 0%, #ffe1bf 46%, #fff3df 100%);
+    border: 1px solid #efc2a5;
+    color: #4a352d;
+}
+
+.diary-lookback-card-night {
+    background:
+        radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.95) 0 1px, transparent 2px),
+        radial-gradient(circle at 74% 24%, rgba(255, 255, 255, 0.85) 0 1px, transparent 2px),
+        radial-gradient(circle at 82% 68%, rgba(255, 255, 255, 0.75) 0 1px, transparent 2px),
+        linear-gradient(180deg, #08142f 0%, #152a55 52%, #2b416f 100%);
+    border: 1px solid rgba(185, 211, 255, 0.28);
+    color: #eef4ff;
+}
+
+.diary-lookback-card-mint {
+    background:
+        radial-gradient(circle at 14% 18%, rgba(255, 255, 255, 0.9) 0 8%, transparent 9%),
+        radial-gradient(circle at 84% 22%, rgba(255, 255, 255, 0.75) 0 7%, transparent 8%),
+        linear-gradient(180deg, #b8ebe0 0%, #dff7f1 48%, #f4fff9 100%);
+    border: 1px solid #b7e5d8;
+    color: #24564a;
 }
 
 .diary-lookback-heading {
@@ -33,7 +66,6 @@ body {
 }
 
 .diary-lookback-subtitle {
-    color: #5b8fc6;
     font-size: 14px;
     font-weight: 700;
     letter-spacing: 0.14em;
@@ -41,16 +73,62 @@ body {
     text-transform: uppercase;
 }
 
+.diary-lookback-card-sky .diary-lookback-subtitle {
+    color: #5b8fc6;
+}
+
+.diary-lookback-card-sunset .diary-lookback-subtitle {
+    color: #d47a4f;
+}
+
+.diary-lookback-card-night .diary-lookback-subtitle {
+    color: #a9c8ff;
+}
+
+.diary-lookback-card-mint .diary-lookback-subtitle {
+    color: #3d9b84;
+}
+
 h1 {
-    color: #23415f;
     font-size: 32px;
     margin: 0 0 12px;
 }
 
+.diary-lookback-card-sky h1 {
+    color: #23415f;
+}
+
+.diary-lookback-card-sunset h1 {
+    color: #70402f;
+}
+
+.diary-lookback-card-night h1 {
+    color: #ffffff;
+}
+
+.diary-lookback-card-mint h1 {
+    color: #1f5c4c;
+}
+
 .diary-lookback-heading p:last-child {
-    color: #68798b;
     line-height: 1.7;
     margin: 0;
+}
+
+.diary-lookback-card-sky .diary-lookback-heading p:last-child {
+    color: #68798b;
+}
+
+.diary-lookback-card-sunset .diary-lookback-heading p:last-child {
+    color: #7d5f52;
+}
+
+.diary-lookback-card-night .diary-lookback-heading p:last-child {
+    color: #d9e7ff;
+}
+
+.diary-lookback-card-mint .diary-lookback-heading p:last-child {
+    color: #4f7d70;
 }
 
 .message {
@@ -74,22 +152,54 @@ h1 {
 }
 
 .calendar-nav a {
-    background-color: #f8fbff;
-    border: 1px solid #c8d9ea;
     border-radius: 999px;
-    color: #3c78ad;
     font-weight: 700;
     padding: 10px 18px;
     text-decoration: none;
 }
 
-.calendar-nav a:hover {
-    background-color: #eef7ff;
+.diary-lookback-card-sky .calendar-nav a {
+    background-color: #f8fbff;
+    border: 1px solid #c8d9ea;
+    color: #3c78ad;
+}
+
+.diary-lookback-card-sunset .calendar-nav a {
+    background-color: #fff7f0;
+    border: 1px solid #efc2a5;
+    color: #c06642;
+}
+
+.diary-lookback-card-night .calendar-nav a {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(185, 211, 255, 0.35);
+    color: #cfe0ff;
+}
+
+.diary-lookback-card-mint .calendar-nav a {
+    background-color: #f4fff9;
+    border: 1px solid #b7e5d8;
+    color: #2f7d68;
 }
 
 .calendar-nav strong {
-    color: #23415f;
     font-size: 22px;
+}
+
+.diary-lookback-card-sky .calendar-nav strong {
+    color: #23415f;
+}
+
+.diary-lookback-card-sunset .calendar-nav strong {
+    color: #70402f;
+}
+
+.diary-lookback-card-night .calendar-nav strong {
+    color: #ffffff;
+}
+
+.diary-lookback-card-mint .calendar-nav strong {
+    color: #1f5c4c;
 }
 
 .calendar-wrap {
@@ -105,8 +215,6 @@ table {
 
 th,
 td {
-    border-bottom: 1px solid #dbe8f4;
-    border-right: 1px solid #dbe8f4;
     height: 92px;
     padding: 10px;
     text-align: left;
@@ -114,17 +222,80 @@ td {
     width: 14.28%;
 }
 
+.diary-lookback-card-sky th,
+.diary-lookback-card-sky td {
+    border-bottom: 1px solid #dbe8f4;
+    border-right: 1px solid #dbe8f4;
+}
+
+.diary-lookback-card-sunset th,
+.diary-lookback-card-sunset td {
+    border-bottom: 1px solid #efc2a5;
+    border-right: 1px solid #efc2a5;
+}
+
+.diary-lookback-card-night th,
+.diary-lookback-card-night td {
+    border-bottom: 1px solid rgba(185, 211, 255, 0.28);
+    border-right: 1px solid rgba(185, 211, 255, 0.28);
+}
+
+.diary-lookback-card-mint th,
+.diary-lookback-card-mint td {
+    border-bottom: 1px solid #b7e5d8;
+    border-right: 1px solid #b7e5d8;
+}
+
 th:first-child,
 td:first-child {
-    border-left: 1px solid #dbe8f4;
+    border-left-style: solid;
+    border-left-width: 1px;
+}
+
+.diary-lookback-card-sky th:first-child,
+.diary-lookback-card-sky td:first-child {
+    border-left-color: #dbe8f4;
+}
+
+.diary-lookback-card-sunset th:first-child,
+.diary-lookback-card-sunset td:first-child {
+    border-left-color: #efc2a5;
+}
+
+.diary-lookback-card-night th:first-child,
+.diary-lookback-card-night td:first-child {
+    border-left-color: rgba(185, 211, 255, 0.28);
+}
+
+.diary-lookback-card-mint th:first-child,
+.diary-lookback-card-mint td:first-child {
+    border-left-color: #b7e5d8;
 }
 
 th {
-    background-color: #eef7ff;
-    color: #345a7d;
     height: auto;
     padding: 12px;
     text-align: center;
+}
+
+.diary-lookback-card-sky th {
+    background-color: #eef7ff;
+    color: #345a7d;
+}
+
+.diary-lookback-card-sunset th {
+    background-color: #ffe8d4;
+    color: #70402f;
+}
+
+.diary-lookback-card-night th {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #d9e7ff;
+}
+
+.diary-lookback-card-mint th {
+    background-color: #d8f5ec;
+    color: #1f5c4c;
 }
 
 th:first-child {
@@ -144,34 +315,95 @@ tbody tr:last-child td:last-child {
 }
 
 td {
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.92);
+}
+
+.diary-lookback-card-sky td {
     color: #456073;
 }
 
+.diary-lookback-card-sunset td {
+    color: #604337;
+}
+
+.diary-lookback-card-night td {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: #d9e7ff;
+}
+
+.diary-lookback-card-mint td {
+    color: #24564a;
+}
+
 .outside-month {
+    opacity: 0.55;
+}
+
+.diary-lookback-card-sky .outside-month {
     background-color: #f7fbff;
     color: #a8b7c5;
 }
 
+.diary-lookback-card-sunset .outside-month {
+    background-color: #fff3df;
+    color: #b79684;
+}
+
+.diary-lookback-card-night .outside-month {
+    background-color: rgba(255, 255, 255, 0.04);
+    color: #8ea3c5;
+}
+
+.diary-lookback-card-mint .outside-month {
+    background-color: #eefaf5;
+    color: #8aada2;
+}
+
 .diary-link {
-    color: #2f7fbd;
     display: block;
     font-weight: 700;
     min-height: 100%;
     text-decoration: none;
 }
 
-.diary-link:hover {
-    color: #1f5f91;
+.diary-lookback-card-sky .diary-link {
+    color: #2f7fbd;
+}
+
+.diary-lookback-card-sunset .diary-link {
+    color: #c06642;
+}
+
+.diary-lookback-card-night .diary-link {
+    color: #9ec0ff;
+}
+
+.diary-lookback-card-mint .diary-link {
+    color: #2f7d68;
 }
 
 .calendar-label {
-    color: #5f7487;
     display: block;
     font-size: 12px;
     font-weight: normal;
     margin-top: 8px;
     word-break: break-word;
+}
+
+.diary-lookback-card-sky .calendar-label {
+    color: #5f7487;
+}
+
+.diary-lookback-card-sunset .calendar-label {
+    color: #856a5f;
+}
+
+.diary-lookback-card-night .calendar-label {
+    color: #c7d8f5;
+}
+
+.diary-lookback-card-mint .calendar-label {
+    color: #4f7d70;
 }
 
 .page-actions {
@@ -191,14 +423,47 @@ td {
 }
 
 .primary-link {
-    background: linear-gradient(135deg, #4d91d9 0%, #76c7b7 100%);
     color: #fff;
 }
 
-.back-link {
+.diary-lookback-card-sky .primary-link {
+    background: linear-gradient(135deg, #4d91d9 0%, #76c7b7 100%);
+}
+
+.diary-lookback-card-sunset .primary-link {
+    background: linear-gradient(135deg, #df7a52 0%, #f2b064 100%);
+}
+
+.diary-lookback-card-night .primary-link {
+    background: linear-gradient(135deg, #6ea8ff 0%, #9b7bff 100%);
+}
+
+.diary-lookback-card-mint .primary-link {
+    background: linear-gradient(135deg, #3d9b84 0%, #6fcfaf 100%);
+}
+
+.diary-lookback-card-sky .back-link {
     background-color: #f8fbff;
     border: 1px solid #c8d9ea;
     color: #3c78ad;
+}
+
+.diary-lookback-card-sunset .back-link {
+    background-color: #fff7f0;
+    border: 1px solid #efc2a5;
+    color: #c06642;
+}
+
+.diary-lookback-card-night .back-link {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(185, 211, 255, 0.35);
+    color: #cfe0ff;
+}
+
+.diary-lookback-card-mint .back-link {
+    background-color: #f4fff9;
+    border: 1px solid #b7e5d8;
+    color: #2f7d68;
 }
 
 @media (max-width: 640px) {
