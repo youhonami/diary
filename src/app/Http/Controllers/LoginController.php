@@ -324,6 +324,7 @@ class LoginController extends Controller
             ->get();
 
         return view('diary_read', [
+            'user' => Auth::user(),
             'diaries' => $diaries,
         ]);
     }

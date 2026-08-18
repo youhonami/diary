@@ -11,7 +11,7 @@
 
 <body>
     <main class="diary-read-page">
-        <section class="diary-read-card">
+        <section class="diary-read-card diary-read-card-<?= e(($user->toppage_background ?? 'sky') ?: 'sky') ?>">
             <div class="diary-read-heading">
                 <p class="diary-read-subtitle">Read Diary</p>
                 <h1>日記を読む</h1>
