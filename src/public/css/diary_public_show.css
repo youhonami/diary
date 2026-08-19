@@ -1,18 +1,194 @@
-body {
-    font-family: sans-serif;
-    margin: 40px;
+* {
+    box-sizing: border-box;
 }
 
-.diary-detail {
-    max-width: 720px;
+body {
+    color: #2f3a4a;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+}
+
+.diary-public-page {
+    background: linear-gradient(180deg, #f3f6fa 0%, #e8eef5 100%);
+    min-height: 100vh;
+    padding: 40px 16px;
+}
+
+.diary-public-card {
+    border-radius: 24px;
+    box-shadow: 0 20px 48px rgba(77, 111, 145, 0.16);
+    margin: 0 auto;
+    max-width: 820px;
+    padding: 40px;
+}
+
+.diary-public-card-sky {
+    background:
+        radial-gradient(circle at 12% 18%, rgba(255, 255, 255, 0.85) 0 8%, transparent 9%),
+        linear-gradient(180deg, #eef7ff 0%, #f7fbff 48%, #fffaf2 100%);
+    border: 1px solid #e4edf7;
+    color: #2f3a4a;
+}
+
+.diary-public-card-sunset {
+    background:
+        radial-gradient(circle at 16% 20%, rgba(255, 244, 214, 0.9) 0 8%, transparent 9%),
+        linear-gradient(180deg, #ffd2b3 0%, #ffe1bf 46%, #fff3df 100%);
+    border: 1px solid #efc2a5;
+    color: #4a352d;
+}
+
+.diary-public-card-night {
+    background:
+        radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.95) 0 1px, transparent 2px),
+        linear-gradient(180deg, #08142f 0%, #152a55 52%, #2b416f 100%);
+    border: 1px solid rgba(185, 211, 255, 0.28);
+    color: #eef4ff;
+}
+
+.diary-public-card-mint {
+    background:
+        radial-gradient(circle at 14% 18%, rgba(255, 255, 255, 0.9) 0 8%, transparent 9%),
+        linear-gradient(180deg, #b8ebe0 0%, #dff7f1 48%, #f4fff9 100%);
+    border: 1px solid #b7e5d8;
+    color: #24564a;
+}
+
+.diary-public-heading {
+    margin-bottom: 28px;
+    text-align: center;
+}
+
+.diary-public-subtitle {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    margin: 0 0 8px;
+    text-transform: uppercase;
+}
+
+.diary-public-card-sky .diary-public-subtitle {
+    color: #5b8fc6;
+}
+
+.diary-public-card-sunset .diary-public-subtitle {
+    color: #d47a4f;
+}
+
+.diary-public-card-night .diary-public-subtitle {
+    color: #a9c8ff;
+}
+
+.diary-public-card-mint .diary-public-subtitle {
+    color: #3d9b84;
+}
+
+h1 {
+    font-size: 30px;
+    margin: 0;
+}
+
+.diary-public-card-sky h1 {
+    color: #23415f;
+}
+
+.diary-public-card-sunset h1 {
+    color: #70402f;
+}
+
+.diary-public-card-night h1 {
+    color: #ffffff;
+}
+
+.diary-public-card-mint h1 {
+    color: #1f5c4c;
 }
 
 .diary-section {
-    border-bottom: 1px solid #ddd;
     padding: 16px 0;
 }
 
+.diary-public-card-sky .diary-section {
+    border-bottom: 1px solid #dbe8f4;
+}
+
+.diary-public-card-sunset .diary-section {
+    border-bottom: 1px solid #efc2a5;
+}
+
+.diary-public-card-night .diary-section {
+    border-bottom: 1px solid rgba(185, 211, 255, 0.28);
+}
+
+.diary-public-card-mint .diary-section {
+    border-bottom: 1px solid #b7e5d8;
+}
+
 .diary-label {
-    font-weight: bold;
+    font-weight: 700;
     margin-bottom: 8px;
+}
+
+.diary-public-card-sky .diary-label {
+    color: #345a7d;
+}
+
+.diary-public-card-sunset .diary-label {
+    color: #70402f;
+}
+
+.diary-public-card-night .diary-label {
+    color: #a9c8ff;
+}
+
+.diary-public-card-mint .diary-label {
+    color: #1f5c4c;
+}
+
+.page-actions {
+    margin: 28px 0 0;
+    text-align: center;
+}
+
+.back-link {
+    border-radius: 999px;
+    display: inline-block;
+    font-weight: 700;
+    padding: 12px 22px;
+    text-decoration: none;
+}
+
+.diary-public-card-sky .back-link {
+    background-color: #f8fbff;
+    border: 1px solid #c8d9ea;
+    color: #3c78ad;
+}
+
+.diary-public-card-sunset .back-link {
+    background-color: #fff7f0;
+    border: 1px solid #efc2a5;
+    color: #c06642;
+}
+
+.diary-public-card-night .back-link {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(185, 211, 255, 0.35);
+    color: #cfe0ff;
+}
+
+.diary-public-card-mint .back-link {
+    background-color: #f4fff9;
+    border: 1px solid #b7e5d8;
+    color: #2f7d68;
+}
+
+@media (max-width: 640px) {
+    .diary-public-card {
+        padding: 28px 20px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
 }

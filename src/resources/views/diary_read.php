@@ -6,12 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>日記を読む</title>
-    <link rel="stylesheet" href="<?= asset('css/diary_read.css') ?>">
+    <link rel="stylesheet" href="<?= asset('css/diary_read.css') ?>?v=<?= filemtime(public_path('css/diary_read.css')) ?>">
 </head>
 
 <body>
     <main class="diary-read-page">
-        <section class="diary-read-card diary-read-card-<?= e(($user->toppage_background ?? 'sky') ?: 'sky') ?>">
+        <?php $theme = ($user->toppage_background ?? null) ?: 'sky'; ?>
+        <section class="diary-read-card diary-read-card-<?= e($theme) ?>">
             <div class="diary-read-heading">
                 <p class="diary-read-subtitle">Read Diary</p>
                 <h1>日記を読む</h1>
@@ -23,7 +24,7 @@
             <?php else: ?>
                 <div class="diary-list">
                     <?php foreach ($diaries as $diary): ?>
-                        <article class="diary-card">
+                        <article class="diary-item">
                             <div class="diary-meta">
                                 <span><?= e($diary->diary_date->format('Y年n月j日')) ?></span>
                                 <span><?= e($diary->user->name) ?></span>

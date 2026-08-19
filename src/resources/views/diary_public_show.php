@@ -6,42 +6,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= e($diary->title) ?></title>
-    <link rel="stylesheet" href="<?= asset('css/diary_public_show.css') ?>">
+    <link rel="stylesheet" href="<?= asset('css/diary_public_show.css') ?>?v=<?= filemtime(public_path('css/diary_public_show.css')) ?>">
 </head>
 
 <body>
-    <article class="diary-detail">
-        <h1><?= e($diary->title) ?></h1>
+    <main class="diary-public-page">
+        <?php $theme = ($user->toppage_background ?? null) ?: 'sky'; ?>
+        <article class="diary-public-card diary-public-card-<?= e($theme) ?>">
+            <div class="diary-public-heading">
+                <p class="diary-public-subtitle">Public Diary</p>
+                <h1><?= e($diary->title) ?></h1>
+            </div>
 
-        <div class="diary-section">
-            <div class="diary-label">投稿者</div>
-            <div><?= e($diary->user->name) ?></div>
-        </div>
+            <div class="diary-section">
+                <div class="diary-label">投稿者</div>
+                <div><?= e($diary->user->name) ?></div>
+            </div>
 
-        <div class="diary-section">
-            <div class="diary-label">日付</div>
-            <div><?= e($diary->diary_date->format('Y年n月j日')) ?></div>
-        </div>
+            <div class="diary-section">
+                <div class="diary-label">日付</div>
+                <div><?= e($diary->diary_date->format('Y年n月j日')) ?></div>
+            </div>
 
-        <div class="diary-section">
-            <div class="diary-label">場所</div>
-            <div><?= e($diary->place ?? '未入力') ?></div>
-        </div>
+            <div class="diary-section">
+                <div class="diary-label">場所</div>
+                <div><?= e($diary->place ?? '未入力') ?></div>
+            </div>
 
-        <div class="diary-section">
-            <div class="diary-label">出来事</div>
-            <div><?= nl2br(e($diary->event)) ?></div>
-        </div>
+            <div class="diary-section">
+                <div class="diary-label">出来事</div>
+                <div><?= nl2br(e($diary->event)) ?></div>
+            </div>
 
-        <div class="diary-section">
-            <div class="diary-label">良かったこと</div>
-            <div><?= nl2br(e($diary->good_thing)) ?></div>
-        </div>
-    </article>
+            <div class="diary-section">
+                <div class="diary-label">良かったこと</div>
+                <div><?= nl2br(e($diary->good_thing)) ?></div>
+            </div>
 
-    <p>
-        <a href="<?= route('diary.read') ?>">日記を読むへ戻る</a>
-    </p>
+            <p class="page-actions">
+                <a class="back-link" href="<?= route('diary.read') ?>">日記を読むへ戻る</a>
+            </p>
+        </article>
+    </main>
 </body>
 
 </html>

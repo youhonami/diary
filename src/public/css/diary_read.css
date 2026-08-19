@@ -139,13 +139,13 @@ h1 {
 }
 
 .diary-read-card-sky .empty-message {
-    background-color: #f8fbff;
+    background-color: rgba(248, 251, 255, 0.72);
     border: 1px solid #c8d9ea;
     color: #5f7487;
 }
 
 .diary-read-card-sunset .empty-message {
-    background-color: #fff7f0;
+    background-color: rgba(255, 247, 240, 0.72);
     border: 1px solid #efc2a5;
     color: #856a5f;
 }
@@ -157,7 +157,7 @@ h1 {
 }
 
 .diary-read-card-mint .empty-message {
-    background-color: #f4fff9;
+    background-color: rgba(244, 255, 249, 0.72);
     border: 1px solid #b7e5d8;
     color: #4f7d70;
 }
@@ -167,36 +167,36 @@ h1 {
     gap: 18px;
 }
 
-.diary-card {
+.diary-item {
     border-radius: 18px;
     padding: 24px;
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.diary-read-card-sky .diary-card {
-    background-color: rgba(255, 255, 255, 0.92);
-    border: 1px solid #dbe8f4;
+.diary-read-card-sky .diary-item {
+    background-color: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(219, 232, 244, 0.9);
     box-shadow: 0 10px 24px rgba(77, 111, 145, 0.08);
 }
 
-.diary-read-card-sunset .diary-card {
-    background-color: rgba(255, 255, 255, 0.9);
-    border: 1px solid #efc2a5;
+.diary-read-card-sunset .diary-item {
+    background-color: rgba(255, 255, 255, 0.45);
+    border: 1px solid rgba(239, 194, 165, 0.9);
     box-shadow: 0 10px 24px rgba(161, 95, 60, 0.1);
 }
 
-.diary-read-card-night .diary-card {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.06) 100%);
+.diary-read-card-night .diary-item {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.06) 100%);
     border: 1px solid rgba(185, 211, 255, 0.28);
 }
 
-.diary-read-card-mint .diary-card {
-    background-color: rgba(255, 255, 255, 0.9);
-    border: 1px solid #b7e5d8;
+.diary-read-card-mint .diary-item {
+    background-color: rgba(255, 255, 255, 0.45);
+    border: 1px solid rgba(183, 229, 216, 0.9);
     box-shadow: 0 10px 24px rgba(61, 155, 132, 0.1);
 }
 
-.diary-card:hover {
+.diary-item:hover {
     transform: translateY(-2px);
 }
 

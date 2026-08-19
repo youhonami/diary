@@ -316,6 +316,10 @@ class LoginController extends Controller
 
     public function diaryRead()
     {
+        if (! Auth::check()) {
+            return redirect()->route('login.index');
+        }
+
         $diaries = Diary::with('user')
             ->where('visibility', 'public')
             ->where('user_id', '!=', Auth::id())
@@ -324,7 +328,7 @@ class LoginController extends Controller
             ->get();
 
         return view('diary_read', [
-            'user' => Auth::user(),
+            'user' => Auth::user()->fresh(),
             'diaries' => $diaries,
         ]);
     }
@@ -338,6 +342,7 @@ class LoginController extends Controller
         $diary->load('user');
 
         return view('diary_public_show', [
+            'user' => Auth::user(),
             'diary' => $diary,
         ]);
     }
