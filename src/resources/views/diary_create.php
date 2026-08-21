@@ -58,6 +58,20 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="place-map">地図</label>
+                    <div class="place-map-wrap">
+                        <iframe
+                            id="place-map"
+                            title="Googleマップ"
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            allowfullscreen
+                        ></iframe>
+                    </div>
+                    <p class="form-note">場所を入力すると、地図の表示が更新されます。</p>
+                </div>
+
+                <div class="form-group">
                     <label for="event">出来事 <span class="required-mark">必須</span></label>
                     <textarea
                         id="event"
@@ -91,6 +105,42 @@
             </p>
         </section>
     </main>
+
+    <script>
+        (function () {
+            const placeInput = document.getElementById('place');
+            const mapFrame = document.getElementById('place-map');
+            const mapsApiKey = <?= json_encode(config('services.google.maps_api_key')) ?>;
+            const defaultPlace = '東京';
+            let timer = null;
+
+            function buildMapUrl(place) {
+                const query = place.trim() || defaultPlace;
+
+                if (mapsApiKey) {
+                    return 'https://www.google.com/maps/embed/v1/place'
+                        + '?key=' + encodeURIComponent(mapsApiKey)
+                        + '&q=' + encodeURIComponent(query)
+                        + '&language=ja';
+                }
+
+                return 'https://maps.google.com/maps'
+                    + '?q=' + encodeURIComponent(query)
+                    + '&hl=ja&z=14&output=embed';
+            }
+
+            function updateMap() {
+                mapFrame.src = buildMapUrl(placeInput.value);
+            }
+
+            placeInput.addEventListener('input', function () {
+                clearTimeout(timer);
+                timer = setTimeout(updateMap, 500);
+            });
+
+            updateMap();
+        })();
+    </script>
 </body>
 
 </html>
