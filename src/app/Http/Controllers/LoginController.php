@@ -226,6 +226,7 @@ class LoginController extends Controller
         }
 
         return view('diary_show', [
+            'user' => Auth::user(),
             'date' => Carbon::parse($date),
             'diaries' => $diaries,
         ]);

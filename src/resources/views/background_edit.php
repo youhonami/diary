@@ -15,7 +15,7 @@
             <div class="background-edit-heading">
                 <p class="background-edit-subtitle">Background</p>
                 <h1>トップページの背景選択</h1>
-                <p>トップページと日記の各ページ（書く・見返す・読む）の枠内テーマを選べます。</p>
+                <p>トップページと日記の各ページ（書く・見返す・詳細・読む）の枠内テーマを選べます。</p>
             </div>
 
             <?php if (session('message')): ?>
