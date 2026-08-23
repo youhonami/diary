@@ -35,7 +35,25 @@
 
                         <div class="diary-section">
                             <div class="diary-label">場所</div>
-                            <div class="diary-value"><?= e($diary->place ?? '未入力') ?></div>
+                            <div class="diary-value"><?= e($diary->place ?: '未入力') ?></div>
+                            <?php if (! empty($diary->place)): ?>
+                                <?php
+                                    $mapsApiKey = config('services.google.maps_api_key');
+                                    $mapQuery = urlencode($diary->place);
+                                    $mapUrl = $mapsApiKey
+                                        ? 'https://www.google.com/maps/embed/v1/place?key=' . urlencode($mapsApiKey) . '&q=' . $mapQuery . '&language=ja'
+                                        : 'https://maps.google.com/maps?q=' . $mapQuery . '&hl=ja&z=14&output=embed';
+                                ?>
+                                <div class="place-map-wrap">
+                                    <iframe
+                                        src="<?= e($mapUrl) ?>"
+                                        title="<?= e($diary->place) ?>の地図"
+                                        loading="lazy"
+                                        referrerpolicy="no-referrer-when-downgrade"
+                                        allowfullscreen
+                                    ></iframe>
+                                </div>
+                            <?php endif; ?>
                         </div>
 
                         <div class="diary-section">
