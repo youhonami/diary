@@ -122,6 +122,46 @@ input:focus {
     box-shadow: 0 0 0 4px rgba(231, 111, 66, 0.18);
 }
 
+.password-field {
+    position: relative;
+}
+
+.password-field input {
+    padding-right: 52px;
+}
+
+.password-toggle {
+    align-items: center;
+    background: transparent;
+    border: none;
+    border-radius: 10px;
+    color: #c06642;
+    cursor: pointer;
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    padding: 0;
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+}
+
+.password-toggle:hover {
+    background-color: rgba(231, 111, 66, 0.1);
+}
+
+.password-toggle svg {
+    display: block;
+    height: 22px;
+    width: 22px;
+}
+
+.password-toggle .is-hidden {
+    display: none;
+}
+
 .register-button {
     background: linear-gradient(135deg, #e85d3c 0%, #f6a04d 100%);
     border: none;
