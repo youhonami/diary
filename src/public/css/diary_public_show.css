@@ -146,6 +146,36 @@ h1 {
     color: #1f5c4c;
 }
 
+.place-map-wrap {
+    border-radius: 14px;
+    margin-top: 14px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.place-map-wrap iframe {
+    border: 0;
+    display: block;
+    height: 240px;
+    width: 100%;
+}
+
+.diary-public-card-sky .place-map-wrap {
+    border: 1px solid #c8d9ea;
+}
+
+.diary-public-card-sunset .place-map-wrap {
+    border: 1px solid #efc2a5;
+}
+
+.diary-public-card-night .place-map-wrap {
+    border: 1px solid rgba(185, 211, 255, 0.35);
+}
+
+.diary-public-card-mint .place-map-wrap {
+    border: 1px solid #b7e5d8;
+}
+
 .page-actions {
     margin: 28px 0 0;
     text-align: center;
