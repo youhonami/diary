@@ -53,6 +53,17 @@
                     <span class="menu-label">トップページの背景選択</span>
                     <span class="menu-description">トップ・日記各ページの枠内テーマ</span>
                 </a>
+
+                <a class="menu-item" href="<?= route('maps.edit') ?>">
+                    <span class="menu-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 4.5 3.5 7v12.5L9 17l6 2.5L20.5 17V4.5L15 7 9 4.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                            <path d="M9 4.5v12.5M15 7v12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                        </svg>
+                    </span>
+                    <span class="menu-label">Googleマップの設定</span>
+                    <span class="menu-description">地図表示に関する設定</span>
+                </a>
             </div>
 
             <p class="back-link">

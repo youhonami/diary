@@ -26,4 +26,5 @@ Route::get('/settings/profile', [LoginController::class, 'profileEdit'])->name('
 Route::post('/settings/profile', [LoginController::class, 'profileUpdate'])->name('profile.update');
 Route::get('/settings/background', [LoginController::class, 'backgroundEdit'])->name('background.edit');
 Route::post('/settings/background', [LoginController::class, 'backgroundUpdate'])->name('background.update');
+Route::get('/settings/maps', [LoginController::class, 'mapsEdit'])->name('maps.edit');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

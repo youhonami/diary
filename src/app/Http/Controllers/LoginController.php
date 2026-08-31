@@ -501,6 +501,15 @@ class LoginController extends Controller
         return redirect()->route('background.edit')->with('message', '背景テーマを更新しました。');
     }
 
+    public function mapsEdit()
+    {
+        if (! Auth::check()) {
+            return redirect()->route('login.index');
+        }
+
+        return view('maps_edit');
+    }
+
     public function logout(Request $request)
     {
         Auth::logout();
