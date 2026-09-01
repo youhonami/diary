@@ -507,7 +507,34 @@ class LoginController extends Controller
             return redirect()->route('login.index');
         }
 
-        return view('maps_edit');
+        return view('maps_edit', [
+            'user' => Auth::user(),
+        ]);
+    }
+
+    public function mapsUpdate(Request $request)
+    {
+        if (! Auth::check()) {
+            return redirect()->route('login.index');
+        }
+
+        $mapsData = $request->validate([
+            'home_place' => ['nullable', 'string', 'max:255'],
+            'work_place' => ['nullable', 'string', 'max:255'],
+            'favorite_place' => ['nullable', 'string', 'max:255'],
+        ], [
+            'home_place.max' => '自宅は255文字以内で入力してください。',
+            'work_place.max' => '勤務先は255文字以内で入力してください。',
+            'favorite_place.max' => 'よく行く場所は255文字以内で入力してください。',
+        ]);
+
+        $user = Auth::user();
+        $user->home_place = $mapsData['home_place'] ?? null;
+        $user->work_place = $mapsData['work_place'] ?? null;
+        $user->favorite_place = $mapsData['favorite_place'] ?? null;
+        $user->save();
+
+        return redirect()->route('maps.edit')->with('message', 'Googleマップの設定を更新しました。');
     }
 
     public function logout(Request $request)

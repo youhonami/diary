@@ -27,6 +27,9 @@ class User extends Authenticatable
         'email',
         'phone_number',
         'toppage_background',
+        'home_place',
+        'work_place',
+        'favorite_place',
         'password',
     ];
 
