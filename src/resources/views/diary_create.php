@@ -54,6 +54,21 @@
                     <div class="form-group">
                         <label for="place">場所</label>
                         <input type="text" id="place" name="place" value="<?= e(old('place')) ?>" placeholder="自宅、公園、カフェなど">
+                        <?php if (! empty($user->family_home_place)): ?>
+                            <div class="place-presets">
+                                <button
+                                    type="button"
+                                    class="place-preset-button"
+                                    data-place="<?= e($user->family_home_place) ?>"
+                                    data-label="実家"
+                                >
+                                    実家
+                                </button>
+                            </div>
+                            <p class="form-note">「実家」を押すと、設定した住所が反映されます。</p>
+                        <?php else: ?>
+                            <p class="form-note">実家を使う場合は、設定の Googleマップの設定 から住所を登録してください。</p>
+                        <?php endif; ?>
                     </div>
                 </div>
 
@@ -111,11 +126,22 @@
             const placeInput = document.getElementById('place');
             const mapFrame = document.getElementById('place-map');
             const mapsApiKey = <?= json_encode(config('services.google.maps_api_key')) ?>;
+            const familyHomePlace = <?= json_encode($user->family_home_place) ?>;
             const defaultPlace = '東京';
             let timer = null;
 
+            function resolvePlace(place) {
+                const trimmed = place.trim();
+
+                if (trimmed === '実家' && familyHomePlace) {
+                    return familyHomePlace;
+                }
+
+                return trimmed;
+            }
+
             function buildMapUrl(place) {
-                const query = place.trim() || defaultPlace;
+                const query = resolvePlace(place) || defaultPlace;
 
                 if (mapsApiKey) {
                     return 'https://www.google.com/maps/embed/v1/place'
@@ -133,9 +159,35 @@
                 mapFrame.src = buildMapUrl(placeInput.value);
             }
 
+            function applyResolvedPlace() {
+                const resolved = resolvePlace(placeInput.value);
+
+                if (resolved && resolved !== placeInput.value.trim()) {
+                    placeInput.value = resolved;
+                }
+
+                updateMap();
+            }
+
             placeInput.addEventListener('input', function () {
                 clearTimeout(timer);
-                timer = setTimeout(updateMap, 500);
+                timer = setTimeout(function () {
+                    if (placeInput.value.trim() === '実家' && familyHomePlace) {
+                        placeInput.value = familyHomePlace;
+                    }
+                    updateMap();
+                }, 500);
+            });
+
+            placeInput.addEventListener('change', applyResolvedPlace);
+            placeInput.addEventListener('blur', applyResolvedPlace);
+
+            document.querySelectorAll('.place-preset-button').forEach(function (button) {
+                button.addEventListener('click', function () {
+                    placeInput.value = button.getAttribute('data-place') || '';
+                    updateMap();
+                    placeInput.focus();
+                });
             });
 
             updateMap();

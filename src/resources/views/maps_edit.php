@@ -31,6 +31,11 @@
                 'placeholder' => '東京都渋谷区…',
                 'value' => old('home_place', $user->home_place),
             ],
+            'family_home_place' => [
+                'label' => '実家',
+                'placeholder' => '大阪府大阪市…',
+                'value' => old('family_home_place', $user->family_home_place),
+            ],
             'work_place' => [
                 'label' => '勤務先',
                 'placeholder' => '東京都千代田区…',

@@ -28,6 +28,7 @@ class User extends Authenticatable
         'phone_number',
         'toppage_background',
         'home_place',
+        'family_home_place',
         'work_place',
         'favorite_place',
         'password',

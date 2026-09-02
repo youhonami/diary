@@ -155,11 +155,19 @@ class LoginController extends Controller
             'event.required' => '出来事を入力してください。',
         ]);
 
+        $place = $diaryData['place'] ?? null;
+        if ($place !== null && trim($place) === '実家') {
+            $familyHomePlace = Auth::user()->family_home_place;
+            if (! empty($familyHomePlace)) {
+                $place = $familyHomePlace;
+            }
+        }
+
         Diary::create([
             'user_id' => Auth::id(),
             'title' => $diaryData['title'],
             'diary_date' => $diaryData['diary_date'],
-            'place' => $diaryData['place'] ?? null,
+            'place' => $place,
             'event' => $diaryData['event'],
             'good_thing' => $diaryData['good_thing'] ?? '',
             'visibility' => $diaryData['visibility'],
@@ -520,16 +528,19 @@ class LoginController extends Controller
 
         $mapsData = $request->validate([
             'home_place' => ['nullable', 'string', 'max:255'],
+            'family_home_place' => ['nullable', 'string', 'max:255'],
             'work_place' => ['nullable', 'string', 'max:255'],
             'favorite_place' => ['nullable', 'string', 'max:255'],
         ], [
             'home_place.max' => '自宅は255文字以内で入力してください。',
+            'family_home_place.max' => '実家は255文字以内で入力してください。',
             'work_place.max' => '勤務先は255文字以内で入力してください。',
             'favorite_place.max' => 'よく行く場所は255文字以内で入力してください。',
         ]);
 
         $user = Auth::user();
         $user->home_place = $mapsData['home_place'] ?? null;
+        $user->family_home_place = $mapsData['family_home_place'] ?? null;
         $user->work_place = $mapsData['work_place'] ?? null;
         $user->favorite_place = $mapsData['favorite_place'] ?? null;
         $user->save();

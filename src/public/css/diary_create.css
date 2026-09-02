@@ -318,6 +318,44 @@ textarea {
     color: #4f7d70;
 }
 
+.place-presets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.place-preset-button {
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 8px 14px;
+}
+
+.diary-create-card-sky .place-preset-button {
+    background-color: #f8fbff;
+    border: 1px solid #c8d9ea;
+    color: #3c78ad;
+}
+
+.diary-create-card-sunset .place-preset-button {
+    background-color: #fff7f0;
+    border: 1px solid #efc2a5;
+    color: #c06642;
+}
+
+.diary-create-card-night .place-preset-button {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(185, 211, 255, 0.35);
+    color: #cfe0ff;
+}
+
+.diary-create-card-mint .place-preset-button {
+    background-color: #f4fff9;
+    border: 1px solid #b7e5d8;
+    color: #2f7d68;
+}
+
 .save-button {
     border: none;
     border-radius: 999px;
