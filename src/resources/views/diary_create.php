@@ -54,20 +54,30 @@
                     <div class="form-group">
                         <label for="place">場所</label>
                         <input type="text" id="place" name="place" value="<?= e(old('place')) ?>" placeholder="自宅、公園、カフェなど">
-                        <?php if (! empty($user->family_home_place)): ?>
+                        <?php
+                            $placePresets = array_filter([
+                                '自宅' => $user->home_place,
+                                '実家' => $user->family_home_place,
+                                '勤務先' => $user->work_place,
+                                'よく行く場所' => $user->favorite_place,
+                            ]);
+                        ?>
+                        <?php if (! empty($placePresets)): ?>
                             <div class="place-presets">
-                                <button
-                                    type="button"
-                                    class="place-preset-button"
-                                    data-place="<?= e($user->family_home_place) ?>"
-                                    data-label="実家"
-                                >
-                                    実家
-                                </button>
+                                <?php foreach ($placePresets as $label => $address): ?>
+                                    <button
+                                        type="button"
+                                        class="place-preset-button"
+                                        data-place="<?= e($address) ?>"
+                                        data-label="<?= e($label) ?>"
+                                    >
+                                        <?= e($label) ?>
+                                    </button>
+                                <?php endforeach; ?>
                             </div>
-                            <p class="form-note">「実家」を押すと、設定した住所が反映されます。</p>
+                            <p class="form-note">ボタンを押すと、設定した住所が反映されます。</p>
                         <?php else: ?>
-                            <p class="form-note">実家を使う場合は、設定の Googleマップの設定 から住所を登録してください。</p>
+                            <p class="form-note">よく使う場所は、設定の Googleマップの設定 から登録できます。</p>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -126,15 +136,20 @@
             const placeInput = document.getElementById('place');
             const mapFrame = document.getElementById('place-map');
             const mapsApiKey = <?= json_encode(config('services.google.maps_api_key')) ?>;
-            const familyHomePlace = <?= json_encode($user->family_home_place) ?>;
+            const placeAliases = <?= json_encode(array_filter([
+                '自宅' => $user->home_place,
+                '実家' => $user->family_home_place,
+                '勤務先' => $user->work_place,
+                'よく行く場所' => $user->favorite_place,
+            ])) ?>;
             const defaultPlace = '東京';
             let timer = null;
 
             function resolvePlace(place) {
                 const trimmed = place.trim();
 
-                if (trimmed === '実家' && familyHomePlace) {
-                    return familyHomePlace;
+                if (Object.prototype.hasOwnProperty.call(placeAliases, trimmed) && placeAliases[trimmed]) {
+                    return placeAliases[trimmed];
                 }
 
                 return trimmed;
@@ -172,9 +187,12 @@
             placeInput.addEventListener('input', function () {
                 clearTimeout(timer);
                 timer = setTimeout(function () {
-                    if (placeInput.value.trim() === '実家' && familyHomePlace) {
-                        placeInput.value = familyHomePlace;
+                    const resolved = resolvePlace(placeInput.value);
+
+                    if (resolved && resolved !== placeInput.value.trim()) {
+                        placeInput.value = resolved;
                     }
+
                     updateMap();
                 }, 500);
             });

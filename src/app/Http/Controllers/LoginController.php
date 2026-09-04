@@ -156,10 +156,17 @@ class LoginController extends Controller
         ]);
 
         $place = $diaryData['place'] ?? null;
-        if ($place !== null && trim($place) === '実家') {
-            $familyHomePlace = Auth::user()->family_home_place;
-            if (! empty($familyHomePlace)) {
-                $place = $familyHomePlace;
+        if ($place !== null) {
+            $trimmedPlace = trim($place);
+            $placeAliases = array_filter([
+                '自宅' => Auth::user()->home_place,
+                '実家' => Auth::user()->family_home_place,
+                '勤務先' => Auth::user()->work_place,
+                'よく行く場所' => Auth::user()->favorite_place,
+            ]);
+
+            if (isset($placeAliases[$trimmedPlace])) {
+                $place = $placeAliases[$trimmedPlace];
             }
         }
 
