@@ -84,6 +84,10 @@
                 <button type="submit" class="login-button">ログイン</button>
             </form>
 
+            <p class="forgot-password-link">
+                <a href="<?= route('password.request') ?>">パスワードを忘れた場合はこちら</a>
+            </p>
+
             <p class="register-link">
                 アカウントをお持ちでない方は
                 <a href="<?= route('register') ?>">新規会員登録</a>

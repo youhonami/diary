@@ -17,6 +17,11 @@ class LoginController extends Controller
         return view('index');
     }
 
+    public function passwordRequest()
+    {
+        return view('password_forgot');
+    }
+
     public function login(Request $request)
     {
         $credentials = $request->validate([

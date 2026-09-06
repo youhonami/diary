@@ -187,7 +187,8 @@ input:focus {
 }
 
 .register-link,
-.withdrawal-link {
+.withdrawal-link,
+.forgot-password-link {
     color: #557087;
     line-height: 1.7;
     margin: 24px 0 0;
@@ -195,14 +196,16 @@ input:focus {
 }
 
 .register-link a,
-.withdrawal-link a {
+.withdrawal-link a,
+.forgot-password-link a {
     color: #1677b9;
     font-weight: 700;
     text-decoration: none;
 }
 
 .register-link a:hover,
-.withdrawal-link a:hover {
+.withdrawal-link a:hover,
+.forgot-password-link a:hover {
     text-decoration: underline;
 }
 
