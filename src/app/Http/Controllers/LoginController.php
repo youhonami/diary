@@ -22,6 +22,39 @@ class LoginController extends Controller
         return view('password_forgot');
     }
 
+    public function passwordReset(Request $request)
+    {
+        $resetData = $request->validate([
+            'email' => ['required', 'email'],
+            'name' => ['required', 'string', 'max:255'],
+            'password' => ['required', 'min:6', 'confirmed'],
+        ], [
+            'email.required' => 'メールアドレスを入力してください。',
+            'email.email' => 'メールアドレスを正しく入力してください。',
+            'name.required' => '名前を入力してください。',
+            'password.required' => '新しいパスワードを入力してください。',
+            'password.min' => 'パスワードは6文字以上で入力してください。',
+            'password.confirmed' => 'パスワードが一致しません。',
+        ]);
+
+        $user = User::where('email', $resetData['email'])
+            ->where('name', $resetData['name'])
+            ->first();
+
+        if (! $user) {
+            return back()
+                ->withInput($request->only('email', 'name'))
+                ->with('password_reset_error', 'メールアドレスまたは名前が正しくありません。');
+        }
+
+        $user->password = Hash::make($resetData['password']);
+        $user->save();
+
+        return redirect()
+            ->route('login.index')
+            ->with('password_reset_message', '新しいパスワードを設定しました。ログインしてください。');
+    }
+
     public function login(Request $request)
     {
         $credentials = $request->validate([

@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 Route::get('/', [LoginController::class, 'index'])->name('login.index');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/password/forgot', [LoginController::class, 'passwordRequest'])->name('password.request');
+Route::post('/password/forgot', [LoginController::class, 'passwordReset'])->name('password.reset');
 Route::get('/register', [LoginController::class, 'register'])->name('register');
 Route::post('/register', [LoginController::class, 'store'])->name('register.store');
 Route::get('/withdrawal', [LoginController::class, 'withdrawal'])->name('withdrawal');

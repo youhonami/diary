@@ -22,6 +22,10 @@
                 <p class="message message-error"><?= e(session('login_error')) ?></p>
             <?php endif; ?>
 
+            <?php if (session('password_reset_message')): ?>
+                <p class="message message-success"><?= e(session('password_reset_message')) ?></p>
+            <?php endif; ?>
+
             <?php if (session('withdrawal_message')): ?>
                 <p class="message message-success"><?= e(session('withdrawal_message')) ?></p>
             <?php endif; ?>
