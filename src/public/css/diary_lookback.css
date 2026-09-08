@@ -203,20 +203,22 @@ h1 {
 }
 
 .calendar-wrap {
-    overflow-x: auto;
+    overflow: hidden;
+    width: 100%;
 }
 
 table {
     border-collapse: separate;
     border-spacing: 0;
-    min-width: 760px;
+    table-layout: fixed;
     width: 100%;
 }
 
 th,
 td {
-    height: 92px;
-    padding: 10px;
+    height: clamp(56px, 12vw, 92px);
+    overflow: hidden;
+    padding: clamp(4px, 1.2vw, 10px);
     text-align: left;
     vertical-align: top;
     width: 14.28%;
@@ -383,10 +385,13 @@ td {
 }
 
 .calendar-label {
-    display: block;
-    font-size: 12px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    font-size: clamp(10px, 2.4vw, 12px);
     font-weight: normal;
-    margin-top: 8px;
+    margin-top: clamp(4px, 1vw, 8px);
+    overflow: hidden;
     word-break: break-word;
 }
 
@@ -468,14 +473,43 @@ td {
 
 @media (max-width: 640px) {
     .diary-lookback-card {
-        padding: 28px 20px;
+        padding: 28px 16px;
     }
 
     .calendar-nav {
         flex-direction: column;
+        gap: 12px;
+    }
+
+    .calendar-nav strong {
+        font-size: 18px;
+    }
+
+    th {
+        font-size: 12px;
+        padding: 8px 4px;
+    }
+
+    .calendar-label {
+        -webkit-line-clamp: 1;
     }
 
     h1 {
         font-size: 28px;
+    }
+}
+
+@media (max-width: 400px) {
+    .diary-lookback-page {
+        padding: 24px 8px;
+    }
+
+    .diary-lookback-card {
+        padding: 20px 10px;
+    }
+
+    th,
+    td {
+        padding: 4px 2px;
     }
 }
