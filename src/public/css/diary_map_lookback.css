@@ -1,0 +1,493 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    color: #2f3a4a;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+}
+
+.diary-map-page {
+    background: linear-gradient(180deg, #f3f6fa 0%, #e8eef5 100%);
+    min-height: 100vh;
+    padding: 40px 16px;
+}
+
+.diary-map-card {
+    border-radius: 24px;
+    box-shadow: 0 20px 48px rgba(77, 111, 145, 0.16);
+    margin: 0 auto;
+    max-width: 1080px;
+    padding: 40px;
+}
+
+.diary-map-card-sky {
+    background:
+        radial-gradient(circle at 12% 18%, rgba(255, 255, 255, 0.85) 0 8%, transparent 9%),
+        radial-gradient(circle at 86% 22%, rgba(255, 255, 255, 0.7) 0 6%, transparent 7%),
+        linear-gradient(180deg, #eef7ff 0%, #f7fbff 48%, #fffaf2 100%);
+    border: 1px solid #e4edf7;
+    color: #2f3a4a;
+}
+
+.diary-map-card-sunset {
+    background:
+        radial-gradient(circle at 16% 20%, rgba(255, 244, 214, 0.9) 0 8%, transparent 9%),
+        radial-gradient(circle at 82% 24%, rgba(255, 219, 190, 0.7) 0 7%, transparent 8%),
+        linear-gradient(180deg, #ffd2b3 0%, #ffe1bf 46%, #fff3df 100%);
+    border: 1px solid #efc2a5;
+    color: #4a352d;
+}
+
+.diary-map-card-night {
+    background:
+        radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.95) 0 1px, transparent 2px),
+        radial-gradient(circle at 74% 24%, rgba(255, 255, 255, 0.85) 0 1px, transparent 2px),
+        radial-gradient(circle at 82% 68%, rgba(255, 255, 255, 0.75) 0 1px, transparent 2px),
+        linear-gradient(180deg, #08142f 0%, #152a55 52%, #2b416f 100%);
+    border: 1px solid rgba(185, 211, 255, 0.28);
+    color: #eef4ff;
+}
+
+.diary-map-card-mint {
+    background:
+        radial-gradient(circle at 14% 18%, rgba(255, 255, 255, 0.9) 0 8%, transparent 9%),
+        radial-gradient(circle at 84% 22%, rgba(255, 255, 255, 0.75) 0 7%, transparent 8%),
+        linear-gradient(180deg, #b8ebe0 0%, #dff7f1 48%, #f4fff9 100%);
+    border: 1px solid #b7e5d8;
+    color: #24564a;
+}
+
+.diary-map-heading {
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+.diary-map-subtitle {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    margin: 0 0 8px;
+    text-transform: uppercase;
+}
+
+.diary-map-card-sky .diary-map-subtitle {
+    color: #5b8fc6;
+}
+
+.diary-map-card-sunset .diary-map-subtitle {
+    color: #d47a4f;
+}
+
+.diary-map-card-night .diary-map-subtitle {
+    color: #a9c8ff;
+}
+
+.diary-map-card-mint .diary-map-subtitle {
+    color: #3d9b84;
+}
+
+h1 {
+    font-size: 32px;
+    margin: 0 0 12px;
+}
+
+.diary-map-card-sky h1 {
+    color: #23415f;
+}
+
+.diary-map-card-sunset h1 {
+    color: #70402f;
+}
+
+.diary-map-card-night h1 {
+    color: #ffffff;
+}
+
+.diary-map-card-mint h1 {
+    color: #1f5c4c;
+}
+
+.diary-map-heading p:last-child {
+    line-height: 1.7;
+    margin: 0;
+}
+
+.diary-map-card-sky .diary-map-heading p:last-child {
+    color: #68798b;
+}
+
+.diary-map-card-sunset .diary-map-heading p:last-child {
+    color: #7d5f52;
+}
+
+.diary-map-card-night .diary-map-heading p:last-child {
+    color: #d9e7ff;
+}
+
+.diary-map-card-mint .diary-map-heading p:last-child {
+    color: #4f7d70;
+}
+
+.empty-message {
+    border-radius: 14px;
+    line-height: 1.7;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+.diary-map-card-sky .empty-message {
+    background-color: rgba(255, 255, 255, 0.72);
+    color: #68798b;
+}
+
+.diary-map-card-sunset .empty-message {
+    background-color: rgba(255, 255, 255, 0.55);
+    color: #7d5f52;
+}
+
+.diary-map-card-night .empty-message {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: #d9e7ff;
+}
+
+.diary-map-card-mint .empty-message {
+    background-color: rgba(255, 255, 255, 0.55);
+    color: #4f7d70;
+}
+
+.map-layout {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: minmax(200px, 260px) minmax(0, 1fr);
+}
+
+.place-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 640px;
+    overflow-y: auto;
+}
+
+.place-item {
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.diary-map-card-sky .place-item {
+    background-color: rgba(255, 255, 255, 0.72);
+    border: 1px solid #c8d9ea;
+    color: #345a7d;
+}
+
+.diary-map-card-sunset .place-item {
+    background-color: rgba(255, 255, 255, 0.55);
+    border: 1px solid #efc2a5;
+    color: #70402f;
+}
+
+.diary-map-card-night .place-item {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(185, 211, 255, 0.35);
+    color: #d9e7ff;
+}
+
+.diary-map-card-mint .place-item {
+    background-color: rgba(255, 255, 255, 0.55);
+    border: 1px solid #b7e5d8;
+    color: #1f5c4c;
+}
+
+.diary-map-card-sky .place-item.is-active,
+.diary-map-card-sky .place-item:hover {
+    background-color: #eef7ff;
+    border-color: #4d91d9;
+}
+
+.diary-map-card-sunset .place-item.is-active,
+.diary-map-card-sunset .place-item:hover {
+    background-color: #ffe8d4;
+    border-color: #df7a52;
+}
+
+.diary-map-card-night .place-item.is-active,
+.diary-map-card-night .place-item:hover {
+    background-color: rgba(110, 168, 255, 0.22);
+    border-color: #9ec0ff;
+}
+
+.diary-map-card-mint .place-item.is-active,
+.diary-map-card-mint .place-item:hover {
+    background-color: #d8f5ec;
+    border-color: #3d9b84;
+}
+
+.place-item-name {
+    font-weight: 700;
+    word-break: break-word;
+}
+
+.place-item-count {
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+.place-detail-title {
+    font-size: 22px;
+    margin: 0 0 16px;
+}
+
+.diary-map-card-sky .place-detail-title {
+    color: #23415f;
+}
+
+.diary-map-card-sunset .place-detail-title {
+    color: #70402f;
+}
+
+.diary-map-card-night .place-detail-title {
+    color: #ffffff;
+}
+
+.diary-map-card-mint .place-detail-title {
+    color: #1f5c4c;
+}
+
+.place-map-wrap {
+    border-radius: 14px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.place-map-wrap iframe {
+    border: 0;
+    display: block;
+    height: 320px;
+    width: 100%;
+}
+
+.diary-map-card-sky .place-map-wrap {
+    border: 1px solid #c8d9ea;
+}
+
+.diary-map-card-sunset .place-map-wrap {
+    border: 1px solid #efc2a5;
+}
+
+.diary-map-card-night .place-map-wrap {
+    border: 1px solid rgba(185, 211, 255, 0.35);
+}
+
+.diary-map-card-mint .place-map-wrap {
+    border: 1px solid #b7e5d8;
+}
+
+.diary-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.diary-item {
+    border-radius: 14px;
+    padding: 16px 18px;
+}
+
+.diary-map-card-sky .diary-item {
+    background-color: rgba(255, 255, 255, 0.72);
+    border: 1px solid #dbe8f4;
+}
+
+.diary-map-card-sunset .diary-item {
+    background-color: rgba(255, 255, 255, 0.55);
+    border: 1px solid #efc2a5;
+}
+
+.diary-map-card-night .diary-item {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(185, 211, 255, 0.28);
+}
+
+.diary-map-card-mint .diary-item {
+    background-color: rgba(255, 255, 255, 0.55);
+    border: 1px solid #b7e5d8;
+}
+
+.diary-meta {
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+
+.diary-map-card-sky .diary-meta {
+    color: #68798b;
+}
+
+.diary-map-card-sunset .diary-meta {
+    color: #856a5f;
+}
+
+.diary-map-card-night .diary-meta {
+    color: #c7d8f5;
+}
+
+.diary-map-card-mint .diary-meta {
+    color: #4f7d70;
+}
+
+.diary-title {
+    font-size: 18px;
+    margin: 0 0 8px;
+}
+
+.diary-title a {
+    text-decoration: none;
+}
+
+.diary-map-card-sky .diary-title a {
+    color: #2f7fbd;
+}
+
+.diary-map-card-sunset .diary-title a {
+    color: #c06642;
+}
+
+.diary-map-card-night .diary-title a {
+    color: #9ec0ff;
+}
+
+.diary-map-card-mint .diary-title a {
+    color: #2f7d68;
+}
+
+.diary-preview {
+    line-height: 1.6;
+    margin: 0;
+}
+
+.diary-map-card-sky .diary-preview {
+    color: #456073;
+}
+
+.diary-map-card-sunset .diary-preview {
+    color: #604337;
+}
+
+.diary-map-card-night .diary-preview {
+    color: #d9e7ff;
+}
+
+.diary-map-card-mint .diary-preview {
+    color: #24564a;
+}
+
+.page-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 32px;
+}
+
+.primary-link,
+.back-link {
+    border-radius: 999px;
+    font-weight: 700;
+    padding: 12px 22px;
+    text-decoration: none;
+}
+
+.primary-link {
+    color: #fff;
+}
+
+.diary-map-card-sky .primary-link {
+    background: linear-gradient(135deg, #4d91d9 0%, #76c7b7 100%);
+}
+
+.diary-map-card-sunset .primary-link {
+    background: linear-gradient(135deg, #df7a52 0%, #f2b064 100%);
+}
+
+.diary-map-card-night .primary-link {
+    background: linear-gradient(135deg, #6ea8ff 0%, #9b7bff 100%);
+}
+
+.diary-map-card-mint .primary-link {
+    background: linear-gradient(135deg, #3d9b84 0%, #6fcfaf 100%);
+}
+
+.diary-map-card-sky .back-link {
+    background-color: #f8fbff;
+    border: 1px solid #c8d9ea;
+    color: #3c78ad;
+}
+
+.diary-map-card-sunset .back-link {
+    background-color: #fff7f0;
+    border: 1px solid #efc2a5;
+    color: #c06642;
+}
+
+.diary-map-card-night .back-link {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(185, 211, 255, 0.35);
+    color: #cfe0ff;
+}
+
+.diary-map-card-mint .back-link {
+    background-color: #f4fff9;
+    border: 1px solid #b7e5d8;
+    color: #2f7d68;
+}
+
+@media (max-width: 800px) {
+    .map-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .place-list {
+        flex-direction: row;
+        max-height: none;
+        overflow-x: auto;
+        padding-bottom: 4px;
+    }
+
+    .place-item {
+        flex: 0 0 auto;
+        min-width: 160px;
+    }
+
+    .place-map-wrap iframe {
+        height: 260px;
+    }
+}
+
+@media (max-width: 640px) {
+    .diary-map-card {
+        padding: 28px 20px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .page-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .primary-link,
+    .back-link {
+        text-align: center;
+    }
+}

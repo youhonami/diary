@@ -267,6 +267,40 @@ class LoginController extends Controller
         ]);
     }
 
+    public function diaryMapLookback(Request $request)
+    {
+        if (! Auth::check()) {
+            return redirect()->route('login.index');
+        }
+
+        $diariesByPlace = Diary::where('user_id', Auth::id())
+            ->whereNotNull('place')
+            ->where('place', '!=', '')
+            ->orderByDesc('diary_date')
+            ->orderByDesc('created_at')
+            ->get()
+            ->groupBy('place');
+
+        $places = $diariesByPlace->keys()->values();
+        $selectedPlace = $request->input('place');
+
+        if ($selectedPlace === null || ! $diariesByPlace->has($selectedPlace)) {
+            $selectedPlace = $places->first();
+        }
+
+        $selectedDiaries = $selectedPlace
+            ? $diariesByPlace->get($selectedPlace)
+            : collect();
+
+        return view('diary_map_lookback', [
+            'user' => Auth::user(),
+            'places' => $places,
+            'diariesByPlace' => $diariesByPlace,
+            'selectedPlace' => $selectedPlace,
+            'selectedDiaries' => $selectedDiaries,
+        ]);
+    }
+
     public function diaryShow(string $date)
     {
         $diaries = Diary::where('user_id', Auth::id())

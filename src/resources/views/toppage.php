@@ -55,6 +55,18 @@
                     <span class="menu-description">カレンダーから振り返る</span>
                 </a>
 
+                <a class="menu-item" href="<?= route('diary.map') ?>">
+                    <span class="menu-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.5 4.5 4 6.5v13l5.5-2 5 2L20 17.5v-13l-5.5 2-5-2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                            <path d="M9.5 4.5v13M14.5 6.5v13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                            <circle cx="12" cy="11" r="2.2" stroke="currentColor" stroke-width="1.8"/>
+                        </svg>
+                    </span>
+                    <span class="menu-label">地図から日記を見返す</span>
+                    <span class="menu-description">場所ごとに振り返る</span>
+                </a>
+
                 <a class="menu-item" href="<?= route('diary.read') ?>">
                     <span class="menu-icon" aria-hidden="true">
                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
