@@ -271,6 +271,7 @@ textarea {
 .place-map-wrap {
     border-radius: 14px;
     overflow: hidden;
+    position: relative;
     width: 100%;
 }
 
@@ -279,6 +280,20 @@ textarea {
     display: block;
     height: 280px;
     width: 100%;
+}
+
+.place-map-wrap.is-private {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    min-height: 160px;
+}
+
+.place-map-private {
+    font-weight: 700;
+    margin: 0;
+    padding: 24px;
+    text-align: center;
 }
 
 .diary-create-card-sky .place-map-wrap {
@@ -354,6 +369,46 @@ textarea {
     background-color: #f4fff9;
     border: 1px solid #b7e5d8;
     color: #2f7d68;
+}
+
+.diary-create-card-sky .place-preset-private {
+    background-color: #eef2f6;
+    border-color: #b7c2ce;
+    color: #5a6a7a;
+}
+
+.diary-create-card-sunset .place-preset-private {
+    background-color: #f3ebe4;
+    border-color: #d2b8a8;
+    color: #7a5f52;
+}
+
+.diary-create-card-night .place-preset-private {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(185, 211, 255, 0.22);
+    color: #a8b8d4;
+}
+
+.diary-create-card-mint .place-preset-private {
+    background-color: #e8f2ee;
+    border-color: #a9cfc3;
+    color: #4a7367;
+}
+
+.diary-create-card-sky .place-map-private {
+    color: #68798b;
+}
+
+.diary-create-card-sunset .place-map-private {
+    color: #856a5f;
+}
+
+.diary-create-card-night .place-map-private {
+    color: #c7d8f5;
+}
+
+.diary-create-card-mint .place-map-private {
+    color: #4f7d70;
 }
 
 .save-button {

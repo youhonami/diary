@@ -196,15 +196,22 @@ class LoginController extends Controller
         $place = $diaryData['place'] ?? null;
         if ($place !== null) {
             $trimmedPlace = trim($place);
-            $placeAliases = array_filter([
-                '自宅' => Auth::user()->home_place,
-                '実家' => Auth::user()->family_home_place,
-                '勤務先' => Auth::user()->work_place,
-                'よく行く場所' => Auth::user()->favorite_place,
-            ]);
 
-            if (isset($placeAliases[$trimmedPlace])) {
-                $place = $placeAliases[$trimmedPlace];
+            if ($trimmedPlace === '' || $trimmedPlace === '非公開') {
+                $place = null;
+            } else {
+                $placeAliases = array_filter([
+                    '自宅' => Auth::user()->home_place,
+                    '実家' => Auth::user()->family_home_place,
+                    '勤務先' => Auth::user()->work_place,
+                    'よく行く場所' => Auth::user()->favorite_place,
+                ]);
+
+                if (isset($placeAliases[$trimmedPlace])) {
+                    $place = $placeAliases[$trimmedPlace];
+                } else {
+                    $place = $trimmedPlace;
+                }
             }
         }
 

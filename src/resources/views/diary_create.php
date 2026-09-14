@@ -62,29 +62,37 @@
                                 'よく行く場所' => $user->favorite_place,
                             ]);
                         ?>
+                        <div class="place-presets">
+                            <button
+                                type="button"
+                                class="place-preset-button place-preset-private"
+                                data-place=""
+                                data-private="1"
+                            >
+                                非公開
+                            </button>
+                            <?php foreach ($placePresets as $label => $address): ?>
+                                <button
+                                    type="button"
+                                    class="place-preset-button"
+                                    data-place="<?= e($address) ?>"
+                                    data-label="<?= e($label) ?>"
+                                >
+                                    <?= e($label) ?>
+                                </button>
+                            <?php endforeach; ?>
+                        </div>
                         <?php if (! empty($placePresets)): ?>
-                            <div class="place-presets">
-                                <?php foreach ($placePresets as $label => $address): ?>
-                                    <button
-                                        type="button"
-                                        class="place-preset-button"
-                                        data-place="<?= e($address) ?>"
-                                        data-label="<?= e($label) ?>"
-                                    >
-                                        <?= e($label) ?>
-                                    </button>
-                                <?php endforeach; ?>
-                            </div>
-                            <p class="form-note">ボタンを押すと、設定した住所が反映されます。</p>
+                            <p class="form-note">ボタンを押すと、設定した住所が反映されます。「非公開」を選ぶと場所を空にします。</p>
                         <?php else: ?>
-                            <p class="form-note">よく使う場所は、設定の Googleマップの設定 から登録できます。</p>
+                            <p class="form-note">「非公開」を選ぶと場所を空にできます。よく使う場所は、設定の Googleマップの設定 から登録できます。</p>
                         <?php endif; ?>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="place-map">地図</label>
-                    <div class="place-map-wrap">
+                    <div class="place-map-wrap" id="place-map-wrap">
                         <iframe
                             id="place-map"
                             title="Googleマップ"
@@ -92,6 +100,7 @@
                             referrerpolicy="no-referrer-when-downgrade"
                             allowfullscreen
                         ></iframe>
+                        <p class="place-map-private" id="place-map-private" hidden>場所は非公開です</p>
                     </div>
                     <p class="form-note">場所を入力すると、地図の表示が更新されます。</p>
                 </div>
@@ -135,6 +144,8 @@
         (function () {
             const placeInput = document.getElementById('place');
             const mapFrame = document.getElementById('place-map');
+            const mapWrap = document.getElementById('place-map-wrap');
+            const mapPrivate = document.getElementById('place-map-private');
             const mapsApiKey = <?= json_encode(config('services.google.maps_api_key')) ?>;
             const placeAliases = <?= json_encode(array_filter([
                 '自宅' => $user->home_place,
@@ -142,11 +153,14 @@
                 '勤務先' => $user->work_place,
                 'よく行く場所' => $user->favorite_place,
             ])) ?>;
-            const defaultPlace = '東京';
             let timer = null;
 
             function resolvePlace(place) {
                 const trimmed = place.trim();
+
+                if (trimmed === '' || trimmed === '非公開') {
+                    return '';
+                }
 
                 if (Object.prototype.hasOwnProperty.call(placeAliases, trimmed) && placeAliases[trimmed]) {
                     return placeAliases[trimmed];
@@ -156,28 +170,39 @@
             }
 
             function buildMapUrl(place) {
-                const query = resolvePlace(place) || defaultPlace;
-
                 if (mapsApiKey) {
                     return 'https://www.google.com/maps/embed/v1/place'
                         + '?key=' + encodeURIComponent(mapsApiKey)
-                        + '&q=' + encodeURIComponent(query)
+                        + '&q=' + encodeURIComponent(place)
                         + '&language=ja';
                 }
 
                 return 'https://maps.google.com/maps'
-                    + '?q=' + encodeURIComponent(query)
+                    + '?q=' + encodeURIComponent(place)
                     + '&hl=ja&z=14&output=embed';
             }
 
             function updateMap() {
-                mapFrame.src = buildMapUrl(placeInput.value);
+                const query = resolvePlace(placeInput.value);
+
+                if (!query) {
+                    mapFrame.hidden = true;
+                    mapFrame.removeAttribute('src');
+                    mapPrivate.hidden = false;
+                    mapWrap.classList.add('is-private');
+                    return;
+                }
+
+                mapPrivate.hidden = true;
+                mapFrame.hidden = false;
+                mapWrap.classList.remove('is-private');
+                mapFrame.src = buildMapUrl(query);
             }
 
             function applyResolvedPlace() {
                 const resolved = resolvePlace(placeInput.value);
 
-                if (resolved && resolved !== placeInput.value.trim()) {
+                if (placeInput.value.trim() === '非公開' || resolved !== placeInput.value.trim()) {
                     placeInput.value = resolved;
                 }
 
@@ -189,7 +214,9 @@
                 timer = setTimeout(function () {
                     const resolved = resolvePlace(placeInput.value);
 
-                    if (resolved && resolved !== placeInput.value.trim()) {
+                    if (placeInput.value.trim() === '非公開') {
+                        placeInput.value = '';
+                    } else if (resolved && resolved !== placeInput.value.trim()) {
                         placeInput.value = resolved;
                     }
 
@@ -202,7 +229,12 @@
 
             document.querySelectorAll('.place-preset-button').forEach(function (button) {
                 button.addEventListener('click', function () {
-                    placeInput.value = button.getAttribute('data-place') || '';
+                    if (button.getAttribute('data-private') === '1') {
+                        placeInput.value = '';
+                    } else {
+                        placeInput.value = button.getAttribute('data-place') || '';
+                    }
+
                     updateMap();
                     placeInput.focus();
                 });
