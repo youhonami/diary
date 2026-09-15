@@ -78,6 +78,18 @@
                     <span class="menu-description">公開された日記を読む</span>
                 </a>
 
+                <a class="menu-item" href="<?= route('album') ?>">
+                    <span class="menu-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3.5" y="5" width="17" height="14" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+                            <circle cx="8.5" cy="10" r="1.8" fill="currentColor"/>
+                            <path d="M3.5 15.5 8 12l3.5 3 3-2.5 5.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                    <span class="menu-label">アルバム</span>
+                    <span class="menu-description">写真を見て振り返る</span>
+                </a>
+
                 <a class="menu-item" href="<?= route('settings') ?>">
                     <span class="menu-icon" aria-hidden="true">
                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

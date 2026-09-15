@@ -162,6 +162,17 @@ class LoginController extends Controller
         ]);
     }
 
+    public function album()
+    {
+        if (! Auth::check()) {
+            return redirect()->route('login.index');
+        }
+
+        return view('album', [
+            'user' => Auth::user(),
+        ]);
+    }
+
     public function diaryCreate()
     {
         if (! Auth::check()) {
