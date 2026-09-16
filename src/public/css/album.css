@@ -19,7 +19,7 @@ body {
     border-radius: 24px;
     box-shadow: 0 20px 48px rgba(77, 111, 145, 0.16);
     margin: 0 auto;
-    max-width: 720px;
+    max-width: 960px;
     padding: 40px;
 }
 
@@ -131,10 +131,372 @@ h1 {
     color: #4f7d70;
 }
 
+.message {
+    border-radius: 12px;
+    line-height: 1.6;
+    margin: 0 0 24px;
+    padding: 12px 16px;
+}
+
+.message-success {
+    background-color: #e9f8ef;
+    color: #166534;
+}
+
+.album-form {
+    display: grid;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.form-row {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.form-group {
+    display: grid;
+    gap: 8px;
+}
+
+label {
+    font-weight: 700;
+}
+
+.required-mark {
+    font-size: 12px;
+    font-weight: 700;
+    margin-left: 4px;
+}
+
+.album-card-sky .required-mark {
+    color: #d14b4b;
+}
+
+.album-card-sunset .required-mark {
+    color: #c06642;
+}
+
+.album-card-night .required-mark {
+    color: #ffb4b4;
+}
+
+.album-card-mint .required-mark {
+    color: #c04545;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="file"] {
+    border-radius: 12px;
+    font-size: 16px;
+    padding: 12px 14px;
+    width: 100%;
+}
+
+.album-card-sky input {
+    background-color: rgba(255, 255, 255, 0.92);
+    border: 1px solid #c8d9ea;
+    color: #2f3a4a;
+}
+
+.album-card-sunset input {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid #efc2a5;
+    color: #4a352d;
+}
+
+.album-card-night input {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(185, 211, 255, 0.35);
+    color: #eef4ff;
+}
+
+.album-card-mint input {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid #b7e5d8;
+    color: #24564a;
+}
+
+.album-card-night input[type="date"] {
+    color-scheme: dark;
+}
+
+.is-invalid {
+    border-color: #d14b4b !important;
+}
+
+.field-error {
+    color: #d14b4b;
+    font-size: 14px;
+    margin: 0;
+}
+
+.form-note {
+    font-size: 14px;
+    margin: 0;
+}
+
+.album-card-sky .form-note {
+    color: #68798b;
+}
+
+.album-card-sunset .form-note {
+    color: #856a5f;
+}
+
+.album-card-night .form-note {
+    color: #c7d8f5;
+}
+
+.album-card-mint .form-note {
+    color: #4f7d70;
+}
+
+.image-preview {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    margin-top: 8px;
+}
+
+.image-preview img {
+    border-radius: 12px;
+    display: block;
+    height: 120px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.album-card-sky .image-preview img {
+    border: 1px solid #c8d9ea;
+}
+
+.album-card-sunset .image-preview img {
+    border: 1px solid #efc2a5;
+}
+
+.album-card-night .image-preview img {
+    border: 1px solid rgba(185, 211, 255, 0.35);
+}
+
+.album-card-mint .image-preview img {
+    border: 1px solid #b7e5d8;
+}
+
+.save-button {
+    border: none;
+    border-radius: 999px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+    justify-self: center;
+    min-width: 220px;
+    padding: 14px 28px;
+}
+
+.album-card-sky .save-button {
+    background: linear-gradient(135deg, #4d91d9 0%, #76c7b7 100%);
+}
+
+.album-card-sunset .save-button {
+    background: linear-gradient(135deg, #df7a52 0%, #f2b064 100%);
+}
+
+.album-card-night .save-button {
+    background: linear-gradient(135deg, #6ea8ff 0%, #9b7bff 100%);
+}
+
+.album-card-mint .save-button {
+    background: linear-gradient(135deg, #3d9b84 0%, #6fcfaf 100%);
+}
+
+.album-list-heading {
+    margin: 8px 0 20px;
+}
+
+.album-list-heading h2 {
+    font-size: 22px;
+    margin: 0;
+}
+
+.album-card-sky .album-list-heading h2 {
+    color: #23415f;
+}
+
+.album-card-sunset .album-list-heading h2 {
+    color: #70402f;
+}
+
+.album-card-night .album-list-heading h2 {
+    color: #ffffff;
+}
+
+.album-card-mint .album-list-heading h2 {
+    color: #1f5c4c;
+}
+
+.empty-message {
+    border-radius: 14px;
+    line-height: 1.7;
+    margin: 0 0 24px;
+    padding: 20px;
+    text-align: center;
+}
+
+.album-card-sky .empty-message {
+    background-color: rgba(255, 255, 255, 0.72);
+    color: #68798b;
+}
+
+.album-card-sunset .empty-message {
+    background-color: rgba(255, 255, 255, 0.55);
+    color: #7d5f52;
+}
+
+.album-card-night .empty-message {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: #d9e7ff;
+}
+
+.album-card-mint .empty-message {
+    background-color: rgba(255, 255, 255, 0.55);
+    color: #4f7d70;
+}
+
+.album-list {
+    display: grid;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.album-item {
+    border-radius: 16px;
+    padding: 20px;
+}
+
+.album-card-sky .album-item {
+    background-color: rgba(255, 255, 255, 0.72);
+    border: 1px solid #dbe8f4;
+}
+
+.album-card-sunset .album-item {
+    background-color: rgba(255, 255, 255, 0.55);
+    border: 1px solid #efc2a5;
+}
+
+.album-card-night .album-item {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(185, 211, 255, 0.28);
+}
+
+.album-card-mint .album-item {
+    background-color: rgba(255, 255, 255, 0.55);
+    border: 1px solid #b7e5d8;
+}
+
+.album-item-header {
+    align-items: flex-start;
+    display: flex;
+    gap: 16px;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.album-item-date {
+    font-size: 13px;
+    margin: 0 0 4px;
+}
+
+.album-card-sky .album-item-date {
+    color: #68798b;
+}
+
+.album-card-sunset .album-item-date {
+    color: #856a5f;
+}
+
+.album-card-night .album-item-date {
+    color: #c7d8f5;
+}
+
+.album-card-mint .album-item-date {
+    color: #4f7d70;
+}
+
+.album-item-title {
+    font-size: 20px;
+    margin: 0;
+}
+
+.album-card-sky .album-item-title {
+    color: #23415f;
+}
+
+.album-card-sunset .album-item-title {
+    color: #70402f;
+}
+
+.album-card-night .album-item-title {
+    color: #ffffff;
+}
+
+.album-card-mint .album-item-title {
+    color: #1f5c4c;
+}
+
+.delete-button {
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 14px;
+}
+
+.album-card-sky .delete-button {
+    background-color: #fff5f5;
+    border: 1px solid #f0b4b4;
+    color: #c04545;
+}
+
+.album-card-sunset .delete-button {
+    background-color: #fff5f0;
+    border: 1px solid #efc2a5;
+    color: #c06642;
+}
+
+.album-card-night .delete-button {
+    background-color: rgba(255, 120, 120, 0.12);
+    border: 1px solid rgba(255, 180, 180, 0.4);
+    color: #ffb4b4;
+}
+
+.album-card-mint .delete-button {
+    background-color: #fff5f5;
+    border: 1px solid #f0b4b4;
+    color: #c04545;
+}
+
+.album-item-images {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+}
+
+.album-item-images img {
+    border-radius: 12px;
+    display: block;
+    height: 140px;
+    object-fit: cover;
+    width: 100%;
+}
+
 .page-actions {
     display: flex;
     justify-content: center;
-    margin: 0;
+    margin: 32px 0 0;
 }
 
 .back-link {
@@ -173,7 +535,15 @@ h1 {
         padding: 28px 20px;
     }
 
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
     h1 {
         font-size: 28px;
+    }
+
+    .save-button {
+        width: 100%;
     }
 }

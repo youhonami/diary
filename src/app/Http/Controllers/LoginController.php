@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Album;
+use App\Models\AlbumImage;
 use App\Models\Diary;
 use App\Models\User;
 use Carbon\Carbon;
@@ -118,6 +120,15 @@ class LoginController extends Controller
             unlink(public_path($user->icon_path));
         }
 
+        $albums = Album::where('user_id', $user->id)->with('images')->get();
+        foreach ($albums as $album) {
+            foreach ($album->images as $image) {
+                if ($image->path && file_exists(public_path($image->path))) {
+                    unlink(public_path($image->path));
+                }
+            }
+        }
+
         $user->delete();
 
         return redirect()->route('login.index')->with('withdrawal_message', '退会が完了しました。');
@@ -168,9 +179,86 @@ class LoginController extends Controller
             return redirect()->route('login.index');
         }
 
+        $albums = Album::where('user_id', Auth::id())
+            ->with('images')
+            ->orderByDesc('album_date')
+            ->orderByDesc('created_at')
+            ->get();
+
         return view('album', [
             'user' => Auth::user(),
+            'albums' => $albums,
         ]);
+    }
+
+    public function albumStore(Request $request)
+    {
+        if (! Auth::check()) {
+            return redirect()->route('login.index');
+        }
+
+        $albumData = $request->validate([
+            'title' => ['required', 'string', 'max:255'],
+            'album_date' => ['required', 'date'],
+            'images' => ['required', 'array', 'min:1', 'max:5'],
+            'images.*' => ['required', 'image', 'max:2048'],
+        ], [
+            'title.required' => 'タイトルを入力してください。',
+            'title.max' => 'タイトルは255文字以内で入力してください。',
+            'album_date.required' => '日付を入力してください。',
+            'album_date.date' => '日付を正しく入力してください。',
+            'images.required' => '画像を1枚以上選択してください。',
+            'images.min' => '画像を1枚以上選択してください。',
+            'images.max' => '画像は5枚まで登録できます。',
+            'images.*.required' => '画像を選択してください。',
+            'images.*.image' => '画像ファイルを選択してください。',
+            'images.*.max' => '各画像は2MB以下にしてください。',
+        ]);
+
+        $album = Album::create([
+            'user_id' => Auth::id(),
+            'title' => $albumData['title'],
+            'album_date' => $albumData['album_date'],
+        ]);
+
+        $directory = public_path('album_images');
+        if (! is_dir($directory)) {
+            mkdir($directory, 0755, true);
+        }
+
+        foreach ($request->file('images') as $index => $image) {
+            $filename = 'album_' . $album->id . '_' . time() . '_' . $index . '.' . $image->extension();
+            $image->move($directory, $filename);
+
+            AlbumImage::create([
+                'album_id' => $album->id,
+                'path' => 'album_images/' . $filename,
+                'sort_order' => $index,
+            ]);
+        }
+
+        return redirect()->route('album')->with('message', 'アルバムを登録しました。');
+    }
+
+    public function albumDestroy(Album $album)
+    {
+        if (! Auth::check()) {
+            return redirect()->route('login.index');
+        }
+
+        if ($album->user_id !== Auth::id()) {
+            abort(403);
+        }
+
+        foreach ($album->images as $image) {
+            if ($image->path && file_exists(public_path($image->path))) {
+                unlink(public_path($image->path));
+            }
+        }
+
+        $album->delete();
+
+        return redirect()->route('album')->with('message', 'アルバムを削除しました。');
     }
 
     public function diaryCreate()
