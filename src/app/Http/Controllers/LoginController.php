@@ -261,6 +261,51 @@ class LoginController extends Controller
         return redirect()->route('album')->with('message', 'アルバムを削除しました。');
     }
 
+    public function albumImagesDestroy(Request $request, Album $album)
+    {
+        if (! Auth::check()) {
+            return redirect()->route('login.index');
+        }
+
+        if ($album->user_id !== Auth::id()) {
+            abort(403);
+        }
+
+        $data = $request->validate([
+            'image_ids' => ['required', 'array', 'min:1'],
+            'image_ids.*' => ['integer'],
+        ], [
+            'image_ids.required' => '削除する写真を選択してください。',
+            'image_ids.min' => '削除する写真を選択してください。',
+        ]);
+
+        $images = AlbumImage::where('album_id', $album->id)
+            ->whereIn('id', $data['image_ids'])
+            ->get();
+
+        if ($images->isEmpty()) {
+            return back()->with('album_error', '削除対象の写真が見つかりませんでした。');
+        }
+
+        foreach ($images as $image) {
+            if ($image->path && file_exists(public_path($image->path))) {
+                unlink(public_path($image->path));
+            }
+
+            $image->delete();
+        }
+
+        $album->refresh();
+
+        if ($album->images()->count() === 0) {
+            $album->delete();
+
+            return redirect()->route('album')->with('message', '選択した写真を削除しました。写真がなくなったためアルバムも削除しました。');
+        }
+
+        return redirect()->route('album')->with('message', '選択した写真を削除しました。');
+    }
+
     public function diaryCreate()
     {
         if (! Auth::check()) {

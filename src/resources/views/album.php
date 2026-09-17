@@ -23,6 +23,14 @@
                 <p class="message message-success"><?= e(session('message')) ?></p>
             <?php endif; ?>
 
+            <?php if (session('album_error')): ?>
+                <p class="message message-error"><?= e(session('album_error')) ?></p>
+            <?php endif; ?>
+
+            <?php if ($errors->has('image_ids')): ?>
+                <p class="message message-error"><?= e($errors->first('image_ids')) ?></p>
+            <?php endif; ?>
+
             <form action="<?= route('album.store') ?>" method="post" enctype="multipart/form-data" class="album-form" novalidate>
                 <?= csrf_field() ?>
 
@@ -97,14 +105,30 @@
                                 </div>
                                 <form action="<?= route('album.destroy', ['album' => $album]) ?>" method="post" onsubmit="return confirm('このアルバムを削除しますか？');">
                                     <?= csrf_field() ?>
-                                    <button type="submit" class="delete-button">削除</button>
+                                    <button type="submit" class="delete-button">アルバム削除</button>
                                 </form>
                             </div>
-                            <div class="album-item-images">
-                                <?php foreach ($album->images as $image): ?>
-                                    <img src="<?= asset($image->path) ?>" alt="<?= e($album->title) ?>">
-                                <?php endforeach; ?>
-                            </div>
+
+                            <form
+                                action="<?= route('album.images.destroy', ['album' => $album]) ?>"
+                                method="post"
+                                class="album-images-form"
+                                onsubmit="return confirm('選択した写真を削除しますか？');"
+                            >
+                                <?= csrf_field() ?>
+                                <div class="album-item-images">
+                                    <?php foreach ($album->images as $image): ?>
+                                        <label class="album-image-select">
+                                            <input type="checkbox" name="image_ids[]" value="<?= e($image->id) ?>">
+                                            <img src="<?= asset($image->path) ?>" alt="<?= e($album->title) ?>">
+                                            <span class="album-image-check" aria-hidden="true"></span>
+                                        </label>
+                                    <?php endforeach; ?>
+                                </div>
+                                <div class="album-image-actions">
+                                    <button type="submit" class="delete-selected-button">選択した写真を削除</button>
+                                </div>
+                            </form>
                         </article>
                     <?php endforeach; ?>
                 </div>
