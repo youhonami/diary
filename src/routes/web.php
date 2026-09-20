@@ -24,6 +24,7 @@ Route::get('/diary/read', [LoginController::class, 'diaryRead'])->name('diary.re
 Route::get('/diary/read/{diary}', [LoginController::class, 'diaryPublicShow'])->name('diary.public.show');
 Route::get('/album', [LoginController::class, 'album'])->name('album');
 Route::post('/album', [LoginController::class, 'albumStore'])->name('album.store');
+Route::post('/album/{album}/title', [LoginController::class, 'albumUpdateTitle'])->name('album.title.update');
 Route::post('/album/{album}/delete', [LoginController::class, 'albumDestroy'])->name('album.destroy');
 Route::post('/album/{album}/images/delete', [LoginController::class, 'albumImagesDestroy'])->name('album.images.destroy');
 Route::get('/settings', [LoginController::class, 'settings'])->name('settings');

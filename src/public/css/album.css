@@ -410,6 +410,110 @@ input[type="file"] {
     margin-bottom: 16px;
 }
 
+.album-item-actions {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+.album-title-form {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: -4px 0 16px;
+}
+
+.album-title-form[hidden] {
+    display: none;
+}
+
+.album-title-form input[type="text"] {
+    flex: 1 1 220px;
+    min-width: 0;
+}
+
+.sr-only {
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+.edit-title-button,
+.save-title-button,
+.cancel-title-button,
+.delete-button {
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 14px;
+}
+
+.album-card-sky .edit-title-button,
+.album-card-sky .save-title-button,
+.album-card-sky .cancel-title-button {
+    background-color: #f8fbff;
+    border: 1px solid #c8d9ea;
+    color: #3c78ad;
+}
+
+.album-card-sunset .edit-title-button,
+.album-card-sunset .save-title-button,
+.album-card-sunset .cancel-title-button {
+    background-color: #fff7f0;
+    border: 1px solid #efc2a5;
+    color: #c06642;
+}
+
+.album-card-night .edit-title-button,
+.album-card-night .save-title-button,
+.album-card-night .cancel-title-button {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(185, 211, 255, 0.35);
+    color: #cfe0ff;
+}
+
+.album-card-mint .edit-title-button,
+.album-card-mint .save-title-button,
+.album-card-mint .cancel-title-button {
+    background-color: #f4fff9;
+    border: 1px solid #b7e5d8;
+    color: #2f7d68;
+}
+
+.album-card-sky .save-title-button {
+    background: linear-gradient(135deg, #4d91d9 0%, #76c7b7 100%);
+    border: none;
+    color: #fff;
+}
+
+.album-card-sunset .save-title-button {
+    background: linear-gradient(135deg, #df7a52 0%, #f2b064 100%);
+    border: none;
+    color: #fff;
+}
+
+.album-card-night .save-title-button {
+    background: linear-gradient(135deg, #6ea8ff 0%, #9b7bff 100%);
+    border: none;
+    color: #fff;
+}
+
+.album-card-mint .save-title-button {
+    background: linear-gradient(135deg, #3d9b84 0%, #6fcfaf 100%);
+    border: none;
+    color: #fff;
+}
+
 .album-item-date {
     font-size: 13px;
     margin: 0 0 4px;
@@ -450,14 +554,6 @@ input[type="file"] {
 
 .album-card-mint .album-item-title {
     color: #1f5c4c;
-}
-
-.delete-button {
-    border-radius: 999px;
-    cursor: pointer;
-    font-size: 13px;
-    font-weight: 700;
-    padding: 8px 14px;
 }
 
 .album-card-sky .delete-button {

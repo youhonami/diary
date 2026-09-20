@@ -103,11 +103,42 @@
                                     <p class="album-item-date"><?= e($album->album_date->format('Y年n月j日')) ?></p>
                                     <h3 class="album-item-title"><?= e($album->title) ?></h3>
                                 </div>
-                                <form action="<?= route('album.destroy', ['album' => $album]) ?>" method="post" onsubmit="return confirm('このアルバムを削除しますか？');">
-                                    <?= csrf_field() ?>
-                                    <button type="submit" class="delete-button">アルバム削除</button>
-                                </form>
+                                <div class="album-item-actions">
+                                    <button
+                                        type="button"
+                                        class="edit-title-button"
+                                        data-album-id="<?= e($album->id) ?>"
+                                        aria-expanded="false"
+                                    >
+                                        タイトル変更
+                                    </button>
+                                    <form action="<?= route('album.destroy', ['album' => $album]) ?>" method="post" onsubmit="return confirm('このアルバムを削除しますか？');">
+                                        <?= csrf_field() ?>
+                                        <button type="submit" class="delete-button">アルバム削除</button>
+                                    </form>
+                                </div>
                             </div>
+
+                            <form
+                                action="<?= route('album.title.update', ['album' => $album]) ?>"
+                                method="post"
+                                class="album-title-form"
+                                id="album-title-form-<?= e($album->id) ?>"
+                                hidden
+                            >
+                                <?= csrf_field() ?>
+                                <label class="sr-only" for="album-title-<?= e($album->id) ?>">新しいタイトル</label>
+                                <input
+                                    type="text"
+                                    id="album-title-<?= e($album->id) ?>"
+                                    name="title"
+                                    value="<?= e($album->title) ?>"
+                                    maxlength="255"
+                                    required
+                                >
+                                <button type="submit" class="save-title-button">保存</button>
+                                <button type="button" class="cancel-title-button" data-album-id="<?= e($album->id) ?>">キャンセル</button>
+                            </form>
 
                             <form
                                 action="<?= route('album.images.destroy', ['album' => $album]) ?>"
@@ -169,6 +200,38 @@
                         preview.appendChild(img);
                     };
                     reader.readAsDataURL(file);
+                });
+            });
+
+            function toggleTitleForm(albumId, show) {
+                const form = document.getElementById('album-title-form-' + albumId);
+                const button = document.querySelector('.edit-title-button[data-album-id="' + albumId + '"]');
+
+                if (! form || ! button) {
+                    return;
+                }
+
+                form.hidden = ! show;
+                button.setAttribute('aria-expanded', show ? 'true' : 'false');
+
+                if (show) {
+                    const titleInput = form.querySelector('input[name="title"]');
+                    titleInput.focus();
+                    titleInput.select();
+                }
+            }
+
+            document.querySelectorAll('.edit-title-button').forEach(function (button) {
+                button.addEventListener('click', function () {
+                    const albumId = button.getAttribute('data-album-id');
+                    const form = document.getElementById('album-title-form-' + albumId);
+                    toggleTitleForm(albumId, form.hidden);
+                });
+            });
+
+            document.querySelectorAll('.cancel-title-button').forEach(function (button) {
+                button.addEventListener('click', function () {
+                    toggleTitleForm(button.getAttribute('data-album-id'), false);
                 });
             });
         })();

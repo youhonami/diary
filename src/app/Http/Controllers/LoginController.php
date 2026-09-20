@@ -240,6 +240,29 @@ class LoginController extends Controller
         return redirect()->route('album')->with('message', 'アルバムを登録しました。');
     }
 
+    public function albumUpdateTitle(Request $request, Album $album)
+    {
+        if (! Auth::check()) {
+            return redirect()->route('login.index');
+        }
+
+        if ($album->user_id !== Auth::id()) {
+            abort(403);
+        }
+
+        $data = $request->validate([
+            'title' => ['required', 'string', 'max:255'],
+        ], [
+            'title.required' => 'タイトルを入力してください。',
+            'title.max' => 'タイトルは255文字以内で入力してください。',
+        ]);
+
+        $album->title = $data['title'];
+        $album->save();
+
+        return redirect()->route('album')->with('message', 'タイトルを変更しました。');
+    }
+
     public function albumDestroy(Album $album)
     {
         if (! Auth::check()) {
