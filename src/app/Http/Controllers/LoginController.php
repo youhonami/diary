@@ -263,6 +263,60 @@ class LoginController extends Controller
         return redirect()->route('album')->with('message', 'タイトルを変更しました。');
     }
 
+    public function albumImagesStore(Request $request, Album $album)
+    {
+        if (! Auth::check()) {
+            return redirect()->route('login.index');
+        }
+
+        if ($album->user_id !== Auth::id()) {
+            abort(403);
+        }
+
+        $currentCount = $album->images()->count();
+        $remaining = 5 - $currentCount;
+
+        if ($remaining <= 0) {
+            return redirect()
+                ->route('album')
+                ->with('album_error', 'このアルバムはすでに写真が5枚登録されています。');
+        }
+
+        $errorBag = 'album_' . $album->id;
+
+        $request->validateWithBag($errorBag, [
+            'images' => ['required', 'array', 'min:1', 'max:' . $remaining],
+            'images.*' => ['required', 'image', 'max:2048'],
+        ], [
+            'images.required' => '追加する画像を選択してください。',
+            'images.min' => '追加する画像を選択してください。',
+            'images.max' => 'このアルバムにあと' . $remaining . '枚まで追加できます。',
+            'images.*.required' => '画像を選択してください。',
+            'images.*.image' => '画像ファイルを選択してください。',
+            'images.*.max' => '各画像は2MB以下にしてください。',
+        ]);
+
+        $directory = public_path('album_images');
+        if (! is_dir($directory)) {
+            mkdir($directory, 0755, true);
+        }
+
+        $nextSortOrder = (int) $album->images()->max('sort_order') + 1;
+
+        foreach ($request->file('images') as $index => $image) {
+            $filename = 'album_' . $album->id . '_' . time() . '_' . $index . '.' . $image->extension();
+            $image->move($directory, $filename);
+
+            AlbumImage::create([
+                'album_id' => $album->id,
+                'path' => 'album_images/' . $filename,
+                'sort_order' => $nextSortOrder + $index,
+            ]);
+        }
+
+        return redirect()->route('album')->with('message', '写真を追加しました。');
+    }
+
     public function albumDestroy(Album $album)
     {
         if (! Auth::check()) {

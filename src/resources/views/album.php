@@ -160,6 +160,49 @@
                                     <button type="submit" class="delete-selected-button">選択した写真を削除</button>
                                 </div>
                             </form>
+
+                            <?php
+                                $imageCount = $album->images->count();
+                                $remainingSlots = max(0, 5 - $imageCount);
+                                $addErrors = $errors->getBag('album_' . $album->id);
+                            ?>
+                            <div class="album-add-images">
+                                <?php if ($remainingSlots > 0): ?>
+                                    <form
+                                        action="<?= route('album.images.store', ['album' => $album]) ?>"
+                                        method="post"
+                                        enctype="multipart/form-data"
+                                        class="album-add-images-form"
+                                    >
+                                        <?= csrf_field() ?>
+                                        <input
+                                            type="file"
+                                            id="add-images-<?= e($album->id) ?>"
+                                            name="images[]"
+                                            accept="image/*"
+                                            multiple
+                                            class="add-images-input sr-only <?= $addErrors->has('images') || $addErrors->has('images.*') ? 'is-invalid' : '' ?>"
+                                            data-auto-submit="1"
+                                        >
+                                        <button
+                                            type="button"
+                                            class="add-images-button"
+                                            data-file-target="add-images-<?= e($album->id) ?>"
+                                        >
+                                            写真を追加
+                                        </button>
+                                        <p class="form-note">あと<?= e($remainingSlots) ?>枚まで追加できます（各2MB以下）。</p>
+                                        <?php if ($addErrors->has('images')): ?>
+                                            <p class="field-error"><?= e($addErrors->first('images')) ?></p>
+                                        <?php endif; ?>
+                                        <?php if ($addErrors->has('images.*')): ?>
+                                            <p class="field-error"><?= e($addErrors->first('images.*')) ?></p>
+                                        <?php endif; ?>
+                                    </form>
+                                <?php else: ?>
+                                    <p class="form-note">写真は5枚までです。追加するには既存の写真を削除してください。</p>
+                                <?php endif; ?>
+                            </div>
                         </article>
                     <?php endforeach; ?>
                 </div>
@@ -232,6 +275,24 @@
             document.querySelectorAll('.cancel-title-button').forEach(function (button) {
                 button.addEventListener('click', function () {
                     toggleTitleForm(button.getAttribute('data-album-id'), false);
+                });
+            });
+
+            document.querySelectorAll('.add-images-button').forEach(function (button) {
+                button.addEventListener('click', function () {
+                    const input = document.getElementById(button.getAttribute('data-file-target'));
+
+                    if (input) {
+                        input.click();
+                    }
+                });
+            });
+
+            document.querySelectorAll('.add-images-input[data-auto-submit="1"]').forEach(function (input) {
+                input.addEventListener('change', function () {
+                    if (input.files && input.files.length > 0) {
+                        input.form.submit();
+                    }
                 });
             });
         })();

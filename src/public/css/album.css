@@ -710,6 +710,43 @@ input[type="file"] {
     color: #c04545;
 }
 
+.album-add-images {
+    margin-top: 16px;
+}
+
+.album-add-images-form {
+    display: grid;
+    gap: 10px;
+    justify-items: start;
+}
+
+.add-images-button {
+    border: none;
+    border-radius: 999px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    justify-self: start;
+    padding: 10px 18px;
+}
+
+.album-card-sky .add-images-button {
+    background: linear-gradient(135deg, #4d91d9 0%, #76c7b7 100%);
+}
+
+.album-card-sunset .add-images-button {
+    background: linear-gradient(135deg, #df7a52 0%, #f2b064 100%);
+}
+
+.album-card-night .add-images-button {
+    background: linear-gradient(135deg, #6ea8ff 0%, #9b7bff 100%);
+}
+
+.album-card-mint .add-images-button {
+    background: linear-gradient(135deg, #3d9b84 0%, #6fcfaf 100%);
+}
+
 .page-actions {
     display: flex;
     justify-content: center;
