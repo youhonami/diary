@@ -90,6 +90,19 @@
                     <span class="menu-description">写真を見て振り返る</span>
                 </a>
 
+                <a class="menu-item" href="<?= route('album.browse') ?>">
+                    <span class="menu-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3.5" y="6.5" width="11" height="9" rx="1.5" stroke="currentColor" stroke-width="1.8"/>
+                            <rect x="9.5" y="8.5" width="11" height="9" rx="1.5" stroke="currentColor" stroke-width="1.8"/>
+                            <circle cx="7" cy="10.5" r="1.2" fill="currentColor"/>
+                            <path d="M3.5 13.5 6.2 11.5l2.3 2 2-1.5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                    <span class="menu-label">他のユーザーのアルバムを見る</span>
+                    <span class="menu-description">みんなの写真を見る</span>
+                </a>
+
                 <a class="menu-item" href="<?= route('settings') ?>">
                     <span class="menu-icon" aria-hidden="true">
                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

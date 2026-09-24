@@ -191,6 +191,17 @@ class LoginController extends Controller
         ]);
     }
 
+    public function albumBrowse()
+    {
+        if (! Auth::check()) {
+            return redirect()->route('login.index');
+        }
+
+        return view('album_browse', [
+            'user' => Auth::user(),
+        ]);
+    }
+
     public function albumStore(Request $request)
     {
         if (! Auth::check()) {
