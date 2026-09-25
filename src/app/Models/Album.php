@@ -12,6 +12,7 @@ class Album extends Model
         'user_id',
         'title',
         'album_date',
+        'visibility',
     ];
 
     protected function casts(): array

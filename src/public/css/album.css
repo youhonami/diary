@@ -193,38 +193,44 @@ label {
 
 input[type="text"],
 input[type="date"],
-input[type="file"] {
+input[type="file"],
+select {
     border-radius: 12px;
     font-size: 16px;
     padding: 12px 14px;
     width: 100%;
 }
 
-.album-card-sky input {
+.album-card-sky input,
+.album-card-sky select {
     background-color: rgba(255, 255, 255, 0.92);
     border: 1px solid #c8d9ea;
     color: #2f3a4a;
 }
 
-.album-card-sunset input {
+.album-card-sunset input,
+.album-card-sunset select {
     background-color: rgba(255, 255, 255, 0.9);
     border: 1px solid #efc2a5;
     color: #4a352d;
 }
 
-.album-card-night input {
+.album-card-night input,
+.album-card-night select {
     background-color: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(185, 211, 255, 0.35);
     color: #eef4ff;
 }
 
-.album-card-mint input {
+.album-card-mint input,
+.album-card-mint select {
     background-color: rgba(255, 255, 255, 0.9);
     border: 1px solid #b7e5d8;
     color: #24564a;
 }
 
-.album-card-night input[type="date"] {
+.album-card-night input[type="date"],
+.album-card-night select {
     color-scheme: dark;
 }
 
@@ -554,6 +560,25 @@ input[type="file"] {
 
 .album-card-mint .album-item-title {
     color: #1f5c4c;
+}
+
+.visibility-badge {
+    border-radius: 999px;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    margin-top: 8px;
+    padding: 4px 10px;
+}
+
+.visibility-badge.is-public {
+    background-color: #e9f8ef;
+    color: #166534;
+}
+
+.visibility-badge.is-private {
+    background-color: #eef2f6;
+    color: #5a6a7a;
 }
 
 .album-card-sky .delete-button {

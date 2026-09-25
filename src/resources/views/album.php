@@ -85,6 +85,22 @@
                     <div id="image-preview" class="image-preview" hidden></div>
                 </div>
 
+                <div class="form-group">
+                    <label for="visibility">公開設定 <span class="required-mark">必須</span></label>
+                    <select
+                        id="visibility"
+                        name="visibility"
+                        required
+                        class="<?= $errors->has('visibility') ? 'is-invalid' : '' ?>"
+                    >
+                        <option value="private" <?= old('visibility', 'private') === 'private' ? 'selected' : '' ?>>非公開</option>
+                        <option value="public" <?= old('visibility') === 'public' ? 'selected' : '' ?>>公開</option>
+                    </select>
+                    <?php if ($errors->has('visibility')): ?>
+                        <p class="field-error"><?= e($errors->first('visibility')) ?></p>
+                    <?php endif; ?>
+                </div>
+
                 <button type="submit" class="save-button">登録する</button>
             </form>
 
@@ -102,6 +118,9 @@
                                 <div>
                                     <p class="album-item-date"><?= e($album->album_date->format('Y年n月j日')) ?></p>
                                     <h3 class="album-item-title"><?= e($album->title) ?></h3>
+                                    <span class="visibility-badge <?= ($album->visibility ?? 'private') === 'public' ? 'is-public' : 'is-private' ?>">
+                                        <?= ($album->visibility ?? 'private') === 'public' ? '公開' : '非公開' ?>
+                                    </span>
                                 </div>
                                 <div class="album-item-actions">
                                     <button

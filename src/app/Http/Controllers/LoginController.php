@@ -211,6 +211,7 @@ class LoginController extends Controller
         $albumData = $request->validate([
             'title' => ['required', 'string', 'max:255'],
             'album_date' => ['required', 'date'],
+            'visibility' => ['required', 'in:private,public'],
             'images' => ['required', 'array', 'min:1', 'max:5'],
             'images.*' => ['required', 'image', 'max:2048'],
         ], [
@@ -218,6 +219,8 @@ class LoginController extends Controller
             'title.max' => 'タイトルは255文字以内で入力してください。',
             'album_date.required' => '日付を入力してください。',
             'album_date.date' => '日付を正しく入力してください。',
+            'visibility.required' => '公開設定を選択してください。',
+            'visibility.in' => '公開設定を正しく選択してください。',
             'images.required' => '画像を1枚以上選択してください。',
             'images.min' => '画像を1枚以上選択してください。',
             'images.max' => '画像は5枚まで登録できます。',
@@ -230,6 +233,7 @@ class LoginController extends Controller
             'user_id' => Auth::id(),
             'title' => $albumData['title'],
             'album_date' => $albumData['album_date'],
+            'visibility' => $albumData['visibility'],
         ]);
 
         $directory = public_path('album_images');
