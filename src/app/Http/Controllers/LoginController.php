@@ -197,8 +197,16 @@ class LoginController extends Controller
             return redirect()->route('login.index');
         }
 
+        $albums = Album::with(['images', 'user'])
+            ->where('visibility', 'public')
+            ->where('user_id', '!=', Auth::id())
+            ->orderByDesc('album_date')
+            ->orderByDesc('created_at')
+            ->get();
+
         return view('album_browse', [
             'user' => Auth::user(),
+            'albums' => $albums,
         ]);
     }
 

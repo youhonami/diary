@@ -541,6 +541,28 @@ select {
     color: #4f7d70;
 }
 
+.album-item-author {
+    font-size: 14px;
+    font-weight: 700;
+    margin: 8px 0 0;
+}
+
+.album-card-sky .album-item-author {
+    color: #3c78ad;
+}
+
+.album-card-sunset .album-item-author {
+    color: #c06642;
+}
+
+.album-card-night .album-item-author {
+    color: #9ec0ff;
+}
+
+.album-card-mint .album-item-author {
+    color: #2f7d68;
+}
+
 .album-item-title {
     font-size: 20px;
     margin: 0;
@@ -609,6 +631,14 @@ select {
     display: grid;
     gap: 12px;
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+}
+
+.album-item-images-readonly img {
+    border-radius: 12px;
+    display: block;
+    height: 140px;
+    object-fit: cover;
+    width: 100%;
 }
 
 .album-image-select {
