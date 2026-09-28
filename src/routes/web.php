@@ -26,6 +26,7 @@ Route::get('/album', [LoginController::class, 'album'])->name('album');
 Route::post('/album', [LoginController::class, 'albumStore'])->name('album.store');
 Route::get('/album/browse', [LoginController::class, 'albumBrowse'])->name('album.browse');
 Route::post('/album/{album}/title', [LoginController::class, 'albumUpdateTitle'])->name('album.title.update');
+Route::post('/album/{album}/visibility', [LoginController::class, 'albumUpdateVisibility'])->name('album.visibility.update');
 Route::post('/album/{album}/images', [LoginController::class, 'albumImagesStore'])->name('album.images.store');
 Route::post('/album/{album}/delete', [LoginController::class, 'albumDestroy'])->name('album.destroy');
 Route::post('/album/{album}/images/delete', [LoginController::class, 'albumImagesDestroy'])->name('album.images.destroy');

@@ -131,6 +131,14 @@
                                     >
                                         タイトル変更
                                     </button>
+                                    <button
+                                        type="button"
+                                        class="edit-visibility-button"
+                                        data-album-id="<?= e($album->id) ?>"
+                                        aria-expanded="false"
+                                    >
+                                        公開設定
+                                    </button>
                                     <form action="<?= route('album.destroy', ['album' => $album]) ?>" method="post" onsubmit="return confirm('このアルバムを削除しますか？');">
                                         <?= csrf_field() ?>
                                         <button type="submit" class="delete-button">アルバム削除</button>
@@ -157,6 +165,23 @@
                                 >
                                 <button type="submit" class="save-title-button">保存</button>
                                 <button type="button" class="cancel-title-button" data-album-id="<?= e($album->id) ?>">キャンセル</button>
+                            </form>
+
+                            <form
+                                action="<?= route('album.visibility.update', ['album' => $album]) ?>"
+                                method="post"
+                                class="album-title-form"
+                                id="album-visibility-form-<?= e($album->id) ?>"
+                                hidden
+                            >
+                                <?= csrf_field() ?>
+                                <label class="sr-only" for="album-visibility-<?= e($album->id) ?>">公開設定</label>
+                                <select id="album-visibility-<?= e($album->id) ?>" name="visibility" required>
+                                    <option value="private" <?= ($album->visibility ?? 'private') === 'private' ? 'selected' : '' ?>>非公開</option>
+                                    <option value="public" <?= ($album->visibility ?? 'private') === 'public' ? 'selected' : '' ?>>公開</option>
+                                </select>
+                                <button type="submit" class="save-title-button">保存</button>
+                                <button type="button" class="cancel-visibility-button" data-album-id="<?= e($album->id) ?>">キャンセル</button>
                             </form>
 
                             <form
@@ -294,6 +319,36 @@
             document.querySelectorAll('.cancel-title-button').forEach(function (button) {
                 button.addEventListener('click', function () {
                     toggleTitleForm(button.getAttribute('data-album-id'), false);
+                });
+            });
+
+            function toggleVisibilityForm(albumId, show) {
+                const form = document.getElementById('album-visibility-form-' + albumId);
+                const button = document.querySelector('.edit-visibility-button[data-album-id="' + albumId + '"]');
+
+                if (! form || ! button) {
+                    return;
+                }
+
+                form.hidden = ! show;
+                button.setAttribute('aria-expanded', show ? 'true' : 'false');
+
+                if (show) {
+                    form.querySelector('select[name="visibility"]').focus();
+                }
+            }
+
+            document.querySelectorAll('.edit-visibility-button').forEach(function (button) {
+                button.addEventListener('click', function () {
+                    const albumId = button.getAttribute('data-album-id');
+                    const form = document.getElementById('album-visibility-form-' + albumId);
+                    toggleVisibilityForm(albumId, form.hidden);
+                });
+            });
+
+            document.querySelectorAll('.cancel-visibility-button').forEach(function (button) {
+                button.addEventListener('click', function () {
+                    toggleVisibilityForm(button.getAttribute('data-album-id'), false);
                 });
             });
 

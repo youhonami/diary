@@ -436,9 +436,11 @@ select {
     display: none;
 }
 
-.album-title-form input[type="text"] {
+.album-title-form input[type="text"],
+.album-title-form select {
     flex: 1 1 220px;
     min-width: 0;
+    width: auto;
 }
 
 .sr-only {
@@ -454,8 +456,10 @@ select {
 }
 
 .edit-title-button,
+.edit-visibility-button,
 .save-title-button,
 .cancel-title-button,
+.cancel-visibility-button,
 .delete-button {
     border-radius: 999px;
     cursor: pointer;
@@ -465,32 +469,40 @@ select {
 }
 
 .album-card-sky .edit-title-button,
+.album-card-sky .edit-visibility-button,
 .album-card-sky .save-title-button,
-.album-card-sky .cancel-title-button {
+.album-card-sky .cancel-title-button,
+.album-card-sky .cancel-visibility-button {
     background-color: #f8fbff;
     border: 1px solid #c8d9ea;
     color: #3c78ad;
 }
 
 .album-card-sunset .edit-title-button,
+.album-card-sunset .edit-visibility-button,
 .album-card-sunset .save-title-button,
-.album-card-sunset .cancel-title-button {
+.album-card-sunset .cancel-title-button,
+.album-card-sunset .cancel-visibility-button {
     background-color: #fff7f0;
     border: 1px solid #efc2a5;
     color: #c06642;
 }
 
 .album-card-night .edit-title-button,
+.album-card-night .edit-visibility-button,
 .album-card-night .save-title-button,
-.album-card-night .cancel-title-button {
+.album-card-night .cancel-title-button,
+.album-card-night .cancel-visibility-button {
     background-color: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(185, 211, 255, 0.35);
     color: #cfe0ff;
 }
 
 .album-card-mint .edit-title-button,
+.album-card-mint .edit-visibility-button,
 .album-card-mint .save-title-button,
-.album-card-mint .cancel-title-button {
+.album-card-mint .cancel-title-button,
+.album-card-mint .cancel-visibility-button {
     background-color: #f4fff9;
     border: 1px solid #b7e5d8;
     color: #2f7d68;

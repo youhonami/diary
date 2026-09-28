@@ -286,6 +286,29 @@ class LoginController extends Controller
         return redirect()->route('album')->with('message', 'タイトルを変更しました。');
     }
 
+    public function albumUpdateVisibility(Request $request, Album $album)
+    {
+        if (! Auth::check()) {
+            return redirect()->route('login.index');
+        }
+
+        if ($album->user_id !== Auth::id()) {
+            abort(403);
+        }
+
+        $data = $request->validate([
+            'visibility' => ['required', 'in:private,public'],
+        ], [
+            'visibility.required' => '公開設定を選択してください。',
+            'visibility.in' => '公開設定を正しく選択してください。',
+        ]);
+
+        $album->visibility = $data['visibility'];
+        $album->save();
+
+        return redirect()->route('album')->with('message', '公開設定を変更しました。');
+    }
+
     public function albumImagesStore(Request $request, Album $album)
     {
         if (! Auth::check()) {
