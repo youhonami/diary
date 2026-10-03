@@ -6,16 +6,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>トップページ</title>
-    <link rel="stylesheet" href="<?= asset('css/toppage.css') ?>">
+    <link rel="stylesheet" href="<?= asset('css/toppage.css') ?>?v=<?= filemtime(public_path('css/toppage.css')) ?>">
 </head>
 
 <body>
     <main class="toppage">
         <section class="toppage-card toppage-card-<?= e($user->toppage_background ?: 'sky') ?>">
-            <div class="toppage-heading">
-                <p class="toppage-subtitle">Diary</p>
-                <h1>トップページ</h1>
-            </div>
+            <header class="toppage-header">
+                <div class="toppage-heading">
+                    <p class="toppage-subtitle">Diary</p>
+                    <h1>トップページ</h1>
+                </div>
+                <div class="toppage-header-actions">
+                    <a class="header-icon-button" href="<?= route('settings') ?>" aria-label="設定">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/>
+                            <path d="M12 3.5v2.2M12 18.3v2.2M3.5 12h2.2M18.3 12h2.2M5.9 5.9l1.6 1.6M16.5 16.5l1.6 1.6M18.1 5.9l-1.6 1.6M7.5 16.5l-1.6 1.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                        </svg>
+                    </a>
+                    <form action="<?= route('logout') ?>" method="post" class="logout-form">
+                        <?= csrf_field() ?>
+                        <button type="submit" class="logout-button">ログアウト</button>
+                    </form>
+                </div>
+            </header>
 
             <div class="profile-summary">
                 <?php if ($user->icon_path): ?>
@@ -103,22 +117,7 @@
                     <span class="menu-description">みんなの写真を見る</span>
                 </a>
 
-                <a class="menu-item" href="<?= route('settings') ?>">
-                    <span class="menu-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/>
-                            <path d="M12 3.5v2.2M12 18.3v2.2M3.5 12h2.2M18.3 12h2.2M5.9 5.9l1.6 1.6M16.5 16.5l1.6 1.6M18.1 5.9l-1.6 1.6M7.5 16.5l-1.6 1.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-                        </svg>
-                    </span>
-                    <span class="menu-label">設定</span>
-                    <span class="menu-description">アカウントやプロフィール</span>
-                </a>
             </div>
-
-            <form action="<?= route('logout') ?>" method="post" class="logout-form">
-                <?= csrf_field() ?>
-                <button type="submit" class="logout-button">ログアウト</button>
-            </form>
         </section>
     </main>
 </body>
