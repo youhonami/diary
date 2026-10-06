@@ -1,0 +1,127 @@
+.app-header {
+    align-items: center;
+    display: flex;
+    gap: 16px;
+    justify-content: space-between;
+    margin: -8px 0 28px;
+    padding-bottom: 16px;
+}
+
+.app-header-sky {
+    border-bottom: 1px solid #dbe8f4;
+}
+
+.app-header-sunset {
+    border-bottom: 1px solid #efc2a5;
+}
+
+.app-header-night {
+    border-bottom: 1px solid rgba(185, 211, 255, 0.28);
+}
+
+.app-header-mint {
+    border-bottom: 1px solid #b7e5d8;
+}
+
+.app-header-brand {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.app-header-sky .app-header-brand {
+    color: #5b8fc6;
+}
+
+.app-header-sunset .app-header-brand {
+    color: #d47a4f;
+}
+
+.app-header-night .app-header-brand {
+    color: #a9c8ff;
+}
+
+.app-header-mint .app-header-brand {
+    color: #3d9b84;
+}
+
+.app-header-actions {
+    align-items: center;
+    display: flex;
+    flex-shrink: 0;
+    gap: 12px;
+}
+
+.header-icon-button {
+    align-items: center;
+    border-radius: 50%;
+    display: flex;
+    height: 44px;
+    justify-content: center;
+    text-decoration: none;
+    width: 44px;
+}
+
+.header-icon-button svg {
+    height: 22px;
+    width: 22px;
+}
+
+.app-header-sky .header-icon-button,
+.app-header-sky .logout-button {
+    background-color: #f8fbff;
+    border: 1px solid #c8d9ea;
+    color: #3c78ad;
+}
+
+.app-header-sunset .header-icon-button,
+.app-header-sunset .logout-button {
+    background-color: #fff7f0;
+    border: 1px solid #efc2a5;
+    color: #c06642;
+}
+
+.app-header-night .header-icon-button,
+.app-header-night .logout-button {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(185, 211, 255, 0.35);
+    color: #cfe0ff;
+}
+
+.app-header-mint .header-icon-button,
+.app-header-mint .logout-button {
+    background-color: #f4fff9;
+    border: 1px solid #b7e5d8;
+    color: #2f7d68;
+}
+
+.logout-form {
+    margin: 0;
+}
+
+.logout-button {
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 12px 28px;
+}
+
+.header-icon-button:hover,
+.logout-button:hover {
+    transform: translateY(-1px);
+}
+
+@media (max-width: 640px) {
+    .app-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .app-header-actions {
+        justify-content: flex-end;
+        width: 100%;
+    }
+}

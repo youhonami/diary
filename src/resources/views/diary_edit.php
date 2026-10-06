@@ -7,11 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>日記を編集</title>
     <link rel="stylesheet" href="<?= asset('css/diary_edit.css') ?>">
+    <link rel="stylesheet" href="<?= asset('css/app_header.css') ?>?v=<?= filemtime(public_path('css/app_header.css')) ?>">
 </head>
 
 <body>
     <main class="diary-edit-page">
         <section class="diary-edit-card">
+            <?php echo view('partials.app_header')->render(); ?>
             <div class="diary-edit-heading">
                 <p class="diary-edit-subtitle">Edit Diary</p>
                 <h1>日記を編集</h1>

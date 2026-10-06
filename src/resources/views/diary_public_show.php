@@ -7,12 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= e($diary->title) ?></title>
     <link rel="stylesheet" href="<?= asset('css/diary_public_show.css') ?>?v=<?= filemtime(public_path('css/diary_public_show.css')) ?>">
+    <link rel="stylesheet" href="<?= asset('css/app_header.css') ?>?v=<?= filemtime(public_path('css/app_header.css')) ?>">
 </head>
 
 <body>
     <main class="diary-public-page">
         <?php $theme = ($user->toppage_background ?? null) ?: 'sky'; ?>
         <article class="diary-public-card diary-public-card-<?= e($theme) ?>">
+            <?php echo view('partials.app_header')->render(); ?>
             <div class="diary-public-heading">
                 <p class="diary-public-subtitle">Public Diary</p>
                 <h1><?= e($diary->title) ?></h1>

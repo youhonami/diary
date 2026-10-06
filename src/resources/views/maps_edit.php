@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Googleマップの設定</title>
     <link rel="stylesheet" href="<?= asset('css/maps_edit.css') ?>?v=<?= filemtime(public_path('css/maps_edit.css')) ?>">
+    <link rel="stylesheet" href="<?= asset('css/app_header.css') ?>?v=<?= filemtime(public_path('css/app_header.css')) ?>">
 </head>
 
 <body>
@@ -51,6 +52,7 @@
 
     <main class="maps-edit-page">
         <section class="maps-edit-card">
+            <?php echo view('partials.app_header')->render(); ?>
             <div class="maps-edit-heading">
                 <p class="maps-edit-subtitle">Google Maps</p>
                 <h1>Googleマップの設定</h1>

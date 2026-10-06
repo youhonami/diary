@@ -7,12 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>アルバム</title>
     <link rel="stylesheet" href="<?= asset('css/album.css') ?>?v=<?= filemtime(public_path('css/album.css')) ?>">
+    <link rel="stylesheet" href="<?= asset('css/app_header.css') ?>?v=<?= filemtime(public_path('css/app_header.css')) ?>">
 </head>
 
 <body>
     <?php $theme = ($user->toppage_background ?? null) ?: 'sky'; ?>
     <main class="album-page">
         <section class="album-card album-card-<?= e($theme) ?>">
+            <?php echo view('partials.app_header')->render(); ?>
             <div class="album-heading">
                 <p class="album-subtitle">Album</p>
                 <h1>アルバム</h1>

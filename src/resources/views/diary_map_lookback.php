@@ -7,12 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>地図から日記を見返す</title>
     <link rel="stylesheet" href="<?= asset('css/diary_map_lookback.css') ?>?v=<?= filemtime(public_path('css/diary_map_lookback.css')) ?>">
+    <link rel="stylesheet" href="<?= asset('css/app_header.css') ?>?v=<?= filemtime(public_path('css/app_header.css')) ?>">
 </head>
 
 <body>
     <?php $theme = ($user->toppage_background ?? null) ?: 'sky'; ?>
     <main class="diary-map-page">
         <section class="diary-map-card diary-map-card-<?= e($theme) ?>">
+            <?php echo view('partials.app_header')->render(); ?>
             <div class="diary-map-heading">
                 <p class="diary-map-subtitle">Map Look Back</p>
                 <h1>地図から日記を見返す</h1>

@@ -7,12 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= e($date->format('Y年n月j日')) ?>の日記</title>
     <link rel="stylesheet" href="<?= asset('css/diary_show.css') ?>?v=<?= filemtime(public_path('css/diary_show.css')) ?>">
+    <link rel="stylesheet" href="<?= asset('css/app_header.css') ?>?v=<?= filemtime(public_path('css/app_header.css')) ?>">
 </head>
 
 <body>
     <main class="diary-show-page">
         <?php $theme = ($user->toppage_background ?? null) ?: 'sky'; ?>
         <section class="diary-show-card diary-show-card-<?= e($theme) ?>">
+            <?php echo view('partials.app_header')->render(); ?>
             <div class="diary-show-heading">
                 <p class="diary-show-subtitle">Diary Detail</p>
                 <h1><?= e($date->format('Y年n月j日')) ?>の日記</h1>

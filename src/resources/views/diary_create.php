@@ -7,11 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>日記を書く</title>
     <link rel="stylesheet" href="<?= asset('css/diary_create.css') ?>">
+    <link rel="stylesheet" href="<?= asset('css/app_header.css') ?>?v=<?= filemtime(public_path('css/app_header.css')) ?>">
 </head>
 
 <body>
     <main class="diary-create-page">
         <section class="diary-create-card diary-create-card-<?= e($user->toppage_background ?: 'sky') ?>">
+            <?php echo view('partials.app_header')->render(); ?>
             <div class="diary-create-heading">
                 <p class="diary-create-subtitle">Write Diary</p>
                 <h1>日記を書く</h1>

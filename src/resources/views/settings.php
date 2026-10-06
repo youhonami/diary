@@ -7,11 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>設定</title>
     <link rel="stylesheet" href="<?= asset('css/settings.css') ?>">
+    <link rel="stylesheet" href="<?= asset('css/app_header.css') ?>?v=<?= filemtime(public_path('css/app_header.css')) ?>">
 </head>
 
 <body>
     <main class="settings-page">
         <section class="settings-card">
+            <?php echo view('partials.app_header')->render(); ?>
             <div class="settings-heading">
                 <p class="settings-subtitle">Settings</p>
                 <h1>設定</h1>

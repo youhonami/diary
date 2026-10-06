@@ -7,11 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ログイン情報変更</title>
     <link rel="stylesheet" href="<?= asset('css/user_edit.css') ?>">
+    <link rel="stylesheet" href="<?= asset('css/app_header.css') ?>?v=<?= filemtime(public_path('css/app_header.css')) ?>">
 </head>
 
 <body>
     <main class="user-edit-page">
         <section class="user-edit-card">
+            <?php echo view('partials.app_header')->render(); ?>
             <div class="user-edit-heading">
                 <p class="user-edit-subtitle">Account Setting</p>
                 <h1>ログイン情報</h1>

@@ -62,68 +62,9 @@ body {
     color: #24564a;
 }
 
-.toppage-header {
-    align-items: center;
-    display: flex;
-    gap: 16px;
-    justify-content: space-between;
-    margin-bottom: 32px;
-}
-
 .toppage-heading {
-    margin: 0;
-    text-align: left;
-}
-
-.toppage-header-actions {
-    align-items: center;
-    display: flex;
-    flex-shrink: 0;
-    gap: 12px;
-}
-
-.header-icon-button {
-    align-items: center;
-    border-radius: 50%;
-    display: flex;
-    height: 44px;
-    justify-content: center;
-    text-decoration: none;
-    width: 44px;
-}
-
-.header-icon-button svg {
-    height: 22px;
-    width: 22px;
-}
-
-.toppage-card-sky .header-icon-button {
-    background-color: #f8fbff;
-    border: 1px solid #c8d9ea;
-    color: #3c78ad;
-}
-
-.toppage-card-sunset .header-icon-button {
-    background-color: #fff7f0;
-    border: 1px solid #efc2a5;
-    color: #c06642;
-}
-
-.toppage-card-night .header-icon-button {
-    background-color: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(185, 211, 255, 0.35);
-    color: #cfe0ff;
-}
-
-.toppage-card-mint .header-icon-button {
-    background-color: #f4fff9;
-    border: 1px solid #b7e5d8;
-    color: #2f7d68;
-}
-
-.header-icon-button:hover,
-.logout-button:hover {
-    transform: translateY(-1px);
+    margin-bottom: 32px;
+    text-align: center;
 }
 
 .toppage-subtitle {
@@ -152,7 +93,7 @@ body {
 
 h1 {
     font-size: 32px;
-    margin: 0;
+    margin: 0 0 12px;
 }
 
 .toppage-card-sky h1,
@@ -358,56 +299,9 @@ h1 {
     color: #4f7d70;
 }
 
-.logout-form {
-    margin: 0;
-}
-
-.logout-button {
-    border-radius: 999px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 700;
-    padding: 12px 28px;
-    transition: background-color 0.2s, transform 0.2s;
-}
-
-.toppage-card-sky .logout-button {
-    background-color: #f8fbff;
-    border: 1px solid #c8d9ea;
-    color: #3c78ad;
-}
-
-.toppage-card-sunset .logout-button {
-    background-color: #fff7f0;
-    border: 1px solid #efc2a5;
-    color: #c06642;
-}
-
-.toppage-card-night .logout-button {
-    background-color: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(185, 211, 255, 0.35);
-    color: #cfe0ff;
-}
-
-.toppage-card-mint .logout-button {
-    background-color: #f4fff9;
-    border: 1px solid #b7e5d8;
-    color: #2f7d68;
-}
-
 @media (max-width: 640px) {
     .toppage-card {
         padding: 28px 20px;
-    }
-
-    .toppage-header {
-        align-items: flex-start;
-        flex-direction: column;
-    }
-
-    .toppage-header-actions {
-        justify-content: flex-end;
-        width: 100%;
     }
 
     .menu {

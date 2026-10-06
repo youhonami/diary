@@ -7,11 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>トップページの背景選択</title>
     <link rel="stylesheet" href="<?= asset('css/background_edit.css') ?>">
+    <link rel="stylesheet" href="<?= asset('css/app_header.css') ?>?v=<?= filemtime(public_path('css/app_header.css')) ?>">
 </head>
 
 <body>
     <main class="background-edit-page">
         <section class="background-edit-card">
+            <?php echo view('partials.app_header')->render(); ?>
             <div class="background-edit-heading">
                 <p class="background-edit-subtitle">Background</p>
                 <h1>トップページの背景選択</h1>
