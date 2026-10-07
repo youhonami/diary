@@ -39,4 +39,6 @@ Route::get('/settings/background', [LoginController::class, 'backgroundEdit'])->
 Route::post('/settings/background', [LoginController::class, 'backgroundUpdate'])->name('background.update');
 Route::get('/settings/maps', [LoginController::class, 'mapsEdit'])->name('maps.edit');
 Route::post('/settings/maps', [LoginController::class, 'mapsUpdate'])->name('maps.update');
+Route::get('/help', [LoginController::class, 'help'])->name('help');
+Route::get('/contact', [LoginController::class, 'contact'])->name('contact');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

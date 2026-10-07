@@ -146,6 +146,7 @@
             </p>
         </section>
     </main>
+    <?php echo view('partials.app_footer')->render(); ?>
 
     <script>
         document.getElementById('icon').addEventListener('change', function (event) {

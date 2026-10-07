@@ -1,0 +1,22 @@
+.app-footer {
+    padding: 8px 16px 32px;
+    text-align: center;
+}
+
+.app-footer-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    justify-content: center;
+}
+
+.app-footer a {
+    color: #5b7a96;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.app-footer a:hover {
+    text-decoration: underline;
+}

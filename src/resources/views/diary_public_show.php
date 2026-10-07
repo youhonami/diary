@@ -68,6 +68,7 @@
             </p>
         </article>
     </main>
+    <?php echo view('partials.app_footer')->render(); ?>
 </body>
 
 </html>

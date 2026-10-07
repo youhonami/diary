@@ -259,6 +259,7 @@
             </p>
         </section>
     </main>
+    <?php echo view('partials.app_footer')->render(); ?>
 
     <script>
         (function () {
