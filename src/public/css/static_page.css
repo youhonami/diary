@@ -377,6 +377,43 @@ h1 {
     display: none;
 }
 
+.page-actions {
+    display: flex;
+    justify-content: center;
+    margin: 32px 0 0;
+}
+
+.back-link {
+    border-radius: 999px;
+    font-weight: 700;
+    padding: 12px 22px;
+    text-decoration: none;
+}
+
+.static-card-sky .back-link {
+    background-color: #f8fbff;
+    border: 1px solid #c8d9ea;
+    color: #3c78ad;
+}
+
+.static-card-sunset .back-link {
+    background-color: #fff7f0;
+    border: 1px solid #efc2a5;
+    color: #c06642;
+}
+
+.static-card-night .back-link {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(185, 211, 255, 0.35);
+    color: #cfe0ff;
+}
+
+.static-card-mint .back-link {
+    background-color: #f4fff9;
+    border: 1px solid #b7e5d8;
+    color: #2f7d68;
+}
+
 @media (max-width: 800px) {
     .help-layout {
         grid-template-columns: 1fr;

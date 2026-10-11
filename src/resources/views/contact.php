@@ -43,6 +43,10 @@
                     <li>営業のご連絡はご遠慮ください</li>
                 </ul>
             </section>
+
+            <p class="page-actions">
+                <a class="back-link" href="<?= route('toppage') ?>">トップページへ戻る</a>
+            </p>
         </section>
     </main>
     <?php echo view('partials.app_footer')->render(); ?>
