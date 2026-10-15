@@ -100,6 +100,10 @@
             <p class="withdrawal-link">
                 <a href="<?= route('withdrawal') ?>">退会をご希望の方はこちら</a>
             </p>
+
+            <p class="contact-link">
+                <a href="<?= route('contact') ?>">運営へのお問い合わせはこちら</a>
+            </p>
         </section>
     </main>
     <?php echo view('partials.app_footer')->render(); ?>
