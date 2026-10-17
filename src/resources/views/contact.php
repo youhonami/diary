@@ -11,7 +11,10 @@
 </head>
 
 <body>
-    <?php $theme = (auth()->user()->toppage_background ?? null) ?: 'sky'; ?>
+    <?php
+        $theme = (auth()->user()?->toppage_background ?? null) ?: 'sky';
+        $isLoggedIn = auth()->check();
+    ?>
     <main class="static-page">
         <section class="static-card static-card-<?= e($theme) ?>">
             <?php echo view('partials.app_header')->render(); ?>
@@ -45,7 +48,11 @@
             </section>
 
             <p class="page-actions">
-                <a class="back-link" href="<?= route('toppage') ?>">トップページへ戻る</a>
+                <?php if ($isLoggedIn): ?>
+                    <a class="back-link" href="<?= route('toppage') ?>">トップページへ戻る</a>
+                <?php else: ?>
+                    <a class="back-link" href="<?= route('login.index') ?>">ログインページに戻る</a>
+                <?php endif; ?>
             </p>
         </section>
     </main>
