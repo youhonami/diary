@@ -233,17 +233,11 @@ h1 {
     padding-left: 1.2em;
 }
 
-.help-layout {
-    display: grid;
-    gap: 24px;
-    grid-template-columns: minmax(200px, 280px) minmax(0, 1fr);
-    margin-top: 32px;
-}
-
-.help-topics {
+.help-list {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    margin-top: 32px;
 }
 
 .help-topic {
@@ -253,6 +247,7 @@ h1 {
     font-weight: 700;
     padding: 14px 16px;
     text-align: left;
+    width: 100%;
 }
 
 .static-card-sky .help-topic {
@@ -279,92 +274,59 @@ h1 {
     color: #1f5c4c;
 }
 
-.static-card-sky .help-topic[aria-selected="true"] {
+.static-card-sky .help-topic[aria-expanded="true"] {
     background-color: #eef7ff;
     border-color: #4d91d9;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
-.static-card-sunset .help-topic[aria-selected="true"] {
+.static-card-sunset .help-topic[aria-expanded="true"] {
     background-color: #ffe8d4;
     border-color: #df7a52;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
-.static-card-night .help-topic[aria-selected="true"] {
+.static-card-night .help-topic[aria-expanded="true"] {
     background-color: rgba(110, 168, 255, 0.22);
     border-color: #9ec0ff;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
-.static-card-mint .help-topic[aria-selected="true"] {
+.static-card-mint .help-topic[aria-expanded="true"] {
     background-color: #d8f5ec;
     border-color: #3d9b84;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
-.help-detail {
-    border-radius: 16px;
-    min-height: 220px;
-    padding: 20px;
+.help-panel {
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+    margin-top: -1px;
+    padding: 16px 18px 18px;
 }
 
-.static-card-sky .help-detail {
+.static-card-sky .help-panel {
     background-color: rgba(255, 255, 255, 0.72);
-    border: 1px solid #dbe8f4;
+    border: 1px solid #4d91d9;
 }
 
-.static-card-sunset .help-detail {
+.static-card-sunset .help-panel {
     background-color: rgba(255, 255, 255, 0.55);
-    border: 1px solid #efc2a5;
+    border: 1px solid #df7a52;
 }
 
-.static-card-night .help-detail {
+.static-card-night .help-panel {
     background-color: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(185, 211, 255, 0.28);
+    border: 1px solid #9ec0ff;
 }
 
-.static-card-mint .help-detail {
+.static-card-mint .help-panel {
     background-color: rgba(255, 255, 255, 0.55);
-    border: 1px solid #b7e5d8;
-}
-
-.help-empty {
-    line-height: 1.7;
-    margin: 0;
-}
-
-.static-card-sky .help-empty {
-    color: #68798b;
-}
-
-.static-card-sunset .help-empty {
-    color: #7d5f52;
-}
-
-.static-card-night .help-empty {
-    color: #d9e7ff;
-}
-
-.static-card-mint .help-empty {
-    color: #4f7d70;
-}
-
-.help-panel h2 {
-    font-size: 22px;
-    margin: 0 0 16px;
-}
-
-.static-card-sky .help-panel h2 {
-    color: #23415f;
-}
-
-.static-card-sunset .help-panel h2 {
-    color: #70402f;
-}
-
-.static-card-night .help-panel h2 {
-    color: #ffffff;
-}
-
-.static-card-mint .help-panel h2 {
-    color: #1f5c4c;
+    border: 1px solid #3d9b84;
 }
 
 .help-panel ul {
@@ -412,12 +374,6 @@ h1 {
     background-color: #f4fff9;
     border: 1px solid #b7e5d8;
     color: #2f7d68;
-}
-
-@media (max-width: 800px) {
-    .help-layout {
-        grid-template-columns: 1fr;
-    }
 }
 
 @media (max-width: 640px) {

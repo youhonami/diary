@@ -78,45 +78,35 @@
             <div class="static-heading">
                 <p class="static-subtitle">Help</p>
                 <h1>ヘルプ</h1>
-                <p>項目を選ぶと、その注意事項が表示されます。</p>
+                <p>項目を選ぶと、その下に注意事項が表示されます。</p>
             </div>
 
-            <div class="help-layout">
-                <div class="help-topics" role="tablist" aria-label="ヘルプの項目">
-                    <?php foreach ($helpTopics as $id => $topic): ?>
+            <div class="help-list">
+                <?php foreach ($helpTopics as $id => $topic): ?>
+                    <div class="help-item">
                         <button
                             type="button"
                             class="help-topic"
-                            role="tab"
                             id="help-tab-<?= e($id) ?>"
                             aria-controls="help-panel-<?= e($id) ?>"
-                            aria-selected="false"
-                            data-help-topic="<?= e($id) ?>"
+                            aria-expanded="false"
                         >
                             <?= e($topic['label']) ?>
                         </button>
-                    <?php endforeach; ?>
-                </div>
-
-                <div class="help-detail">
-                    <p class="help-empty" id="help-empty">項目を選択してください。</p>
-                    <?php foreach ($helpTopics as $id => $topic): ?>
                         <section
                             class="help-panel"
-                            role="tabpanel"
                             id="help-panel-<?= e($id) ?>"
                             aria-labelledby="help-tab-<?= e($id) ?>"
                             hidden
                         >
-                            <h2><?= e($topic['label']) ?></h2>
                             <ul>
                                 <?php foreach ($topic['notes'] as $note): ?>
                                     <li><?= e($note) ?></li>
                                 <?php endforeach; ?>
                             </ul>
                         </section>
-                    <?php endforeach; ?>
-                </div>
+                    </div>
+                <?php endforeach; ?>
             </div>
 
             <p class="page-actions">
@@ -133,22 +123,22 @@
     <script>
         (function () {
             const topics = document.querySelectorAll('.help-topic');
-            const panels = document.querySelectorAll('.help-panel');
-            const empty = document.getElementById('help-empty');
 
             topics.forEach(function (topic) {
                 topic.addEventListener('click', function () {
-                    const id = topic.getAttribute('data-help-topic');
+                    const panel = document.getElementById(topic.getAttribute('aria-controls'));
+                    const willOpen = panel.hidden;
 
                     topics.forEach(function (button) {
-                        button.setAttribute('aria-selected', button === topic ? 'true' : 'false');
+                        const otherPanel = document.getElementById(button.getAttribute('aria-controls'));
+                        button.setAttribute('aria-expanded', 'false');
+                        otherPanel.hidden = true;
                     });
 
-                    panels.forEach(function (panel) {
-                        panel.hidden = panel.id !== 'help-panel-' + id;
-                    });
-
-                    empty.hidden = true;
+                    if (willOpen) {
+                        topic.setAttribute('aria-expanded', 'true');
+                        panel.hidden = false;
+                    }
                 });
             });
         })();
