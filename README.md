@@ -4,7 +4,7 @@ Laravel 11 と Docker で動作する日記アプリです。
 
 ## 使用技術
 
-- PHP 8.2
+- PHP 8.5
 - Laravel 11
 - MySQL 8.0
 - Nginx 1.21
