@@ -17,7 +17,7 @@ Laravel 11 と Docker で動作する日記アプリです。
 | サービス | 内容 | URL / ポート |
 | --- | --- | --- |
 | nginx | Web サーバー | http://localhost |
-| php | Laravel 実行環境（PHP-FPM） | 9000（内部） |
+| php | Laravel 実行環境（PHP 8.5 / PHP-FPM） | 9000（内部） |
 | mysql | データベース | 3306（内部） |
 | phpmyadmin | DB 管理画面 | http://localhost:8080 |
 
@@ -304,11 +304,12 @@ diary/
 ├── docker/
 │   ├── mysql/
 │   ├── nginx/
-│   └── php/
+│   └── php/              # PHP 8.5-FPM の Dockerfile / php.ini
 ├── docker-compose.yml
 ├── README.md
 └── src/                  # Laravel アプリ
     ├── app/
+    ├── bootstrap/
     ├── database/
     ├── public/
     │   ├── album_images/   # アルバム画像の保存先
@@ -320,6 +321,8 @@ diary/
 ## 主なファイル
 
 - `docker-compose.yml` … Docker サービス定義
+- `docker/php/Dockerfile` … PHP 8.5-FPM 実行環境
+- `src/composer.json` … PHP `^8.5` / Laravel 11 の依存定義
 - `src/routes/web.php` … ルート定義
 - `src/app/Http/Controllers/LoginController.php` … 画面・更新処理
 - `src/app/Models/User.php` / `Diary.php` / `Album.php` / `AlbumImage.php` … モデル
